@@ -1,0 +1,88 @@
+﻿@model SmartCity.Domain.Entities.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>用户修改</title>
+    <link href="~/Content/script/h-ui/css/H-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/script/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" />
+    <link href="~/Content/script/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/script/h-ui.admin/skin/default/skin.css" rel="stylesheet" id="skin" />
+</head>
+<body>
+    <article class="page-container">
+        <div class="form form-horizontal">
+            @using (Ajax.BeginForm("UpdateUserInfo", "UserInfo", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "dig.Success", OnFailure = "dig.Complete" }, new { @class = "form-signin" }))
+            {
+                <input type="hidden" name="OwnerID" value="@Model.OwnerID" />
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名称：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        @Html.TextBoxFor(x => x.UserName, new { @class = "input-text", @id = "UserName", @name = "UserName" })
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户手机：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" value="@Model.UserPhone" placeholder="" id="UserPhone" name="UserPhone">
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户邮箱：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" value="@Model.UserEmail" placeholder="" name="UserEmail" id="UserEmail">
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户地址：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" value="@Model.UserAddress" placeholder="" name="UserAddress" id="UserAddress">
+                    </div>
+                </div>
+                <div class="row cl">
+                    <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                        <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                    </div>
+                </div>
+            }
+        </div>
+    </article>
+    <!--_footer 作为公共模版分离出去-->
+    <script src="~/Content/script/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script src="~/Content/script/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Content/script/lib/layer/2.4/layer.js"></script>
+    <script src="~/Content/script/h-ui/js/H-ui.min.js"></script>
+    <script src="~/Content/script/h-ui.admin/js/H-ui.admin.js"></script>
+    <!--/_footer 作为公共模版分离出去-->
+    <!--请在下方写此页面业务相关的脚本-->
+    <script src="~/Content/script/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+    <script src="~/Content/script/datatables/1.10.0/jquery.dataTables.min.js"></script>
+    <script src="~/Content/script/laypage/1.2/laypage.js"></script>
+    <script type="text/javascript">
+        //执行成功后调用JS
+        var dig = {
+            Success: function (result) {
+                if (result.IsSuccess == 0) {
+                    window.parent.location.reload();
+                }
+                else {
+                    layer.msg(result.Message, { icon: 2, time: 2000 });
+                }
+            },
+            Failure: function () {
+                layer.msg('修改失败，请稍后重试！', { icon: 2, time: 2000 });
+            },
+            ErrorMsg: function (msg) {
+                ClickRemoveChangeCode();
+                layer.msg('修改失败，请稍后重试！', { icon: 2, time: 2000 });
+            }
+        }
+    </script>
+</body>
+</html>
