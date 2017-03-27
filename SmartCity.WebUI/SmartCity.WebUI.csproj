@@ -388,6 +388,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserInfoController.cs" />
     <Compile Include="Areas\Admin\Models\ManagerListModel.cs" />
     <Compile Include="Areas\Admin\Models\UserListModel.cs" />
@@ -433,6 +434,7 @@
     <Content Include="Areas\Admin\Views\UserInfo\Index.cshtml" />
     <Content Include="Areas\Admin\Views\UserInfo\AddUserByGet.cshtml" />
     <Content Include="Areas\Admin\Views\UserInfo\UpdateUserInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
