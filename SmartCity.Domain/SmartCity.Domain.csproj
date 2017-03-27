@@ -53,6 +53,7 @@
     <Compile Include="Concrete\ProductCheshi.cs" />
     <Compile Include="Concrete\UserInfo.cs" />
     <Compile Include="Entities\Manager.cs" />
+    <Compile Include="Entities\News.cs" />
     <Compile Include="Entities\Notice.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="IRepositoryContext.cs" />
