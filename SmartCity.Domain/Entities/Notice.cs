@@ -39,7 +39,7 @@ namespace SmartCity.Domain.Entities
         /// <summary>
         /// 公告作者
         /// </summary>
-        public string NewAuthor { get; set; }
+        public string NewsAuthor { get; set; }
         /// <summary>
         /// 是否发表
         /// </summary>

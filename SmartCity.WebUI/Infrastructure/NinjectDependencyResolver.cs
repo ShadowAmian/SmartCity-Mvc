@@ -52,6 +52,7 @@ namespace SmartCity.WebUI.Infrastructure
             kennel.Bind<IProductCheshi>().To<ProductCheshi>();
             kennel.Bind<IUserInfo>().To<UserInfo>();
             kennel.Bind<IManagerInfo>().To<ManagerInfo>();
+            kennel.Bind<INoticeInfo>().To<NoticeInfo>();
         }
     }
 }

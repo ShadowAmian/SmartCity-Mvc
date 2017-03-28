@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SmartCity.Domain.Abstract;
+using SmartCity.WebUI.Areas.Admin.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,12 +11,27 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
     /// <summary>
     /// 公告控制器
     /// </summary>
-    public class NewsController : Controller
+    public class NewsController : AdminBaseController
     {
-        // GET: Admin/News
-        public ActionResult Index()
+
+        #region 字段 构造函数
+        private INoticeInfo repository;
+        public NewsController(INoticeInfo NewsInfo)
         {
+            this.repository = NewsInfo;
+        }
+        #endregion
+        #region 公告管理模块
+        /// <summary>
+        /// 新闻列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult NewsList()
+        {
+            var model = new NewsList();
+            model.NewsIteams = repository.GetNewsList().ToList();
             return View();
         }
+        #endregion
     }
 }

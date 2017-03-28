@@ -391,6 +391,7 @@
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserInfoController.cs" />
     <Compile Include="Areas\Admin\Models\ManagerListModel.cs" />
+    <Compile Include="Areas\Admin\Models\NewsList.cs" />
     <Compile Include="Areas\Admin\Models\UserListModel.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Global.asax.cs">
@@ -405,9 +406,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
@@ -434,7 +432,7 @@
     <Content Include="Areas\Admin\Views\UserInfo\Index.cshtml" />
     <Content Include="Areas\Admin\Views\UserInfo\AddUserByGet.cshtml" />
     <Content Include="Areas\Admin\Views\UserInfo\UpdateUserInfo.cshtml" />
-    <Content Include="Areas\Admin\Views\News\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\News\NewsList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IManagerInfo.cs" />
+    <Compile Include="Abstract\INoticeInfo.cs" />
     <Compile Include="Abstract\IProductCheshi.cs" />
     <Compile Include="Abstract\IUserInfo.cs" />
     <Compile Include="Concrete\ManagerInfo.cs" />
@@ -53,7 +54,6 @@
     <Compile Include="Concrete\ProductCheshi.cs" />
     <Compile Include="Concrete\UserInfo.cs" />
     <Compile Include="Entities\Manager.cs" />
-    <Compile Include="Entities\News.cs" />
     <Compile Include="Entities\Notice.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="IRepositoryContext.cs" />
