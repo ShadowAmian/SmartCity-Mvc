@@ -31,7 +31,7 @@ namespace SmartCity.Domain.Entities
         /// <summary>
         /// 关键字
         /// </summary>
-        public string NewKaywords { get; set; }
+        public string NewsKaywords { get; set; }
         /// <summary>
         /// 公告摘要
         /// </summary>

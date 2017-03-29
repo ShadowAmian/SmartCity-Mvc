@@ -30,6 +30,16 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         {
             var model = new NewsList();
             model.NewsIteams = repository.GetNewsList().ToList();
+            return View(model);
+        }
+        [ActionName("NewsInfoAdd")]
+        public ActionResult NewsAdd()
+        {
+            return View();
+        }
+        [HttpPost,ActionName("NewsInfoAdd")]
+        public ActionResult AddNewsInfo()
+        {
             return View();
         }
         #endregion
