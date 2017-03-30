@@ -16,6 +16,10 @@
     <link href="~/Content/script/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" />
 </head>
 <body>
+    @using (Html.BeginForm("",""))
+    {
+
+    }
     <article class="page-container">
         <form class="form form-horizontal" id="form-article-add">
             <div class="row cl">
@@ -119,7 +123,7 @@
         var uploader = WebUploader.create({
 
             // swf文件路径
-            swf: BASE_URL + '/js/Uploader.swf',
+            swf: 'Content/script/lib/webuploader/0.1.5/Uploader.swf',
 
             // 文件接收服务端。
             server: 'http://webuploader.duapp.com/server/fileupload.php',
