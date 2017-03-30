@@ -11,7 +11,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
     /// <summary>
     /// 公告控制器
     /// </summary>
-    public class NewsController : AdminBaseController
+    public class NewsController :Controller
     {
 
         #region 字段 构造函数

@@ -45,6 +45,10 @@ namespace SmartCity.Domain.Entities
         /// </summary>
         public int IsComment { get; set; }
         /// <summary>
+        /// 公告状态
+        /// </summary>
+        public int PublishStatus { get; set; }
+        /// <summary>
         /// 公告图片
         /// </summary>
         public string NewsImages { get; set; }
