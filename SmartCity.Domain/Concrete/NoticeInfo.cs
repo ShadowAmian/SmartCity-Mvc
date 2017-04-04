@@ -12,15 +12,45 @@ namespace SmartCity.Domain.Concrete
     /// <summary>
     /// 通告资讯管理类
     /// </summary>
-    public class NoticeInfo: RepositoryContext,INoticeInfo
+    public class NoticeInfo : RepositoryContext, INoticeInfo
     {
         /// <summary>
-        ///获取用户信息集合
+        ///获取通告资讯集合
         /// </summary>
         /// <returns></returns>
         public IEnumerable<Notice> GetNewsList()
         {
             return Conn.Query<Notice>("select * from News_Table");
+        }
+        /// <summary>
+        /// 通告资讯添加
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool AddNews(Notice model)
+        {
+            var resule = Conn.Execute("Insert into News_Table values(@NewsTitle,@NewsSimpleTitle,@NewsChassify,@NewsKaywords,@NewsDigest,@NewsAuthor,@IsComment,@PublishStatus,@NewsImages,@NewsContent,@CreateTime)", model);
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 修改公告状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="Status"></param>
+        /// <returns></returns>
+        public bool EditPublishStatu(int ID,int Status)
+        {
+            var resule = Conn.Execute("update News_Table set PublishStatus=@PublishStatus where NewsID=@NewsID", new { PublishStatus=Status,NewsID=ID });
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+
         }
     }
 }

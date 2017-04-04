@@ -22,10 +22,10 @@
             <input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" class="input-text Wdate" style="width:120px;">
             -
             <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" class="input-text Wdate" style="width:120px;">
-            <input type="text" name="" id="" placeholder=" 资讯名称" style="width:250px" class="input-text">
+            <input type="text" name="" id="" placeholder="资讯名称" style="width:250px" class="input-text">
             <button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜公告</button>
         </div>
-        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" data-title="添加资讯" data-href="article-add.html" onclick="Hui_admin_tab(this)" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加公告</a></span> </div>
+        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" data-title="添加资讯" data-href="article-add.html" onclick="article_add('添加资讯',@Url.Action("AddNewsInfo", "News",new { area="Admin"}))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加公告</a></span> </div>
         <div class="mt-20">
             <table class="table table-border table-bordered table-bg table-hover table-sort">
                 <thead>
@@ -84,7 +84,7 @@
             ]
         });
         /*公告-添加*/
-        function article_add(title, url, w, h) {
+        function article_add(title, url) {
             var index = layer.open({
                 type: 2,
                 title: title,
@@ -92,7 +92,7 @@
             });
             layer.full(index);
         }
-        /*资讯-编辑*/
+        /*公告-编辑*/
         function article_edit(title, url, id, w, h) {
             var index = layer.open({
                 type: 2,
@@ -101,7 +101,7 @@
             });
             layer.full(index);
         }
-        /*资讯-删除*/
+        /*公告-删除*/
         function article_del(obj, id) {
             layer.confirm('确认要删除吗？', function (index) {
                 $.ajax({
@@ -119,7 +119,7 @@
             });
         }
 
-        /*资讯-审核*/
+        /*公告-审核*/
         function article_shenhe(obj, id) {
             layer.confirm('审核文章？', {
                 btn: ['通过', '不通过', '取消'],
@@ -127,44 +127,130 @@
                 closeBtn: 0
             },
             function () {
-                $(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="article_start(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-                $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-                $(obj).remove();
-                layer.msg('已发布', { icon: 6, time: 1000 });
+                //此处请求后台程序，下方是成功后的前台处理……
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("EditPublishStatus", "News",new { area="Admin"})',
+                    data: {"NewsID": id,"Status":5 },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.IsSuccess == 0) {
+                            $(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="article_start(this,' + id + ')" href="javascript:;" title="申请上线">申请上线</a>');
+                            $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">审核通过</span>');
+                            $(obj).remove();
+                            layer.msg('已发布', { icon: 6, time: 1000 });
+                        }
+                        else {
+                            layer.msg(data.Message, { icon: 2, time: 2000 });
+                        }
+                    },
+                    error: function (data) {
+                        layer.msg('服务异常,请稍后重试', { icon: 2, time: 2000 });
+                    },
+                });
             },
             function () {
-                $(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="article_shenqing(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-                $(obj).parents("tr").find(".td-status").html('<span class="label label-danger radius">未通过</span>');
-                $(obj).remove();
-                layer.msg('未通过', { icon: 5, time: 1000 });
+                //此处请求后台程序，下方是成功后的前台处理……
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("EditPublishStatus", "News",new { area="Admin"})',
+                    data: {"NewsID": id ,"Status":1},
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.IsSuccess == 0) {
+                            $(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="article_shenqing(this,'+id+')" href="javascript:;" title="申请上线">申请上线</a>');
+                            $(obj).parents("tr").find(".td-status").html('<span class="label label-danger radius">未通过</span>');
+                            $(obj).remove();
+                            layer.msg('未通过', { icon: 5, time: 1000 });
+                        }
+                        else {
+                            layer.msg(data.Message, { icon: 2, time: 2000 });
+                        }
+                    },
+                    error: function (data) {
+                        layer.msg('服务异常,请稍后重试', { icon: 2, time: 2000 });
+                    },
+                });
             });
         }
-        /*资讯-下架*/
+        /*公告-下架*/
         function article_stop(obj, id) {
             layer.confirm('确认要下架吗？', function (index) {
-                $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
-                $(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
-                $(obj).remove();
-                layer.msg('已下架!', { icon: 5, time: 1000 });
+                //此处请求后台程序，下方是成功后的前台处理……
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("EditPublishStatus", "News",new { area="Admin"})',
+                    data: {"NewsID": id,"Status":2 },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.IsSuccess == 0) {
+
+                            $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_start(this,'+id+')" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
+                            $(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
+                            $(obj).remove();
+                            layer.msg('已下架!', { icon: 5, time: 1000 });
+                        }
+                        else {
+                            layer.msg(data.Message, { icon: 2, time: 2000 });
+                        }
+                    },
+                    error: function (data) {
+                        layer.msg('服务异常,请稍后重试', { icon: 2, time: 2000 });
+                    },
+                });
             });
         }
 
-        /*资讯-发布*/
+        /*公告-发布*/
         function article_start(obj, id) {
             layer.confirm('确认要发布吗？', function (index) {
-                $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
-                $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-                $(obj).remove();
-                layer.msg('已发布!', { icon: 6, time: 1000 });
+
+                //此处请求后台程序，下方是成功后的前台处理……
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("EditPublishStatus", "News",new { area="Admin"})',
+                    data: {"NewsID": id ,"Status":0},
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.IsSuccess == 0) {
+
+                            $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_stop(this,' + id + ')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
+                            $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
+                            $(obj).remove();
+                            layer.msg('已发布!', { icon: 6, time: 1000 });
+                        }
+                        else {
+                            layer.msg(data.Message, { icon: 2, time: 2000 });
+                        }
+                    },
+                    error: function (data) {
+                        layer.msg('服务异常,请稍后重试', { icon: 2, time: 2000 });
+                    },
+                });
             });
         }
-        /*资讯-申请上线*/
+        /*公告-申请上线*/
         function article_shenqing(obj, id) {
-            $(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">待审核</span>');
-            $(obj).parents("tr").find(".td-manage").html("");
-            layer.msg('已提交申请，耐心等待审核!', { icon: 1, time: 2000 });
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("EditPublishStatus", "News",new { area="Admin"})',
+                data: { "NewsID": id,"Status":3 },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.IsSuccess == 0) {
+                        $(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">待审核</span>');
+                        $(obj).parents("tr").find(".td-manage").html("");
+                        layer.msg('已提交申请，耐心等待审核!', { icon: 1, time: 2000 });
+                    }
+                    else {
+                        layer.msg(data.Message, { icon: 2, time: 2000 });
+                    }
+                },
+                error: function (data) {
+                    layer.msg('服务异常,请稍后重试', { icon: 2, time: 2000 });
+                },
+            });
         }
-
     </script>
 </body>
 </html>

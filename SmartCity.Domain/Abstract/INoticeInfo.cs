@@ -13,6 +13,19 @@ namespace SmartCity.Domain.Abstract
         ///获取用户信息集合
         /// </summary>
         /// <returns></returns>
-         IEnumerable<Notice> GetNewsList();
+        IEnumerable<Notice> GetNewsList();
+        /// <summary>
+        /// 添加新闻通告
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        bool AddNews(Notice model);
+        /// <summary>
+        /// 修改公告状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="Status"></param>
+        /// <returns></returns>
+        bool EditPublishStatu(int ID, int Status);
     }
 }
