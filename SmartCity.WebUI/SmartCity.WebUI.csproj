@@ -553,6 +553,7 @@
     <Compile Include="Areas\Admin\Controllers\UserInfoController.cs" />
     <Compile Include="Areas\Admin\Models\ManagerListModel.cs" />
     <Compile Include="Areas\Admin\Models\NewsList.cs" />
+    <Compile Include="Areas\Admin\Models\News\NewsModel.cs" />
     <Compile Include="Areas\Admin\Models\UserListModel.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Global.asax.cs">

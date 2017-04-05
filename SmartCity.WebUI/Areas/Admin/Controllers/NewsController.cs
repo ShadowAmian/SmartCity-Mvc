@@ -1,6 +1,7 @@
 ﻿using SmartCity.Domain.Abstract;
 using SmartCity.Domain.Entities;
 using SmartCity.WebUI.Areas.Admin.Models;
+using SmartCity.WebUI.Areas.Admin.Models.News;
 using SmartCity.WebUI.Infrastructure.EnumData;
 using System;
 using System.Collections.Generic;
@@ -31,11 +32,31 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         /// <returns></returns>
         public ActionResult NewsList()
         {
-            var model = new NewsList();
-            model.NewsIteams = repository.GetNewsList().ToList();
-            return View(model);
+            var model = new List<NewsModel>();
+            var Model = new NewsList();
+            var result = repository.GetNewsList().ToList();
+            foreach (var item in result)
+            {
+                var newsModel = new NewsModel()
+                {
+                    NewsID = item.NewsID,
+                    NewsTitle = item.NewsTitle,
+                    NewsSimpleTitle = item.NewsSimpleTitle,
+                    PublishStatus = Enum.GetName(typeof(NewsStatus), item.PublishStatus),
+                    IsComment = item.IsComment,
+                    NewsAuthor = item.NewsAuthor,
+                    NewsChassify = item.NewsChassify,
+                    NewsContent = item.NewsContent,
+                    NewsDigest = item.NewsDigest,
+                    NewsKaywords = item.NewsKaywords,
+                    CreateTime=item.CreateTime
+                };
+                model.Add(newsModel);
+            }
+            Model.NewsIteams = model;
+            //格式转换
+            return View(Model);
         }
-
         /// <summary>
         /// 公告添加
         /// </summary>
@@ -82,7 +103,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             NoticeModel.NewsKaywords = model.NewsKaywords;
             NoticeModel.NewsSimpleTitle = model.NewsSimpleTitle;
             NoticeModel.NewsTitle = model.NewsTitle;
-            NoticeModel.PublishStatus = 2;
+            NoticeModel.PublishStatus = 4;
             NoticeModel.CreateTime = DateTime.Now;
 
             var result = repository.AddNews(NoticeModel);

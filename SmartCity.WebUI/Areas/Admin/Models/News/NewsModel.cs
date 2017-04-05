@@ -1,20 +1,16 @@
-﻿using SmartCity.Domain.Entities;
-using SmartCity.WebUI.Areas.Admin.Models.News;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SmartCity.WebUI.Areas.Admin.Models
+namespace SmartCity.WebUI.Areas.Admin.Models.News
 {
-    public class NewsList
+    public class NewsModel
     {
-
-        public NewsList()
-        {
-            NewsIteams = new List<NewsModel>();
-        }
-        public IList<NewsModel> NewsIteams { get; set; }
+        /// <summary>
+        ///公告ID
+        /// </summary>
+        public int NewsID { get; set; }
         /// <summary>
         /// 公告标题
         /// </summary>
@@ -44,6 +40,10 @@ namespace SmartCity.WebUI.Areas.Admin.Models
         /// </summary>
         public int IsComment { get; set; }
         /// <summary>
+        /// 公告状态
+        /// </summary>
+        public string PublishStatus { get; set; }
+        /// <summary>
         /// 公告图片
         /// </summary>
         public HttpPostedFileBase NewsImages { get; set; }
@@ -51,6 +51,9 @@ namespace SmartCity.WebUI.Areas.Admin.Models
         /// 公告内容
         /// </summary>
         public string NewsContent { get; set; }
-
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CreateTime { get; set; }
     }
 }
