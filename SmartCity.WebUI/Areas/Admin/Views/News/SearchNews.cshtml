@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>公告内容</title>
+    <link href="~/Content/script/h-ui/css/H-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/script/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" />
+    <link href="~/Content/script/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/script/h-ui.admin/skin/default/skin.css" rel="stylesheet" id="skin" />
+</head>
+<body>
+    <div class="panel panel-header">
+        <div class="panel-header">公告内容</div>
+        <div class="panel-body">@ViewBag.Content</div>
+    </div>
+    <!--_footer 作为公共模版分离出去-->
+    <script src="~/Content/script/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script src="~/Content/script/lib/layer/2.4/layer.js"></script>
+    <script src="~/Content/script/h-ui/js/H-ui.min.js"></script>
+    <script src="~/Content/script/h-ui.admin/js/H-ui.admin.js"></script>
+</body>
+</html>

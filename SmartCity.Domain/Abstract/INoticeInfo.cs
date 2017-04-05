@@ -27,5 +27,17 @@ namespace SmartCity.Domain.Abstract
         /// <param name="Status"></param>
         /// <returns></returns>
         bool EditPublishStatu(int ID, int Status);
+        /// <summary>
+        /// 查询公告内容
+        /// </summary>
+        /// <param name="NewsID"></param>
+        /// <returns></returns>
+        IEnumerable<Notice> SearchContent(int NewsID);
+        /// <summary>
+        /// 删除公告内容
+        /// </summary>
+        /// <param name="NewsID"></param>
+        /// <returns></returns>
+        bool DeleteNews(int NewsID);
     }
 }

@@ -608,6 +608,8 @@
     <Content Include="Content\script\lib\webuploader\0.1.5\server\fileupload.php" />
     <Content Include="Content\script\lib\webuploader\0.1.5\server\fileupload2.php" />
     <Content Include="Content\script\lib\webuploader\0.1.5\server\preview.php" />
+    <Content Include="Areas\Admin\Views\News\SearchNews.cshtml" />
+    <Content Include="Areas\Admin\Views\News\NewsInfoEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

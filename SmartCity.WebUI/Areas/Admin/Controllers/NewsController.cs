@@ -25,6 +25,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             this.repository = NewsInfo;
         }
         #endregion
+
         #region 公告管理模块
         /// <summary>
         /// 公告列表
@@ -142,10 +143,41 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         /// <returns></returns>
         public ActionResult SearchNews(int NewsID)
         {
+            var result = repository.SearchContent(NewsID).First();
+            ViewBag.Content = result.NewsContent;
             return View();
         }
+        /// <summary>
+        /// 公告修改
+        /// </summary>
+        /// <returns></returns>
+        [ActionName("NewsInfoEdit")]
+        public ActionResult NewsEdit(int NewsID)
+        {
+            return View();
+        }
+        [ActionName("NewsInfoEdit")]
+        public ActionResult EditNews()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DeleteNews(int NewsID)
+        {
+            //if (CurrentUser.ManagerType != "超级管理员")
+            //{
+            //    //普通管理员无操作权限
+            //    return Json(new { IsSuccess = 1, Message = "你无权限删除该数据！" });
+            //}
+            var result = repository.DeleteNews(NewsID);
+            if (result)
+            {
+                //log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Manager", "管理员删除，删除的ID为：" + ManagerID);
+                return Json(new { IsSuccess = 0, Message = "删除成功！" });
+            }
+            return Json(new { IsSuccess = 1, Message = "删除失败，请稍后重试!" });
+        }
+
         #endregion
-
-
     }
 }
