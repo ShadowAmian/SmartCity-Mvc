@@ -59,7 +59,7 @@ namespace SmartCity.Domain.Concrete
         /// <returns></returns>
         public IEnumerable<Notice> SearchContent(int NewsID)
         {
-            return Conn.Query<Notice>("select NewsContent from News_Table where NewsID=@NewsID",new { NewsID=NewsID});
+            return Conn.Query<Notice>("select * from News_Table where NewsID=@NewsID",new { NewsID=NewsID});
         }
         /// <summary>
         /// 删除公告内容

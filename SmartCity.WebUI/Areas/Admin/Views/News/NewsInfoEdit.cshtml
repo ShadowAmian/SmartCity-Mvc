@@ -4,7 +4,7 @@
 }
 
 <!DOCTYPE html>
-
+@model SmartCity.WebUI.Areas.Admin.Models.NewsList
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -16,20 +16,20 @@
     <link href="~/Content/script/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" />
 </head>
 <body>
-    @using (Ajax.BeginForm("NewsInfoAdd", "News", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "dig.Success", OnFailure = "dig.Complete" }, new { @class = "form-signin", @enctype = "multipart/form-data" }))
+    @using (Ajax.BeginForm("NewsInfoEdit", "News", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "dig.Success", OnFailure = "dig.Complete" }, new { @class = "form-signin", @enctype = "multipart/form-data" }))
     {
         <article class="page-container">
             <form class="form form-horizontal" id="form-article-add">
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公告标题：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" value="" placeholder="" id="NewsTitle" name="NewsTitle">
+                        <input type="text" class="input-text" value="@Model.NewsTitle" id="NewsTitle" name="NewsTitle">
                     </div>
                 </div>
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-2">简略标题：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="NewsSimpleTitle" name="NewsSimpleTitle">
+                        <input type="text" class="input-text" value="@Model.NewsSimpleTitle" id="NewsSimpleTitle" name="NewsSimpleTitle">
                     </div>
                 </div>
                 <div class="row cl">
@@ -49,20 +49,20 @@
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-2">关键词：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" value="" placeholder="" id="NewsKaywords" name="NewsKaywords">
+                        <input type="text" class="input-text" value="@Model.NewsKaywords" placeholder="" id="NewsKaywords" name="NewsKaywords">
                     </div>
                 </div>
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-2">公告摘要：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <textarea name="NewsDigest" class="textarea" placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
+                        <textarea name="NewsDigest" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">@Model.NewsDigest</textarea>
                         <p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
                     </div>
                 </div>
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-2">公告作者：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" value="" placeholder="" id="NewsAuthor" name="NewsAuthor">
+                        <input type="text" class="input-text" value="@Model.NewsAuthor" placeholder="" id="NewsAuthor" name="NewsAuthor">
                     </div>
                 </div>
                 <div class="row cl">
@@ -90,12 +90,13 @@
                     <label class="form-label col-xs-4 col-sm-2">文章内容：</label>
                     <div class="formControls col-xs-8 col-sm-9">
                         <script id="editor" name="NewsContent" type="text/plain" style="width:100%;height:400px;">
+               
                         </script>
                     </div>
                 </div>
                 <div class="row cl">
                     <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                        <button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 提交审核</button>
+                        <button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 提交修改</button>
                         <button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
                     </div>
                 </div>
@@ -117,6 +118,9 @@
     <script src="~/Content/script/laypage/1.2/laypage.js"></script>
     <script type="text/javascript">
         var ue = UE.getEditor('editor');
+        ue.ready(function () {
+            ue.setContent(@Model.NewsContent);
+        });
         //执行成功后调用JS
         var dig = {
             Success: function (result) {

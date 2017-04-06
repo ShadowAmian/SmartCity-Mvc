@@ -154,7 +154,19 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         [ActionName("NewsInfoEdit")]
         public ActionResult NewsEdit(int NewsID)
         {
-            return View();
+            var result = repository.SearchContent(NewsID).First();
+            var model = new NewsList();
+            model.IsComment = result.IsComment;
+            model.NewsAuthor = result.NewsAuthor;
+            model.NewsChassify = result.NewsChassify;
+            model.NewsContent = result.NewsContent;
+            model.NewsDigest = result.NewsDigest;
+            model.NewsKaywords = result.NewsKaywords;
+            model.NewsSimpleTitle = result.NewsSimpleTitle;
+            model.NewsTitle = result.NewsTitle;
+          
+
+            return View(model);
         }
         [ActionName("NewsInfoEdit")]
         public ActionResult EditNews()
