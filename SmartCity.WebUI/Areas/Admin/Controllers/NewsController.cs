@@ -50,7 +50,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
                     NewsContent = item.NewsContent,
                     NewsDigest = item.NewsDigest,
                     NewsKaywords = item.NewsKaywords,
-                    CreateTime=item.CreateTime
+                    CreateTime = item.CreateTime
                 };
                 model.Add(newsModel);
             }
@@ -78,10 +78,10 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             //}
 
             var NoticeModel = new Notice();
-         
+
             if (model.NewsImages != null)
             {
-                string filePath = Path.Combine(HttpContext.Server.MapPath("../Images"), Path.GetFileName(model.NewsImages.FileName)+DateTime.Now.ToString());
+                string filePath = Path.Combine(HttpContext.Server.MapPath("../Images"), Path.GetFileName(model.NewsImages.FileName) + DateTime.Now.ToString());
                 model.NewsImages.SaveAs(filePath);
             }
             else
@@ -120,14 +120,14 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         /// </summary>
         /// <param name="NewsID"></param>
         /// <returns></returns>
-        public ActionResult EditPublishStatus(int NewsID,int Status)
+        public ActionResult EditPublishStatus(int NewsID, int Status)
         {
             //if (CurrentUser.ManagerType != "超级管理员")
             //{
             //    //普通管理员无操作权限
             //    return Json(new { IsSuccess = 1, Message = "无权限添加该信息！" });
             //}
-            var result = repository.EditPublishStatu(NewsID,Status);
+            var result = repository.EditPublishStatu(NewsID, Status);
             if (result)
             {
                 //log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "News", "通知公告状态修改添加);
@@ -164,14 +164,37 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             model.NewsKaywords = result.NewsKaywords;
             model.NewsSimpleTitle = result.NewsSimpleTitle;
             model.NewsTitle = result.NewsTitle;
-          
+
 
             return View(model);
         }
-        [ActionName("NewsInfoEdit")]
-        public ActionResult EditNews()
-        {
-            return View();
+        [HttpPost, ActionName("NewsInfoEdit")]
+        public ActionResult EditNews(NewsList model)
+        {     
+            //if (CurrentUser.ManagerType != "超级管理员")
+            //{
+            //    //普通管理员无操作权限
+            //    return Json(new { IsSuccess = 1, Message = "你无权限修改该数据！" });
+            //}
+            var models = new Notice();
+            models.NewsTitle = model.NewsTitle;
+            models.NewsSimpleTitle = model.NewsSimpleTitle;
+            models.NewsDigest = model.NewsDigest;
+            models.NewsContent = model.NewsContent;
+            models.NewsAuthor = model.NewsAuthor;
+            models.NewsKaywords = model.NewsKaywords;
+            models.NewsChassify = model.NewsChassify;
+            models.IsComment = model.IsComment;
+            models.NewsID = model.NewsID;
+            //修改用户
+            var result = repository.EditNewsInfo(models);
+            if (result)
+            {
+                //log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "News", "公告修改);
+                return Json(new { IsSuccess = 0, Message = "修改成功！" });
+            }
+            return Json(new { IsSuccess = 1, Message = "修改失败，请稍后重试!" });
+
         }
         [HttpPost]
         public ActionResult DeleteNews(int NewsID)

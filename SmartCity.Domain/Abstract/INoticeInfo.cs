@@ -28,6 +28,13 @@ namespace SmartCity.Domain.Abstract
         /// <returns></returns>
         bool EditPublishStatu(int ID, int Status);
         /// <summary>
+        /// 修改公告
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="Status"></param>
+        /// <returns></returns>
+        bool EditNewsInfo(Notice model);
+        /// <summary>
         /// 查询公告内容
         /// </summary>
         /// <param name="NewsID"></param>

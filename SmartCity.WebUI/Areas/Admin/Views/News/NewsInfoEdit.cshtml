@@ -36,7 +36,7 @@
                     <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公告分类：</label>
                     <div class="formControls col-xs-8 col-sm-9">
                         <span class="select-box">
-                            <select name="NewsChassify" class="select">
+                            <select name="NewsChassify" class="select" id="selects">
                                 <option value="日常公告">日常公告</option>
                                 <option value="收费通知">收费通知</option>
                                 <option value="物业信息">物业信息</option>
@@ -69,23 +69,23 @@
                     <label class="form-label col-xs-4 col-sm-2">允许评论：</label>
                     <div class="formControls col-xs-8 col-sm-9 skin-minimal">
                         <div class="check-box">
-                            <input type="checkbox" id="IsComment" name="IsComment" value="0">
+                            <input type="checkbox" id="IsComment" name="IsComment" value="@Model.IsComment">
                             <label for="checkbox-pinglun">&nbsp;</label>
                         </div>
                     </div>
                 </div>
-                <div class="row cl">
+                @*<div class="row cl">
                     <label class="form-label col-xs-4 col-sm-2">缩略图：</label>
                     <div class="formControls col-xs-8 col-sm-9">
                         <div id="uploader" class="wu-example">
-                            <!--用来存放文件信息-->
+                            用来存放文件信息
                             <div id="thelist" class="uploader-list"></div>
                             <div class="btns">
                                 <div><input type="file" name="NewsImages" /></div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>*@
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-2">文章内容：</label>
                     <div class="formControls col-xs-8 col-sm-9">
@@ -117,9 +117,13 @@
     <script src="~/Content/script/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
     <script src="~/Content/script/laypage/1.2/laypage.js"></script>
     <script type="text/javascript">
+        $("#selects option[value=@Model.NewsChassify]").attr("selected", "selected");
+        if ($('#IsComment').val() == 0) {
+            $("[id='IsComment']").attr("checked", 'true');//全选
+        }
         var ue = UE.getEditor('editor');
         ue.ready(function () {
-            ue.setContent(@Model.NewsContent);
+            ue.setContent('@Model.NewsContent');
         });
         //执行成功后调用JS
         var dig = {

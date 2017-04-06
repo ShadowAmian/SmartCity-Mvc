@@ -53,6 +53,22 @@ namespace SmartCity.Domain.Concrete
 
         }
         /// <summary>
+        /// 修改公告
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="Status"></param>
+        /// <returns></returns>
+        public bool EditNewsInfo(Notice model)
+        {
+            var resule = Conn.Execute("update News_Table set NewsTitle=@NewsTitle,NewsSimpleTitle=@NewsSimpleTitle,NewsChassify=@NewsChassify,NewsKaywords=@NewsKaywords,NewsDigest=@NewsDigest,NewsAuthor=@NewsAuthor,IsComment=@IsComment,NewsContent=@NewsContent where NewsID=@NewsID", model);
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+
+        }
+        /// <summary>
         /// 查询公告内容
         /// </summary>
         /// <param name="NewsID"></param>

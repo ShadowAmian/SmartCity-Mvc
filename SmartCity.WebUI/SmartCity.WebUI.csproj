@@ -550,10 +550,12 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SysLogController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserInfoController.cs" />
     <Compile Include="Areas\Admin\Models\ManagerListModel.cs" />
     <Compile Include="Areas\Admin\Models\NewsList.cs" />
     <Compile Include="Areas\Admin\Models\News\NewsModel.cs" />
+    <Compile Include="Areas\Admin\Models\SysLogs\SysLogModel.cs" />
     <Compile Include="Areas\Admin\Models\UserListModel.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Global.asax.cs">
@@ -610,6 +612,7 @@
     <Content Include="Content\script\lib\webuploader\0.1.5\server\preview.php" />
     <Content Include="Areas\Admin\Views\News\SearchNews.cshtml" />
     <Content Include="Areas\Admin\Views\News\NewsInfoEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\SysLog\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

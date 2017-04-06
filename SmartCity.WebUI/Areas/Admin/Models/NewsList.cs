@@ -16,6 +16,10 @@ namespace SmartCity.WebUI.Areas.Admin.Models
         }
         public IList<NewsModel> NewsIteams { get; set; }
         /// <summary>
+        /// 公告编号
+        /// </summary>
+        public int NewsID { get; set; }
+        /// <summary>
         /// 公告标题
         /// </summary>
         public string NewsTitle { get; set; }
