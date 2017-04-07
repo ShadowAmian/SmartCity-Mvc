@@ -125,10 +125,23 @@ namespace SmartCity.Domain.Concrete
             }
             return false;
         }
-
+        /// <summary>
+        /// 管理员搜索
+        /// </summary>
+        /// <param name="ManagerName"></param>
+        /// <returns></returns>
         public IEnumerable<Manager> SearchManager(string ManagerName)
         {
             return Conn.Query<Manager>("select * from Manager_Table where ManagerName like @ManagerName ", new { ManagerName = "%"+ManagerName +"%" });
+        }
+        /// <summary>
+        /// 密码修改
+        /// </summary>
+        /// <param name="ManagerName"></param>
+        /// <returns></returns>
+        public IEnumerable<Manager> SearchManager(string ManagerName)
+        {
+            return Conn.Query<Manager>("select * from Manager_Table where ManagerName like @ManagerName ", new { ManagerName = "%" + ManagerName + "%" });
         }
     }
 }
