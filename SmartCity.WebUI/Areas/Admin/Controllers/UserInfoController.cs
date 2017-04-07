@@ -61,7 +61,6 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             }
             return Json(new { IsSuccess = 1, Message = "添加失败，请稍后重试!" });
         }
-
         /// <summary>
         /// 修改用户信息
         /// </summary>
@@ -89,7 +88,6 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             }
             return Json(new { IsSuccess = 1, Message = "修改失败，请稍后重试!" });
         }
-
         [HttpPost]
         public ActionResult DeleteUserInfoByID(int OwnerID)
         {
@@ -106,8 +104,44 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             }
             return Json(new { IsSuccess = 1, Message = "删除失败，请稍后重试!" });
         }
+        /// <summary>
+        /// 密码修改
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult PassWordEdit()
+        {
+            if (CurrentUser!=null)
+            {
+                return View(CurrentUser);
+            }
+            var model = new Manager();
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult EditPassWord(string username, string useraccount, int userid, string password2, string password, string password1)
+        {
+            //try
+            //{
+            //    //调用修改接口
+            //    string OldPassWord = Dnc.Common.MD5Crypt.EncryptAli(password2.Trim());
+            //    string NewPassWord = Dnc.Common.MD5Crypt.EncryptAli(password.Trim());
+            //    IUser UserInfoService = (IUser)GetAppContext.ApplicationContext.GetObject("User");
+            //    if (UserInfoService.UserChangePassWord(userid, useraccount, OldPassWord, NewPassWord))
+            //    {
+            //        return "<script>window.parent.location.reload();</script>";// 不会弹出询问
+            //    }
+            //    else
+            //    {
+            //        return "<script>alert('修改失败,原密码错误!');</script>";
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    //LogHelper.ToWriteLog(Request.UserHostAddress, Request.Url.ToString(), ex.ToString(), typeof(UserInfoList));
+            //    return "<script>alert('修改失败,请稍后重试!');";
+            //}
+            return View();
+        }
         #endregion
-
-
     }
 }

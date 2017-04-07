@@ -351,6 +351,13 @@
     <Content Include="Content\script\lib\Hui-iconfont\1.0.8\iconfont.css" />
     <Content Include="Content\script\lib\Hui-iconfont\1.0.8\iconfont.min.css" />
     <Content Include="Content\script\lib\Hui-iconfont\1.0.8\iconfont.svg" />
+    <Content Include="Content\script\lib\jquery.validation\1.14.0\additional-methods.js" />
+    <Content Include="Content\script\lib\jquery.validation\1.14.0\additional-methods.min.js" />
+    <Content Include="Content\script\lib\jquery.validation\1.14.0\jquery.validate.js" />
+    <Content Include="Content\script\lib\jquery.validation\1.14.0\jquery.validate.min.js" />
+    <Content Include="Content\script\lib\jquery.validation\1.14.0\messages_zh.js" />
+    <Content Include="Content\script\lib\jquery.validation\1.14.0\messages_zh.min.js" />
+    <Content Include="Content\script\lib\jquery.validation\1.14.0\validate-methods.js" />
     <Content Include="Content\script\lib\jquery\1.9.1\jquery.js" />
     <Content Include="Content\script\lib\jquery\1.9.1\jquery.min.js" />
     <Content Include="Content\script\lib\layer\2.4\layer.js" />
@@ -613,6 +620,7 @@
     <Content Include="Areas\Admin\Views\News\SearchNews.cshtml" />
     <Content Include="Areas\Admin\Views\News\NewsInfoEdit.cshtml" />
     <Content Include="Areas\Admin\Views\SysLog\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserInfo\PassWordEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

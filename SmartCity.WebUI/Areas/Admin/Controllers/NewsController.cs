@@ -165,7 +165,6 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             model.NewsSimpleTitle = result.NewsSimpleTitle;
             model.NewsTitle = result.NewsTitle;
 
-
             return View(model);
         }
         [HttpPost, ActionName("NewsInfoEdit")]

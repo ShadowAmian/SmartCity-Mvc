@@ -113,6 +113,20 @@ namespace SmartCity.Domain.Concrete
             }
             return false;
         }
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="UserID"></param>
+        /// <returns></returns>
+        public bool EditPassword(int OwnerID)
+        {
+            var resule = Conn.Execute("delete from User_Table where OwnerID=@OwnerID ", new { OwnerID = OwnerID });
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+        }
 
 
     }
