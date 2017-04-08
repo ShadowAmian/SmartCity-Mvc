@@ -139,9 +139,14 @@ namespace SmartCity.Domain.Concrete
         /// </summary>
         /// <param name="ManagerName"></param>
         /// <returns></returns>
-        public IEnumerable<Manager> SearchManager(string ManagerName)
+        public bool EditManagerPassword(int managerID, string oldpassword,string newpassword)
         {
-            return Conn.Query<Manager>("select * from Manager_Table where ManagerName like @ManagerName ", new { ManagerName = "%" + ManagerName + "%" });
+            var resule = Conn.Execute("update Manager_Table set ManagerPassword=@NewManagerPassword where ManagerID=@ManagerID and ManangerPassword=@OldManagerPassword", new { ManagerID =managerID, OldManagerPassword = oldpassword , NewManagerPassword = newpassword });
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

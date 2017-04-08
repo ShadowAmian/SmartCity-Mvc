@@ -557,11 +557,14 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RepairController.cs" />
     <Compile Include="Areas\Admin\Controllers\SysLogController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserInfoController.cs" />
     <Compile Include="Areas\Admin\Models\ManagerListModel.cs" />
     <Compile Include="Areas\Admin\Models\NewsList.cs" />
     <Compile Include="Areas\Admin\Models\News\NewsModel.cs" />
+    <Compile Include="Areas\Admin\Models\Repairs\RepairList.cs" />
+    <Compile Include="Areas\Admin\Models\Repairs\RepairListModel.cs" />
     <Compile Include="Areas\Admin\Models\SysLogs\SysLogModel.cs" />
     <Compile Include="Areas\Admin\Models\UserListModel.cs" />
     <Compile Include="Controllers\IndexController.cs" />
@@ -569,6 +572,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\EnumData\NewsStatus.cs" />
+    <Compile Include="Infrastructure\EnumData\RepairStatus.cs" />
+    <Compile Include="Infrastructure\EnumData\RepairType.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vcode.ashx.cs">
@@ -620,7 +625,9 @@
     <Content Include="Areas\Admin\Views\News\SearchNews.cshtml" />
     <Content Include="Areas\Admin\Views\News\NewsInfoEdit.cshtml" />
     <Content Include="Areas\Admin\Views\SysLog\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\UserInfo\PassWordEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Manager\PassWordEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Repair\RepairList.cshtml" />
+    <Content Include="Areas\Admin\Views\Repair\MaintenanceDistribution.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
