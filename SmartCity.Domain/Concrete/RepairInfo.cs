@@ -44,9 +44,9 @@ namespace SmartCity.Domain.Concrete
         /// <param name="ID"></param>
         /// <param name="Status"></param>
         /// <returns></returns>
-        public bool EditRepairToManager(int ManagerID, DateTime time)
+        public bool EditRepairToManager(int ManagerID,int id, DateTime time)
         {
-            var resule = Conn.Execute("update Repair_Table set MaintenanceStatus=@MaintenanceStatus,ManagerID=@ManagerID,RepairTime=@RepairTime where RepairID=@RepairID", new { ManagerID = ManagerID, time = time });
+            var resule = Conn.Execute("update Repair_Table set MaintenanceStatus=@MaintenanceStatus,ManagerID=@ManagerID,RepairTime=@RepairTime where RepairID=@RepairID", new { MaintenanceStatus= 4,ManagerID = ManagerID, RepairTime = time, RepairID=id });
             if (resule == 1)
             {
                 return true;

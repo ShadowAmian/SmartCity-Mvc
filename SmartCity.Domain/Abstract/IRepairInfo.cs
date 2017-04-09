@@ -21,6 +21,14 @@ namespace SmartCity.Domain.Abstract
         /// <param name="Status"></param>
         /// <returns></returns>
          bool EditRepairStatu(int ID, int Status);
-  
+        /// <summary>
+        /// 修改报修信息
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="Status"></param>
+        /// <returns></returns>
+        bool EditRepairToManager(int ManagerID, int id, DateTime time);
+
+
     }
 }

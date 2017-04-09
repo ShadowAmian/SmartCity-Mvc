@@ -15,35 +15,38 @@
     <link href="~/Content/script/h-ui.admin/skin/default/skin.css" rel="stylesheet" id="skin" />
 </head>
 <body>
-    <article class="page-container">
-        <form class="form form-horizontal" id="form-admin-add">
-            <input type="hidden" name="" value="" />
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3">维修人：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <span class="select-box" style="width:150px;">
-                        <select class="select" name="adminRole" size="1">
-                            @foreach (var item in Model.Iteams)
-                            {
-                               <option value="@item.ManagerID">@item.ManagerName</option>
-                            }
-                        </select>
-                    </span>
+    @using (Ajax.BeginForm("MaintenanceDistributionByManager", "Repair", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "dig.Success", OnFailure = "dig.Complete" }, new { @class = "form-signin", @enctype = "multipart/form-data" }))
+    {
+        <article class="page-container">
+            <form class="form form-horizontal" id="form-admin-add">
+                <input type="hidden" name="RepairID" value="@Model.RepairID" />
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3">维修人：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <span class="select-box" style="width:150px;">
+                            <select class="select" name="ManagerID" size="1">
+                                @foreach (var item in Model.Iteams)
+                                {
+                                    <option value="@item.ManagerID">@item.ManagerName</option>
+                                }
+                            </select>
+                        </span>
+                    </div>
                 </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3">维修时间：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" name="time" onfocus="WdatePicker({ isShowClear: false, readOnly: true })" id="datemin" class="input-text Wdate" style="width:120px;">
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3">维修时间：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" name="time" onfocus="WdatePicker({ isShowClear: false, readOnly: true })" id="datemin" class="input-text Wdate" style="width:120px;">
+                    </div>
                 </div>
-            </div>
-            <div class="row cl">
-                <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                    <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                <div class="row cl">
+                    <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                        <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                    </div>
                 </div>
-            </div>
-        </form>
-    </article>
+            </form>
+        </article>
+    }
     <!--_footer 作为公共模版分离出去-->
     <script src="~/Content/script/lib/jquery/1.9.1/jquery.min.js"></script>
     <script src="~/Content/script/lib/layer/2.4/layer.js"></script>
@@ -55,7 +58,24 @@
     <script src="~/Content/script/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <script src="~/Content/script/laypage/1.2/laypage.js"></script>
     <script type="text/javascript">
-
+        //执行成功后调用JS
+        var dig = {
+            Success: function (result) {
+                if (result.IsSuccess == 0) {
+                    window.parent.location.reload();
+                }
+                else {
+                    layer.msg(result.Message, { icon: 2, time: 2000 });
+                }
+            },
+            Failure: function () {
+                layer.msg('添加失败，请稍后重试！', { icon: 2, time: 2000 });
+            },
+            ErrorMsg: function (msg) {
+                ClickRemoveChangeCode();
+                layer.msg('添加失败，请稍后重试！', { icon: 2, time: 2000 });
+            }
+        }
     </script>
 </body>
 </html>

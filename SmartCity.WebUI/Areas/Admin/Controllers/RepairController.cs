@@ -65,9 +65,21 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             return View(models);
         }
         [HttpPost]
-        public ActionResult MaintenanceDistributionByManager(int ManagerID,DateTime time)
+        public ActionResult MaintenanceDistributionByManager(int RepairID, int ManagerID,DateTime time)
         {
-            return View();
+            //if (CurrentUser.ManagerType != "超级管理员")
+            //{
+            //    //普通管理员无操作权限
+            //    return Json(new { IsSuccess = 1, Message = "无权限添加该信息！" });
+            //}
+            var result = repository.EditRepairToManager(ManagerID,RepairID,time);
+            if (result)
+            {
+                //log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Repair", "通知公告状态修改添加);
+                return Json(new { IsSuccess = 0, Message = "修改成功！" });
+
+            }
+            return Json(new { IsSuccess = 1, Message = "修改失败，请稍后重试!" });
         }
     }
 }
