@@ -31,7 +31,8 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var model = new ManagerListModel();
-            model.MangerIteams = repository.GetManagerInfoList().ToList();
+            model.MangerIteams = repository.GetManagerInfoList().Where(list=>list.ManagerType!="超级管理员").ToList();
+      
             return View(model);
         }
         /// <summary>
