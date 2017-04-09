@@ -75,5 +75,11 @@ namespace SmartCity.Domain.Abstract
         /// <param name="ManagerName"></param>
         /// <returns></returns>
         bool EditManagerPassword(int managerID, string oldpassword, string newpassword);
+        /// <summary>
+        /// 维修人员搜索
+        /// </summary>
+        /// <param name="ManagerName"></param>
+        /// <returns></returns>
+        IEnumerable<Manager> SearchMaintenance();
     }
 }

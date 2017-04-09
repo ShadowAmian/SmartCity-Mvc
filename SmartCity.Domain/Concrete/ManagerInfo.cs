@@ -141,12 +141,21 @@ namespace SmartCity.Domain.Concrete
         /// <returns></returns>
         public bool EditManagerPassword(int managerID, string oldpassword,string newpassword)
         {
-            var resule = Conn.Execute("update Manager_Table set ManagerPassword=@NewManagerPassword where ManagerID=@ManagerID and ManangerPassword=@OldManagerPassword", new { ManagerID =managerID, OldManagerPassword = oldpassword , NewManagerPassword = newpassword });
+            var resule = Conn.Execute("update Manager_Table set ManagerPassword=@NewManagerPassword where ManagerID=@ManagerID and ManagerPassword=@OldManagerPassword", new { ManagerID =managerID, OldManagerPassword = oldpassword , NewManagerPassword = newpassword });
             if (resule == 1)
             {
                 return true;
             }
             return false;
+        }
+        /// <summary>
+        /// 维修人员搜索
+        /// </summary>
+        /// <param name="ManagerName"></param>
+        /// <returns></returns>
+        public IEnumerable<Manager> SearchMaintenance()
+        {
+            return Conn.Query<Manager>("select * from Manager_Table where ManagerType = @ManagerType ", new { ManagerType = "维修员" });
         }
     }
 }

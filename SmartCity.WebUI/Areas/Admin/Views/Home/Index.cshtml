@@ -18,14 +18,14 @@
     <header class="navbar-wrapper">
         <div class="navbar navbar-fixed-top">
             <div class="container-fluid cl">
-                <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">H-ui.admin</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">H-ui</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs">v3.0</span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+                <a class="logo navbar-logo f-l mr-10 hidden-xs" href="@Url.Action("Home","Index", new { area = "Admin" })">小区物业管理系统</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">小区物业管理系统</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs">v1.0</span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
                 <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
                     <ul class="cl">
-                        <li>超级管理员</li>
+                        <li>@ViewBag.UserName</li>
                         <li class="dropDown dropDown_hover">
-                            <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
+                            <a href="#" class="dropDown_A">@ViewBag.UserName <i class="Hui-iconfont">&#xe6d5;</i></a>
                             <ul class="dropDown-menu menu radius box-shadow">
-                                <li><a href="@Url.Action("PassWordEdit","Manager",new { area="Admin"})">修改密码</a></li>
+                                <li><a href="javascript:;" onclick="Password_Edit('修改密码','@Url.Action("PassWordEdit","Manager",new { area="Admin"})','800','500')">修改密码</a></li>
                                 <li><a href="@Url.Action("AdminLogin","Login",new { area="Admin"})">退出</a></li>
                             </ul>
                         </li>
@@ -57,10 +57,10 @@
                 </dd>
             </dl>
             <dl id="menu-picture">
-                <dt><i class="Hui-iconfont">&#xe613;</i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                <dt><i class="Hui-iconfont">&#xe613;</i> 维修管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
                 <dd>
                     <ul>
-                        <li><a data-href="picture-list.html" data-title="图片管理" href="javascript:void(0)">图片管理</a></li>
+                        <li><a data-href="@Url.Action("RepairList","Repair",new { area="Admin"})" data-title="公告列表" href="javascript:void(0)">维修列表</a></li>
                     </ul>
                 </dd>
             </dl>
@@ -95,6 +95,14 @@
                 <dd>
                     <ul>
                         <li><a data-href="@Url.Action("Index","Manager",new { area="Admin"})" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl id="menu-admin">
+                <dt><i class="Hui-iconfont">&#xe62d;</i> 日志管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                <dd>
+                    <ul>
+                        <li><a data-href="@Url.Action("Index","Manager",new { area="Admin"})" data-title="系统日志列表" href="javascript:void(0)">系统日志列表</a></li>
                     </ul>
                 </dd>
             </dl>

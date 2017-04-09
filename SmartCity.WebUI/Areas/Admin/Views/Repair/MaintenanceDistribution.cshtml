@@ -1,4 +1,4 @@
-﻿
+﻿@model SmartCity.WebUI.Areas.Admin.Models.Repairs.RepairMaintenanceModel
 @{
     Layout = null;
 }
@@ -9,9 +9,53 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>维修任务分配</title>
+    <link href="~/Content/script/h-ui/css/H-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/script/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" />
+    <link href="~/Content/script/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/script/h-ui.admin/skin/default/skin.css" rel="stylesheet" id="skin" />
 </head>
 <body>
-    <div> 
-    </div>
+    <article class="page-container">
+        <form class="form form-horizontal" id="form-admin-add">
+            <input type="hidden" name="" value="" />
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3">维修人：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <span class="select-box" style="width:150px;">
+                        <select class="select" name="adminRole" size="1">
+                            @foreach (var item in Model.Iteams)
+                            {
+                               <option value="@item.ManagerID">@item.ManagerName</option>
+                            }
+                        </select>
+                    </span>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3">维修时间：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" name="time" onfocus="WdatePicker({ isShowClear: false, readOnly: true })" id="datemin" class="input-text Wdate" style="width:120px;">
+                </div>
+            </div>
+            <div class="row cl">
+                <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                    <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                </div>
+            </div>
+        </form>
+    </article>
+    <!--_footer 作为公共模版分离出去-->
+    <script src="~/Content/script/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script src="~/Content/script/lib/layer/2.4/layer.js"></script>
+    <script src="~/Content/script/h-ui/js/H-ui.min.js"></script>
+    <script src="~/Content/script/h-ui.admin/js/H-ui.admin.js"></script>
+    <!--/_footer 作为公共模版分离出去-->
+    <!--请在下方写此页面业务相关的脚本-->
+    <script src="~/Content/script/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+    <script src="~/Content/script/datatables/1.10.0/jquery.dataTables.min.js"></script>
+    <script src="~/Content/script/laypage/1.2/laypage.js"></script>
+    <script type="text/javascript">
+
+    </script>
 </body>
 </html>

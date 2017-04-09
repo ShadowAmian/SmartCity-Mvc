@@ -13,9 +13,11 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
 
         #region 字段 构造函数
         private IRepairInfo repository;
-        public RepairController(IRepairInfo RepairInfo)
+        private IManagerInfo Manager;
+        public RepairController(IRepairInfo RepairInfo, IManagerInfo Manager)
         {
             this.repository = RepairInfo;
+            this.Manager = Manager;
         }
         #endregion
 
@@ -53,10 +55,19 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         /// 维修任务分配
         /// </summary>
         /// <returns></returns>
-        public ActionResult MaintenanceDistribution(int repairid)
+        [HttpGet]
+        public ActionResult MaintenanceDistribution(int RepairID)
+        {
+            var model=Manager.SearchMaintenance();
+            var models = new RepairMaintenanceModel();
+            models.Iteams = model.ToList();
+            models.RepairID = RepairID;
+            return View(models);
+        }
+        [HttpPost]
+        public ActionResult MaintenanceDistributionByManager(int ManagerID,DateTime time)
         {
             return View();
         }
-
     }
 }

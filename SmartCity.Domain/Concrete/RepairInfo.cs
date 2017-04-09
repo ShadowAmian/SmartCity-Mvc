@@ -23,7 +23,7 @@ namespace SmartCity.Domain.Concrete
             return Conn.Query<Repair,User,Manager,Repair>("select r.RepairID,r.RepairName,r.RepairType,r.RepairContent,r.MaintenanceStatus,r.RepairTime,r.CreateTime,u.UserName,u.UserPhone,u.UserAddress,m.ManagerName from Repair_Table as r join User_Table as u on r.OwnerID=u.OwnerID  join Manager_Table as m on r.ManagerID=m.ManagerID", (repair,user,manager)=> { repair.UserInfo = user;repair.ManagerInfo = manager;return repair; },splitOn: "UserName,ManagerName");
         }
         /// <summary>
-        /// 修改公告状态
+        /// 修改报修状态
         /// </summary>
         /// <param name="ID"></param>
         /// <param name="Status"></param>
@@ -31,6 +31,22 @@ namespace SmartCity.Domain.Concrete
         public bool EditRepairStatu(int ID, int Status)
         {
             var resule = Conn.Execute("update Repair_Table set MaintenanceStatus=@MaintenanceStatus where RepairID=@RepairID", new { MaintenanceStatus = Status, RepairID = ID });
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+
+        }
+        /// <summary>
+        /// 修改报修信息
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="Status"></param>
+        /// <returns></returns>
+        public bool EditRepairToManager(int ManagerID, DateTime time)
+        {
+            var resule = Conn.Execute("update Repair_Table set MaintenanceStatus=@MaintenanceStatus,ManagerID=@ManagerID,RepairTime=@RepairTime where RepairID=@RepairID", new { ManagerID = ManagerID, time = time });
             if (resule == 1)
             {
                 return true;

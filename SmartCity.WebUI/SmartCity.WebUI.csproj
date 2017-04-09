@@ -565,6 +565,7 @@
     <Compile Include="Areas\Admin\Models\News\NewsModel.cs" />
     <Compile Include="Areas\Admin\Models\Repairs\RepairList.cs" />
     <Compile Include="Areas\Admin\Models\Repairs\RepairListModel.cs" />
+    <Compile Include="Areas\Admin\Models\Repairs\RepairMaintenanceModel.cs" />
     <Compile Include="Areas\Admin\Models\SysLogs\SysLogModel.cs" />
     <Compile Include="Areas\Admin\Models\UserListModel.cs" />
     <Compile Include="Controllers\IndexController.cs" />

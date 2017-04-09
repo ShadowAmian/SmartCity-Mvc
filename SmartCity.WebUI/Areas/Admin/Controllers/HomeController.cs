@@ -6,11 +6,15 @@ using System.Web.Mvc;
 
 namespace SmartCity.WebUI.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : AdminBaseController
     {
         // GET: Admin/Home
         public ActionResult Index()
         {
+            if (CurrentUser!=null)
+            {
+                ViewBag.UserName = CurrentUser.ManagerName;
+            }
             return View();
         }
        
