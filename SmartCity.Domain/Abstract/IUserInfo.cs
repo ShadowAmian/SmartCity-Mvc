@@ -57,10 +57,16 @@ namespace SmartCity.Domain.Abstract
         /// <returns></returns>
          bool EditUser(User model);
         /// <summary>
-        /// 管理员删除
+        /// 用户删除
         /// </summary>
         /// <param name="UserID"></param>
         /// <returns></returns>
         bool DeleteUser(int UserID);
+        /// <summary>
+        /// 用户搜索
+        /// </summary>
+        /// <param name="ManagerName"></param>
+        /// <returns></returns>
+        IEnumerable<User> SearchUserInfo(string UserName);
     }
 }

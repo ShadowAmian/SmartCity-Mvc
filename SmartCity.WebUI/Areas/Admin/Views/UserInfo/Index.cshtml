@@ -18,14 +18,13 @@
 <body>
     <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户管理 <span class="c-gray en">&gt;</span> 用户列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
     <div class="page-container">
-        <div class="text-c">
-            日期范围：
-            <input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" class="input-text Wdate" style="width:120px;">
-            -
-            <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" id="datemax" class="input-text Wdate" style="width:120px;">
-            <input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="" name="">
-            <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
-        </div>
+        @using (Html.BeginForm("SerachUserInfoByUserName", "UserInfo"))
+        {
+            <div class="text-c">
+                <input type="text" class="input-text" style="width:250px" placeholder="输入用户名称" id="" name="UserName">
+                <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
+            </div>
+        }
         <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加管理员','@Url.Action("AddUserByGet","UserInfo")','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a></span></div>
         <div class="mt-20">
             <table class="table table-border table-bordered table-bg table-hover table-sort">
@@ -48,21 +47,21 @@
                 </thead>
                 <tbody>
                     @foreach (var item in Model.UserIteams)
-                {
-                    <tr class="text-c">
-                        <td><input type="checkbox" value="1" name=""></td>
-                        <td>@item.OwnerID</td>
-                        <td>@item.UserAccount</td>
-                        <td>@item.UserName</td>
-                        <td>@(item.UserSex==1?"男":"女")</td>
-                        <td>@item.UserPhone</td>
-                        <td>@item.UserEmail</td>
-                        <td>@item.UserAddress</td>
-                        <td>@item.CreateTime</td>
-                        <td class="td-manage"><a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','@Url.Action("UpdateUserInfo","UserInfo",new RouteValueDictionary { { "OwnerID", item.OwnerID } })','1','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_del(this,@item.OwnerID)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-                    </tr>
+                    {
+                        <tr class="text-c">
+                            <td><input type="checkbox" value="1" name=""></td>
+                            <td>@item.OwnerID</td>
+                            <td>@item.UserAccount</td>
+                            <td>@item.UserName</td>
+                            <td>@(item.UserSex == 1 ? "男" : "女")</td>
+                            <td>@item.UserPhone</td>
+                            <td>@item.UserEmail</td>
+                            <td>@item.UserAddress</td>
+                            <td>@item.CreateTime</td>
+                            <td class="td-manage"><a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','@Url.Action("UpdateUserInfo","UserInfo",new RouteValueDictionary { { "OwnerID", item.OwnerID } })','1','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_del(this,@item.OwnerID)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                        </tr>
 
-                }
+                    }
                 </tbody>
             </table>
         </div>

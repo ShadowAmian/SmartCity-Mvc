@@ -128,7 +128,19 @@ namespace SmartCity.Domain.Concrete
             return false;
         }
 
-
+        /// <summary>
+        /// 用户搜索
+        /// </summary>
+        /// <param name="ManagerName"></param>
+        /// <returns></returns>
+        public IEnumerable<User> SearchUserInfo(string UserName)
+        {
+            if (string.IsNullOrEmpty(UserName))
+            {
+                return Conn.Query<User>("select * from User_Table ");
+            }
+            return Conn.Query<User>("select * from User_Table where UserName like @UserName ", new { UserName = "%" + UserName + "%" });
+        }
     }
  
 }

@@ -42,9 +42,9 @@ namespace SmartCity.Domain.Concrete
         /// <param name="ID"></param>
         /// <param name="Status"></param>
         /// <returns></returns>
-        public bool EditPublishStatu(int ID,int Status)
+        public bool EditPublishStatu(int ID, int Status)
         {
-            var resule = Conn.Execute("update News_Table set PublishStatus=@PublishStatus where NewsID=@NewsID", new { PublishStatus=Status,NewsID=ID });
+            var resule = Conn.Execute("update News_Table set PublishStatus=@PublishStatus where NewsID=@NewsID", new { PublishStatus = Status, NewsID = ID });
             if (resule == 1)
             {
                 return true;
@@ -75,7 +75,7 @@ namespace SmartCity.Domain.Concrete
         /// <returns></returns>
         public IEnumerable<Notice> SearchContent(int NewsID)
         {
-            return Conn.Query<Notice>("select * from News_Table where NewsID=@NewsID",new { NewsID=NewsID});
+            return Conn.Query<Notice>("select * from News_Table where NewsID=@NewsID", new { NewsID = NewsID });
         }
         /// <summary>
         /// 删除公告内容
@@ -96,18 +96,26 @@ namespace SmartCity.Domain.Concrete
         /// </summary>
         /// <param name="NewsID"></param>
         /// <returns></returns>
-        public IEnumerable<Notice> SerachNewsByNewsName(string NewsName, DateTime startTime, DateTime endTime)
+        public IEnumerable<Notice> SerachNewsByNewsName(string NewsName, DateTime? startTime, DateTime? endTime)
         {
             string sql;
-            if (NewsName=="")
+            if (string.IsNullOrEmpty(NewsName)&& startTime != null)
             {
                 sql = "select * from News_Table where CreateTime Between @Time1 and @Time2";
             }
-            else
+            else if (!string.IsNullOrEmpty(NewsName) && startTime != null)
             {
                 sql = "select * from News_Table where NewsTitle=@NewsTitle and CreateTime Between @Time1 and @Time2";
             }
-            return Conn.Query<Notice>(sql, new { NewsTitle = NewsName,Time1=startTime,Time2=endTime });
+            else if (!string.IsNullOrEmpty(NewsName) && startTime == null)
+            {
+                sql = "select * from News_Table where NewsTitle=@NewsTitle";
+            }
+            else
+            {
+                sql = "select * from News_Table";
+            }
+            return Conn.Query<Notice>(sql, new { NewsTitle = NewsName, Time1 = startTime, Time2 = endTime });
         }
     }
 }

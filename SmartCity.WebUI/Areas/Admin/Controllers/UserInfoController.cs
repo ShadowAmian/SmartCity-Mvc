@@ -57,7 +57,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             var result = repository.AddUser(model);
             if (result)
             {
-                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Manager", "管理员添加，账号为：" + model.UserAccount);
+                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "UserInfo", "用户添加，账号为：" + model.UserAccount);
                 return Json(new { IsSuccess = 0, Message = "添加成功!" });
             }
             return Json(new { IsSuccess = 1, Message = "添加失败，请稍后重试!" });
@@ -75,7 +75,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         [HttpPost, ActionName("UpdateUserInfo")]
         public ActionResult UpdateUserByPost(User model)
         {
-            if (CurrentUser.ManagerType != "超级管理员")
+            if (CurrentUser.ManagerType != "超级管理员"|| CurrentUser.ManagerType != "管理员")
             {
                 //普通管理员无操作权限
                 return Json(new { IsSuccess = 1, Message = "你无权限修改该数据！" });
@@ -84,7 +84,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             var result = repository.EditUser(model);
             if (result)
             {
-                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Manager", "管理员修改，修改后的名称为：" + model.UserName);
+                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "UserInfo", "用户修改，修改后的名称为：" + model.UserName);
                 return Json(new { IsSuccess = 0, Message = "修改成功！" });
             }
             return Json(new { IsSuccess = 1, Message = "修改失败，请稍后重试!" });
@@ -92,7 +92,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult DeleteUserInfoByID(int OwnerID)
         {
-            if (CurrentUser.ManagerType != "超级管理员")
+            if (CurrentUser.ManagerType != "超级管理员" || CurrentUser.ManagerType != "管理员")
             {
                 //普通管理员无操作权限
                 return Json(new { IsSuccess = 1, Message = "你无权限删除该数据！" });
@@ -100,10 +100,22 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             var result = repository.DeleteUser(OwnerID);
             if (result)
             {
-                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Manager", "管理员删除，删除的ID为：" + OwnerID);
+                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "UserInfo", "用户删除，删除的ID为：" + OwnerID);
                 return Json(new { IsSuccess = 0, Message = "删除成功！" });
             }
             return Json(new { IsSuccess = 1, Message = "删除失败，请稍后重试!" });
+        }
+        public ActionResult SerachUserInfoByUserName(string UserName)
+        {
+           
+            var result = repository.SearchUserInfo(UserName);
+            var model = new UserListModel();
+            if (result!=null)
+            {
+                model.UserIteams = result.ToList();
+            }
+
+            return View("Index", model);
         }
         #endregion
     }

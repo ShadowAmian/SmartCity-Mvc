@@ -1,4 +1,5 @@
 ﻿using SmartCity.Domain.Abstract;
+using SmartCity.Domain.Entities;
 using SmartCity.WebUI.Areas.Admin.Models.Repairs;
 using System;
 using System.Collections.Generic;
@@ -80,6 +81,25 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
 
             }
             return Json(new { IsSuccess = 1, Message = "修改失败，请稍后重试!" });
+        }
+        /// <summary>
+        /// 查询报修信息
+        /// </summary>
+        /// <param name="RepairName"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <returns></returns>
+        public ActionResult SerachRepairByRepairName(string RepairName, DateTime? startTime, DateTime? endTime)
+        {
+            //if (CurrentUser.ManagerType != "超级管理员")
+            //{
+            //    //普通管理员无操作权限
+            //    return Json(new { IsSuccess = 1, Message = "无权限添加该信息！" });
+            //}
+            var model = new RepairListModel();
+            var result = repository.SerachRepairByNewsName(RepairName, startTime, endTime);
+            model.RepairIteams = result.ToList();
+            return View("RepairList", model);
         }
     }
 }

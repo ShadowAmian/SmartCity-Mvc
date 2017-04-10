@@ -219,7 +219,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         /// <param name="endTime"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult SerachNewsByNewsName(string NewsName, DateTime startTime, DateTime endTime)
+        public ActionResult SerachNewsByNewsName(string NewsName, DateTime? startTime, DateTime? endTime)
         {
             var model = new List<NewsModel>();
             var Model = new NewsList();

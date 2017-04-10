@@ -12,7 +12,7 @@ namespace SmartCity.Domain.Concrete
     /// <summary>
     /// 报修信息表
     /// </summary>
-    public class RepairInfo : RepositoryContext,IRepairInfo
+    public class RepairInfo : RepositoryContext, IRepairInfo
     {
         /// <summary>
         ///获取报修信息集合
@@ -20,7 +20,7 @@ namespace SmartCity.Domain.Concrete
         /// <returns></returns>
         public IEnumerable<Repair> GetRepairInfoList()
         {
-            return Conn.Query<Repair,User,Manager,Repair>("select r.RepairID,r.RepairName,r.RepairType,r.RepairContent,r.MaintenanceStatus,r.RepairTime,r.CreateTime,u.UserName,u.UserPhone,u.UserAddress,m.ManagerName from Repair_Table as r join User_Table as u on r.OwnerID=u.OwnerID  join Manager_Table as m on r.ManagerID=m.ManagerID", (repair,user,manager)=> { repair.UserInfo = user;repair.ManagerInfo = manager;return repair; },splitOn: "UserName,ManagerName");
+            return Conn.Query<Repair, User, Manager, Repair>("select r.RepairID,r.RepairName,r.RepairType,r.RepairContent,r.MaintenanceStatus,r.RepairTime,r.CreateTime,u.UserName,u.UserPhone,u.UserAddress,m.ManagerName from Repair_Table as r join User_Table as u on r.OwnerID=u.OwnerID  join Manager_Table as m on r.ManagerID=m.ManagerID", (repair, user, manager) => { repair.UserInfo = user; repair.ManagerInfo = manager; return repair; }, splitOn: "UserName,ManagerName");
         }
         /// <summary>
         /// 修改报修状态
@@ -44,15 +44,41 @@ namespace SmartCity.Domain.Concrete
         /// <param name="ID"></param>
         /// <param name="Status"></param>
         /// <returns></returns>
-        public bool EditRepairToManager(int ManagerID,int id, DateTime time)
+        public bool EditRepairToManager(int ManagerID, int id, DateTime time)
         {
-            var resule = Conn.Execute("update Repair_Table set MaintenanceStatus=@MaintenanceStatus,ManagerID=@ManagerID,RepairTime=@RepairTime where RepairID=@RepairID", new { MaintenanceStatus= 4,ManagerID = ManagerID, RepairTime = time, RepairID=id });
+            var resule = Conn.Execute("update Repair_Table set MaintenanceStatus=@MaintenanceStatus,ManagerID=@ManagerID,RepairTime=@RepairTime where RepairID=@RepairID", new { MaintenanceStatus = 4, ManagerID = ManagerID, RepairTime = time, RepairID = id });
             if (resule == 1)
             {
                 return true;
             }
             return false;
 
+        }
+        /// <summary>
+        /// 查询报修内容
+        /// </summary>
+        /// <param name="NewsID"></param>
+        /// <returns></returns>
+        public IEnumerable<Repair> SerachRepairByNewsName(string RepairName, DateTime? startTime, DateTime? endTime)
+        {
+            string sql;
+            if (string.IsNullOrEmpty(RepairName) && startTime != null)
+            {
+                sql = "select r.RepairID,r.RepairName,r.RepairType,r.RepairContent,r.MaintenanceStatus,r.RepairTime,r.CreateTime,u.UserName,u.UserPhone,u.UserAddress,m.ManagerName from Repair_Table as r join User_Table as u on r.OwnerID = u.OwnerID  join Manager_Table as m on r.ManagerID = m.ManagerID where r.CreateTime Between @Time1 and @Time2";
+            }
+            else if (!string.IsNullOrEmpty(RepairName) && startTime != null)
+            {
+                sql = "select r.RepairID,r.RepairName,r.RepairType,r.RepairContent,r.MaintenanceStatus,r.RepairTime,r.CreateTime,u.UserName,u.UserPhone,u.UserAddress,m.ManagerName from Repair_Table as r join User_Table as u on r.OwnerID=u.OwnerID  join Manager_Table as m on r.ManagerID=m.ManagerID where r.RepairName=@RepairName and r.CreateTime Between @Time1 and @Time2";
+            }
+            else if (!string.IsNullOrEmpty(RepairName) && startTime == null)
+            {
+                sql = "select r.RepairID,r.RepairName,r.RepairType,r.RepairContent,r.MaintenanceStatus,r.RepairTime,r.CreateTime,u.UserName,u.UserPhone,u.UserAddress,m.ManagerName from Repair_Table as r join User_Table as u on r.OwnerID=u.OwnerID  join Manager_Table as m on r.ManagerID=m.ManagerID where r.RepairName=@RepairName";
+            }
+            else
+            {
+                sql = "select r.RepairID,r.RepairName,r.RepairType,r.RepairContent,r.MaintenanceStatus,r.RepairTime,r.CreateTime,u.UserName,u.UserPhone,u.UserAddress,m.ManagerName from Repair_Table as r join User_Table as u on r.OwnerID=u.OwnerID  join Manager_Table as m on r.ManagerID=m.ManagerID";
+            }
+            return Conn.Query<Repair, User, Manager, Repair>(sql, (repair, user, manager) => { repair.UserInfo = user; repair.ManagerInfo = manager; return repair; }, new { RepairName = RepairName, Time1 = startTime, Time2 = endTime }, null, true, splitOn: "UserName,ManagerName");
         }
     }
 }

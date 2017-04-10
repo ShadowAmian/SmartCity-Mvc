@@ -29,6 +29,11 @@ namespace SmartCity.Domain.Abstract
         /// <returns></returns>
         bool EditRepairToManager(int ManagerID, int id, DateTime time);
 
-
+        /// <summary>
+        /// 查询报修内容
+        /// </summary>
+        /// <param name="NewsID"></param>
+        /// <returns></returns>
+        IEnumerable<Repair> SerachRepairByNewsName(string RepairName, DateTime? startTime, DateTime? endTime);
     }
 }

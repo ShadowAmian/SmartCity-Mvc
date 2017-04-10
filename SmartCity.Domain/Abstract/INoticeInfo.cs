@@ -51,6 +51,6 @@ namespace SmartCity.Domain.Abstract
         /// </summary>
         /// <param name="NewsID"></param>
         /// <returns></returns>
-        IEnumerable<Notice> SerachNewsByNewsName(string NewsName, DateTime startTime, DateTime endTime);
+        IEnumerable<Notice> SerachNewsByNewsName(string NewsName, DateTime? startTime, DateTime? endTime);
     }
 }
