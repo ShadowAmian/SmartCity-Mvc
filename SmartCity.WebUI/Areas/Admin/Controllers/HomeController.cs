@@ -13,6 +13,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         {
             if (CurrentUser!=null)
             {
+                ViewBag.UserType = CurrentUser.ManagerType;
                 ViewBag.UserName = CurrentUser.ManagerName;
             }
             return View();

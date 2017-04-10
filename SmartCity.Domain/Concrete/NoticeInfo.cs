@@ -91,5 +91,23 @@ namespace SmartCity.Domain.Concrete
             }
             return false;
         }
+        /// <summary>
+        /// 查询公告内容
+        /// </summary>
+        /// <param name="NewsID"></param>
+        /// <returns></returns>
+        public IEnumerable<Notice> SerachNewsByNewsName(string NewsName, DateTime startTime, DateTime endTime)
+        {
+            string sql;
+            if (NewsName=="")
+            {
+                sql = "select * from News_Table where CreateTime Between @Time1 and @Time2";
+            }
+            else
+            {
+                sql = "select * from News_Table where NewsTitle=@NewsTitle and CreateTime Between @Time1 and @Time2";
+            }
+            return Conn.Query<Notice>(sql, new { NewsTitle = NewsName,Time1=startTime,Time2=endTime });
+        }
     }
 }

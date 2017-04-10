@@ -46,5 +46,11 @@ namespace SmartCity.Domain.Abstract
         /// <param name="NewsID"></param>
         /// <returns></returns>
         bool DeleteNews(int NewsID);
+        /// <summary>
+        /// 查询公告内容
+        /// </summary>
+        /// <param name="NewsID"></param>
+        /// <returns></returns>
+        IEnumerable<Notice> SerachNewsByNewsName(string NewsName, DateTime startTime, DateTime endTime);
     }
 }

@@ -27,26 +27,27 @@
             <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
         </div>
         <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加管理员','@Url.Action("AddUserByGet","UserInfo")','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a></span></div>
-        <table class="table table-border table-bordered table-bg">
-            <thead>
-                <tr>
-                    <th scope="col" colspan="10">用户列表</th>
-                </tr>
-                <tr class="text-c">
-                    <th width="25"><input type="checkbox" name="" value=""></th>
-                    <th>编号</th>
-                    <th>用户账户</th>
-                    <th>用户名</th>
-                    <th>用户性别</th>
-                    <th>用户电话</th>
-                    <th>用户邮箱</th>
-                    <th>用户住址</th>
-                    <th>创建时间</th>
-                    <th width="100">操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.UserIteams)
+        <div class="mt-20">
+            <table class="table table-border table-bordered table-bg table-hover table-sort">
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="10">用户列表</th>
+                    </tr>
+                    <tr class="text-c">
+                        <th width="25"><input type="checkbox" name="" value=""></th>
+                        <th>编号</th>
+                        <th>用户账户</th>
+                        <th>用户名</th>
+                        <th>用户性别</th>
+                        <th>用户电话</th>
+                        <th>用户邮箱</th>
+                        <th>用户住址</th>
+                        <th>创建时间</th>
+                        <th width="100">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.UserIteams)
                 {
                     <tr class="text-c">
                         <td><input type="checkbox" value="1" name=""></td>
@@ -62,8 +63,9 @@
                     </tr>
 
                 }
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
     <!--_footer 作为公共模版分离出去-->
     <script src="~/Content/script/lib/jquery/1.9.1/jquery.min.js"></script>
@@ -76,6 +78,13 @@
     <script src="~/Content/script/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <script src="~/Content/script/laypage/1.2/laypage.js"></script>
     <script type="text/javascript">
+        $('.table-sort').dataTable({
+            "aaSorting": [[1, "desc"]],//默认第几个排序
+            "bStateSave": true,//状态保存
+            "aoColumnDefs": [
+              { "orderable": false, "aTargets": [0, 9] }// 不参与排序的列
+            ]
+        });
         function admin_add(title, url, w, h) {
             layer_show(title, url, w, h);
         }
@@ -84,7 +93,7 @@
             layer.confirm('确认要删除吗？', function (index) {
                 $.ajax({
                     type: 'POST',
-                    url:'@Url.Action("DeleteUserInfoByID", "UserInfo")',
+                    url: '@Url.Action("DeleteUserInfoByID", "UserInfo")',
                     dataType: 'json',
                     data: { "OwnerID": id },
 

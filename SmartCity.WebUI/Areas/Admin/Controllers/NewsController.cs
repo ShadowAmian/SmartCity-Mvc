@@ -211,7 +211,40 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             }
             return Json(new { IsSuccess = 1, Message = "删除失败，请稍后重试!" });
         }
-
+        /// <summary>
+        /// 公告搜索
+        /// </summary>
+        /// <param name="NewsName"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult SerachNewsByNewsName(string NewsName, DateTime startTime, DateTime endTime)
+        {
+            var model = new List<NewsModel>();
+            var Model = new NewsList();
+            var result = repository.SerachNewsByNewsName(NewsName,startTime,endTime).ToList();
+            foreach (var item in result)
+            {
+                var newsModel = new NewsModel()
+                {
+                    NewsID = item.NewsID,
+                    NewsTitle = item.NewsTitle,
+                    NewsSimpleTitle = item.NewsSimpleTitle,
+                    PublishStatus = Enum.GetName(typeof(NewsStatus), item.PublishStatus),
+                    IsComment = item.IsComment,
+                    NewsAuthor = item.NewsAuthor,
+                    NewsChassify = item.NewsChassify,
+                    NewsContent = item.NewsContent,
+                    NewsDigest = item.NewsDigest,
+                    NewsKaywords = item.NewsKaywords,
+                    CreateTime = item.CreateTime
+                };
+                model.Add(newsModel);
+            }
+            Model.NewsIteams = model;
+            return View("NewsList", Model);
+        }
         #endregion
     }
 }
