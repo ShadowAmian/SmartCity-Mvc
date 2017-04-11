@@ -45,18 +45,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IFeedBackInfo.cs" />
     <Compile Include="Abstract\IManagerInfo.cs" />
     <Compile Include="Abstract\INoticeInfo.cs" />
     <Compile Include="Abstract\IProductCheshi.cs" />
     <Compile Include="Abstract\IRepairInfo.cs" />
     <Compile Include="Abstract\ISysLogInfo.cs" />
     <Compile Include="Abstract\IUserInfo.cs" />
+    <Compile Include="Concrete\FeedBackInfo.cs" />
     <Compile Include="Concrete\ManagerInfo.cs" />
     <Compile Include="Concrete\NoticeInfo.cs" />
     <Compile Include="Concrete\ProductCheshi.cs" />
     <Compile Include="Concrete\RepairInfo.cs" />
     <Compile Include="Concrete\SysLogInfo.cs" />
     <Compile Include="Concrete\UserInfo.cs" />
+    <Compile Include="Entities\FeedBack.cs" />
     <Compile Include="Entities\Manager.cs" />
     <Compile Include="Entities\Notice.cs" />
     <Compile Include="Entities\Repair.cs" />

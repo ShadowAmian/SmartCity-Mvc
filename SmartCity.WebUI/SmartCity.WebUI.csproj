@@ -553,6 +553,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminBaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FeedBackController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManagerController.cs" />
@@ -560,6 +561,7 @@
     <Compile Include="Areas\Admin\Controllers\RepairController.cs" />
     <Compile Include="Areas\Admin\Controllers\SysLogController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserInfoController.cs" />
+    <Compile Include="Areas\Admin\Models\FeedBacks\FeedBackListModel.cs" />
     <Compile Include="Areas\Admin\Models\ManagerListModel.cs" />
     <Compile Include="Areas\Admin\Models\NewsList.cs" />
     <Compile Include="Areas\Admin\Models\News\NewsModel.cs" />
@@ -629,6 +631,7 @@
     <Content Include="Areas\Admin\Views\Manager\PassWordEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Repair\RepairList.cshtml" />
     <Content Include="Areas\Admin\Views\Repair\MaintenanceDistribution.cshtml" />
+    <Content Include="Areas\Admin\Views\FeedBack\FeedBackList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
