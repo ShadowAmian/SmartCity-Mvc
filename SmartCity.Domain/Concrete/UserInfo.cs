@@ -141,6 +141,20 @@ namespace SmartCity.Domain.Concrete
             }
             return Conn.Query<User>("select * from User_Table where UserName like @UserName ", new { UserName = "%" + UserName + "%" });
         }
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool BatchRemoveUserInfo(List<int> id)
+        {
+            var resule = Conn.Execute("delete from User_Table where OwnerID in @OwnerID ", new { OwnerID = id.ToList() });
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+        }
     }
  
 }

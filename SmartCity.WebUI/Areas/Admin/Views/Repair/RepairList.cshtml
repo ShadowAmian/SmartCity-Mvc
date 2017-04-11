@@ -29,7 +29,7 @@
                 <button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
             </div>
         }
-        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a></span> </div>
+        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="BatchDelete()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a></span> </div>
         <div class="mt-20">
             <table class="table table-border table-bordered table-bg table-hover table-sort">
                 <thead>
@@ -52,7 +52,7 @@
                     @foreach (var item in Model.RepairIteams)
                     {
                         <tr class="text-c">
-                            <td><input type="checkbox" value="" name=""></td>
+                            <td><input type="checkbox" value="@(item.RepairID+"-"+item.RepairName)" name="checkItem"></td>
                             <td>@item.RepairID</td>
                             <td>@Enum.GetName(typeof(RepairType), item.RepairType)</td>
                             <td>@item.RepairName</td>
@@ -255,6 +255,28 @@
         function article_distribution(id) {
             var url = url = '/Admin/Repair/MaintenanceDistribution?RepairID=' + id + '';
             layer_show("维修任务分配", url, 800, 500);
+        }
+        //批量删除
+        function BatchDelete() {
+            layer.confirm('确认要全部删除吗？', function (index) {
+                var allcheckboxs = document.getElementsByName("checkItem");
+                var ids = 0 + ",";
+                for (var i = 0; i < allcheckboxs.length; i++) {
+                    if (allcheckboxs[i].checked) {
+                        var id = $(allcheckboxs[i]).attr("value");
+                        ids += id + ",";
+                    }
+                }
+                $.post('@Url.Action("BatchRemoveRepair", "Repair", new { area = "Admin" })', { id: ids }, function (msg) {
+                    if (msg == 0) {
+                        layer.msg('已删除!', { icon: 1, time: 1000 });
+                        window.location.reload();
+                    }
+                    else {
+                        layer.msg('删除失败,请稍后重试!', { icon: 2, time: 1000 });
+                    }
+                })
+            });
         }
     </script>
 </body>

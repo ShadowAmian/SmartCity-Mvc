@@ -117,5 +117,19 @@ namespace SmartCity.Domain.Concrete
             }
             return Conn.Query<Notice>(sql, new { NewsTitle = NewsName, Time1 = startTime, Time2 = endTime });
         }
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool BatchRemoveNoticeInfo(List<int> id)
+        {
+            var resule = Conn.Execute("delete from News_Table where NewsID in @NewsID ", new { NewsID = id.ToList() });
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

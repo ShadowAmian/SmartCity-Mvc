@@ -157,5 +157,19 @@ namespace SmartCity.Domain.Concrete
         {
             return Conn.Query<Manager>("select * from Manager_Table where ManagerType = @ManagerType ", new { ManagerType = "维修员" });
         }
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool BatchRemoveManager(List<int> id)
+        {
+            var resule = Conn.Execute("delete from Manager_Table where ManagerID in @ManagerID ", new { ManagerID=id.ToList()});
+            if (resule==1)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

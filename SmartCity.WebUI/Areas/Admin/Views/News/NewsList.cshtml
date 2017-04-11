@@ -28,7 +28,7 @@
                 <button name="NewsName" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜公告</button>
             </div>
         }
-            <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" class="btn btn-primary radius" onclick="article_add('添加公告','@Url.Action("NewsInfoAdd", "News", new { area = "Admin" })')"><i class="Hui-iconfont">&#xe600;</i> 添加公告</a></span> </div>
+            <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="BatchDelete()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" class="btn btn-primary radius" onclick="article_add('添加公告','@Url.Action("NewsInfoAdd", "News", new { area = "Admin" })')"><i class="Hui-iconfont">&#xe600;</i> 添加公告</a></span> </div>
             <div class="mt-20">
                 <table class="table table-border table-bordered table-bg table-hover table-sort">
                     <thead>
@@ -50,7 +50,7 @@
                         @foreach (var item in Model.NewsIteams)
                         {
                             <tr class="text-c">
-                                <td><input type="checkbox" value="" name=""></td>
+                                <td><input type="checkbox" value="@(item.NewsID+"-"+item.NewsTitle)" name="checkItem"></td>
                                 <td>@item.NewsID</td>
                                 <td class="text-l"><a href="javascript:;" style="cursor:pointer" class="text-primary" onclick="article_search('公告内容','@Url.Action("SearchNews","News",new RouteValueDictionary { { "NewsID", item.NewsID } })','800','500')" title="查看">@item.NewsTitle</a></td>
                                 <td>@item.NewsSimpleTitle</td>
@@ -300,6 +300,28 @@
         /*公告-显示*/
         function article_search(title, url, w, h) {
             layer_show(title, url, w, h);
+        }
+        //批量删除
+        function BatchDelete() {
+            layer.confirm('确认要全部删除吗？', function (index) {
+                var allcheckboxs = document.getElementsByName("checkItem");
+                var ids = 0 + ",";
+                for (var i = 0; i < allcheckboxs.length; i++) {
+                    if (allcheckboxs[i].checked) {
+                        var id = $(allcheckboxs[i]).attr("value");
+                        ids += id + ",";
+                    }
+                }
+                $.post('@Url.Action("BatchRemoveNotice", "News", new { area = "Admin" })', { id: ids }, function (msg) {
+                    if (msg == 0) {
+                        layer.msg('已删除!', { icon: 1, time: 1000 });
+                        window.location.reload();
+                    }
+                    else {
+                        layer.msg('删除失败,请稍后重试!', { icon: 2, time: 1000 });
+                    }
+                })
+            });
         }
     </script>
 </body>

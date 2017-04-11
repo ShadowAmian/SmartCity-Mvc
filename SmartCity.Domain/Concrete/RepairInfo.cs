@@ -80,5 +80,19 @@ namespace SmartCity.Domain.Concrete
             }
             return Conn.Query<Repair, User, Manager, Repair>(sql, (repair, user, manager) => { repair.UserInfo = user; repair.ManagerInfo = manager; return repair; }, new { RepairName = RepairName, Time1 = startTime, Time2 = endTime }, null, true, splitOn: "UserName,ManagerName");
         }
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool BatchRemoveRepairInfo(List<int> id)
+        {
+            var resule = Conn.Execute("delete from Repair_Table where RepairID in @RepairID ", new { RepairID = id.ToList() });
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

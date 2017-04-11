@@ -81,5 +81,11 @@ namespace SmartCity.Domain.Abstract
         /// <param name="ManagerName"></param>
         /// <returns></returns>
         IEnumerable<Manager> SearchMaintenance();
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+         bool BatchRemoveManager(List<int> id);
     }
 }

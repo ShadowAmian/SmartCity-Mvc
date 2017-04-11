@@ -1,4 +1,5 @@
-﻿using SmartCity.Domain.Abstract;
+﻿using SmartCity.Common;
+using SmartCity.Domain.Abstract;
 using SmartCity.Domain.Entities;
 using SmartCity.WebUI.Areas.Admin.Models;
 using SmartCity.WebUI.Areas.Admin.Models.News;
@@ -15,7 +16,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
     /// <summary>
     /// 公告控制器
     /// </summary>
-    public class NewsController : Controller
+    public class NewsController : AdminBaseController
     {
 
         #region 字段 构造函数
@@ -244,6 +245,41 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             }
             Model.NewsIteams = model;
             return View("NewsList", Model);
+        }
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult BatchRemoveNotice(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return Json(new { IsSuccess = 1, Message = "你未选择删除用户！" });
+            }
+
+            List<int> List = new List<int>();
+            List<string> NameList = new List<string>();
+            string[] Ids = id.Split(',');
+            for (int i = 0; i < Ids.Length; i++)
+            {
+                if (Ids[i] != "0" && Ids[i] != "")
+                {
+                    string[] DataName = Ids[i].Split('-');
+                    List.Add(Convert.ToInt32(DataName[0]));
+                    NameList.Add(DataName[1]);
+                }
+            }
+            if (repository.BatchRemoveNoticeInfo(List))
+            {
+                for (int i = 0; i < NameList.Count; i++)
+                {
+                    log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Manager", "公告删除，删除的标题为：" + NameList[i]);
+                }
+                return Json(new { IsSuccess = 0, Message = "删除成功！" });
+            }
+            return Json(new { IsSuccess = 1, Message = "删除失败，请稍后重试！" });
         }
         #endregion
     }

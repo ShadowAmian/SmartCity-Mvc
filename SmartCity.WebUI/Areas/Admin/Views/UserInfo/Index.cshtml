@@ -25,7 +25,7 @@
                 <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
             </div>
         }
-        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加管理员','@Url.Action("AddUserByGet","UserInfo")','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a></span></div>
+        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="BatchDelete()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加管理员','@Url.Action("AddUserByGet","UserInfo")','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a></span></div>
         <div class="mt-20">
             <table class="table table-border table-bordered table-bg table-hover table-sort">
                 <thead>
@@ -49,7 +49,7 @@
                     @foreach (var item in Model.UserIteams)
                     {
                         <tr class="text-c">
-                            <td><input type="checkbox" value="1" name=""></td>
+                            <td><input type="checkbox" value="@(item.OwnerID+"-"+item.UserName)" name="checkItem"></td>
                             <td>@item.OwnerID</td>
                             <td>@item.UserAccount</td>
                             <td>@item.UserName</td>
@@ -109,6 +109,28 @@
         /*管理员-编辑*/
         function admin_edit(title, url, id, w, h) {
             layer_show(title, url, w, h);
+        }
+        //批量删除
+        function BatchDelete() {
+            layer.confirm('确认要全部删除吗？', function (index) {
+                var allcheckboxs = document.getElementsByName("checkItem");
+                var ids = 0 + ",";
+                for (var i = 0; i < allcheckboxs.length; i++) {
+                    if (allcheckboxs[i].checked) {
+                        var id = $(allcheckboxs[i]).attr("value");
+                        ids += id + ",";
+                    }
+                }
+                $.post('@Url.Action("BatchRemoveUserInfo", "UserInfo", new { area = "Admin" })', { id: ids }, function (msg) {
+                    if (msg.IsSuccess == 0) {
+                        layer.msg('已删除!', { icon: 1, time: 1000 });
+                        window.location.reload();
+                    }
+                    else {
+                        layer.msg(meg.Message, { icon: 2, time: 1000 });
+                    }
+                })
+            });
         }
     </script>
 </body>

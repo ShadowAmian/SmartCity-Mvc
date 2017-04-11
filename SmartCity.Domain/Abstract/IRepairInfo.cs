@@ -35,5 +35,11 @@ namespace SmartCity.Domain.Abstract
         /// <param name="NewsID"></param>
         /// <returns></returns>
         IEnumerable<Repair> SerachRepairByNewsName(string RepairName, DateTime? startTime, DateTime? endTime);
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+         bool BatchRemoveRepairInfo(List<int> id);
     }
 }
