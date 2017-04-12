@@ -131,7 +131,7 @@ namespace SmartCity.Domain.Concrete
         /// <summary>
         /// 用户搜索
         /// </summary>
-        /// <param name="ManagerName"></param>
+        /// <param name="UserName"></param>
         /// <returns></returns>
         public IEnumerable<User> SearchUserInfo(string UserName)
         {
@@ -140,6 +140,19 @@ namespace SmartCity.Domain.Concrete
                 return Conn.Query<User>("select * from User_Table ");
             }
             return Conn.Query<User>("select * from User_Table where UserName like @UserName ", new { UserName = "%" + UserName + "%" });
+        }
+        /// <summary>
+        /// 用户搜索ID
+        /// </summary>
+        /// <param name="UserName"></param>
+        /// <returns></returns>
+        public IEnumerable<int> SearchUserInfoINUserID(string UserName)
+        {
+            if (string.IsNullOrEmpty(UserName))
+            {
+                return Conn.Query<int>("select OwnerID from User_Table ");
+            }
+            return Conn.Query<int>("select OwnerID from User_Table where UserName like @UserName ", new { UserName = "%" + UserName + "%" });
         }
         /// <summary>
         /// 批量删除

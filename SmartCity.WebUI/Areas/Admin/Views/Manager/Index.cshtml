@@ -241,7 +241,7 @@
                         ids += id + ",";
                     }
                 }
-                $.post('@Url.Action("BatchRemoveManager", "Manager", new { area = "Admin" })', { id: ids }, function (msg) {
+                $.post('@Url.Action("BatchRemoveFeedBack", "Manager", new { area = "Admin" })', { id: ids }, function (msg) {
                     if (msg.IsSuccess == 0) {
                         layer.msg('已删除!', { icon: 1, time: 1000 });
                         window.location.reload();

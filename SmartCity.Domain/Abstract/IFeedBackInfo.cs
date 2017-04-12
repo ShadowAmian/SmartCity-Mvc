@@ -20,5 +20,17 @@ namespace SmartCity.Domain.Abstract
         /// <param name="NewsID"></param>
         /// <returns></returns>
         bool DeleteFeedBack(int FeedBackID);
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+         bool BatchRemoveFeedBack(List<int> id);
+        /// <summary>
+        /// 查询公告内容
+        /// </summary>
+        /// <param name="NewsID"></param>
+        /// <returns></returns>
+        IEnumerable<FeedBack> SerachFeedBack(List<int> id, DateTime? startTime, DateTime? endTime);
     }
 }

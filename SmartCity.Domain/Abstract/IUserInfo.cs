@@ -74,5 +74,11 @@ namespace SmartCity.Domain.Abstract
         /// <param name="id"></param>
         /// <returns></returns>
         bool BatchRemoveUserInfo(List<int> id);
+        /// <summary>
+        /// 用户搜索ID
+        /// </summary>
+        /// <param name="UserName"></param>
+        /// <returns></returns>
+         IEnumerable<int> SearchUserInfoINUserID(string UserName);
     }
 }

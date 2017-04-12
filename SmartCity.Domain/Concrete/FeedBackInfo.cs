@@ -33,5 +33,45 @@ namespace SmartCity.Domain.Concrete
             }
             return false;
         }
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool BatchRemoveFeedBack(List<int> id)
+        {
+            var resule = Conn.Execute("delete from Complaint_Table where ComplaintID in @ComplaintID ", new { ComplaintID = id.ToList() });
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 查询公告内容
+        /// </summary>
+        /// <param name="NewsID"></param>
+        /// <returns></returns>
+        public IEnumerable<FeedBack> SerachFeedBack(List<int> id, DateTime? startTime, DateTime? endTime)
+        {
+            string sql;
+            if (id==null && startTime != null)
+            {
+                sql = "select c.ComplaintID,c.ComplaintContent,c.CreateTime,u.OwnerID,u.UserName from Complaint_Table as c join User_Table as u on c.OwnerID=u .OwnerID where CreateTime Between @Time1 and @Time2";
+            }
+            else if (id != null && startTime != null)
+            {
+                sql = "select c.ComplaintID,c.ComplaintContent,c.CreateTime,u.OwnerID,u.UserName from Complaint_Table as c join User_Table as u on c.OwnerID=u.OwnerID where u.OwnerID in @OwnerID and CreateTime Between @Time1 and @Time2";
+            }
+            else if (id != null && startTime == null)
+            {
+                sql = "select c.ComplaintID,c.ComplaintContent,c.CreateTime,u.OwnerID,u.UserName from Complaint_Table as c join User_Table as u on c.OwnerID=u.OwnerID where u.OwnerID in @OwnerID";
+            }
+            else
+            {
+                sql = "select c.ComplaintID,c.ComplaintContent,c.CreateTime,u.OwnerID,u.UserName from Complaint_Table as c join User_Table as u on c.OwnerID=u .OwnerID";
+            }
+            return Conn.Query<FeedBack, User, FeedBack>(sql, (feedback, user) => { feedback.OwnerInfo = user; return feedback; }, new { OwnerID = id, Time1 = startTime, Time2 = endTime },null,true, splitOn: "OwnerID");
+        }
     }
 }
