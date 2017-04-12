@@ -153,6 +153,12 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             }
             return Json(new { IsSuccess = 1, Message = "删除失败，请稍后重试！" });
         }
+
+        public ActionResult SearchUserInfoByID(int OwnerID)
+        {
+            var result = repository.GetUserInfoByID(OwnerID);
+            return View(result.First());
+        }
         #endregion
     }
 }

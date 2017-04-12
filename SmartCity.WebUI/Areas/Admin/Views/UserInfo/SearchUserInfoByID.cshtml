@@ -1,0 +1,64 @@
+﻿@model SmartCity.Domain.Entities.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>用户信息显示</title>
+    <link href="~/Content/script/h-ui/css/H-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/script/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" />
+    <link href="~/Content/script/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/script/h-ui.admin/skin/default/skin.css" rel="stylesheet" id="skin" />
+</head>
+<body>
+    <div class="cl pd-20" style=" background-color:#5bacb6">
+        <dl style="margin-left:80px; color:#fff">
+            <dt>
+                <span class="f-18">@Model.UserName</span>
+            </dt>
+            <dd class="pt-10 f-12" style="margin-left:0">这家伙很懒，什么也没有留下</dd>
+        </dl>
+    </div>
+    <div class="pd-20">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th class="text-r" width="80">账号：</th>
+                    <td>@Model.UserAccount</td>
+                </tr>
+                <tr>
+                    <th class="text-r" width="80">性别：</th>
+                    <td>@(Model.UserSex == 1 ? "男" : "女")</td>
+                </tr>
+                <tr>
+                    <th class="text-r">手机：</th>
+                    <td>@Model.UserPhone</td>
+                </tr>
+                <tr>
+                    <th class="text-r">邮箱：</th>
+                    <td>@Model.UserEmail</td>
+                </tr>
+                <tr>
+                    <th class="text-r">地址：</th>
+                    <td>@Model.UserAddress</td>
+                </tr>
+                <tr>
+                    <th class="text-r">注册时间：</th>
+                    <td>@Model.CreateTime</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--_footer 作为公共模版分离出去-->
+    <script src="~/Content/script/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script src="~/Content/script/lib/layer/2.4/layer.js"></script>
+    <script src="~/Content/script/h-ui/js/H-ui.min.js"></script>
+    <script src="~/Content/script/h-ui.admin/js/H-ui.admin.js"></script>
+    <!--/_footer 作为公共模版分离出去-->
+</body>
+</html>

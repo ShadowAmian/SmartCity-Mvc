@@ -21,10 +21,10 @@
         {
             <div class="text-c">
                 日期范围：
-                <input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" class="input-text Wdate" style="width:120px;">
+                <input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" name="startTime" class="input-text Wdate" style="width:120px;">
                 -
-                <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" id="datemax" class="input-text Wdate" style="width:120px;">
-                <input type="text" class="input-text" style="width:250px" placeholder="输入关键词" name="">
+                <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" id="datemax" name="endTime" class="input-text Wdate" style="width:120px;">
+                <input type="text" class="input-text" style="width:250px" placeholder="输入用户名" name="UserName">
                 <button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜意见</button>
             </div>
         }
@@ -45,9 +45,9 @@
                     @foreach (var item in Model.FeedBackIteams)
                     {
                         <tr class="text-c">
-                            <td><input type="checkbox" value="@(item.ComplaintID+"-"+item.OwnerInfo.UserName)" name=""></td>
+                            <td><input type="checkbox" value="@(item.ComplaintID+"-"+item.OwnerInfo.UserName)" name="checkItem"></td>
                             <td>@item.ComplaintID</td>
-                            <td><a href="javascript:;" onclick="member_show(@item.OwnerInfo.UserName,'@Url.Action("", "FeedBack",new { area="Admin"})',@item.OwnerInfo.OwnerID,'360','400')">@item.OwnerInfo.UserName</a></td>
+                            <td><a href="javascript:;" onclick="member_show('@item.OwnerInfo.UserName','@Url.Action("SearchUserInfoByID", "UserInfo", new RouteValueDictionary { { "OwnerID", item.OwnerInfo.OwnerID } })',@item.OwnerInfo.OwnerID,'360','400')">@item.OwnerInfo.UserName</a></td>
                             <td class="text-l">
                                 <div>@item.ComplaintContent</div>
                             </td>
@@ -113,7 +113,7 @@
                         ids += id + ",";
                     }
                 }
-                $.post('@Url.Action("BatchRemoveManager", "FeedBack", new { area = "Admin" })', { id: ids }, function (msg) {
+                $.post('@Url.Action("BatchRemoveFeedBack", "FeedBack", new { area = "Admin" })', { id: ids }, function (msg) {
                     if (msg.IsSuccess == 0) {
                         layer.msg('已删除!', { icon: 1, time: 1000 });
                         window.location.reload();

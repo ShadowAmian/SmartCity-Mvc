@@ -632,6 +632,7 @@
     <Content Include="Areas\Admin\Views\Repair\RepairList.cshtml" />
     <Content Include="Areas\Admin\Views\Repair\MaintenanceDistribution.cshtml" />
     <Content Include="Areas\Admin\Views\FeedBack\FeedBackList.cshtml" />
+    <Content Include="Areas\Admin\Views\UserInfo\SearchUserInfoByID.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
