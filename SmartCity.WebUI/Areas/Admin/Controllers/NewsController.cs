@@ -1,4 +1,6 @@
-﻿using SmartCity.Common;
+﻿using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using SmartCity.Common;
 using SmartCity.Domain.Abstract;
 using SmartCity.Domain.Entities;
 using SmartCity.WebUI.Areas.Admin.Models;
@@ -281,6 +283,45 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             }
             return Json(new { IsSuccess = 1, Message = "删除失败，请稍后重试！" });
         }
+        /// <summary>
+        /// 导出通知公告列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public FileResult NewsDataToExcl()
+        {
+            var result = repository.GetNewsList().ToList();
+            string[] colInfos = { "公告编号", "公告标题", "简单标题", "公告类别", "关键字", "公告摘要", "公告作者", "是否发表", "公告状态", "公告图片路径" , "公告内容", "创建时间" };
+            NpoiHelper Npoi = new NpoiHelper("操作日志信息", colInfos);
+            ICellStyle cellStyle = Npoi.Workbook.CreateCellStyle();
+            cellStyle.Alignment = HorizontalAlignment.Center;
+            cellStyle.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
+            cellStyle.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
+            cellStyle.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
+            cellStyle.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
+            int k = 2;  //注意内容的行数并不是从第一行开始的
+            int colCount = Npoi._params.Length;
+            //先遍历dt 取出行数（dr数目），每行第一列添加一个序号的表头，再遍历表头信息数组填充数据
+            for (int i = 0; i < result.Count; i++)
+            {
+                HSSFRow row = (HSSFRow)Npoi._sheet1.CreateRow(i + 2);
+                row.CreateCell(0).SetCellValue(result[i].NewsID.ToString());
+                row.CreateCell(1).SetCellValue(result[i].NewsTitle.ToString());
+                row.CreateCell(2).SetCellValue(result[i].NewsSimpleTitle.ToString());
+                row.CreateCell(3).SetCellValue(result[i].NewsChassify.ToString());
+                row.CreateCell(4).SetCellValue(result[i].NewsKaywords.ToString());
+                row.CreateCell(5).SetCellValue(result[i].NewsDigest.ToString());
+                row.CreateCell(6).SetCellValue(result[i].NewsAuthor.ToString());
+                row.CreateCell(7).SetCellValue(result[i].IsComment==0?"是":"否");
+                row.CreateCell(8).SetCellValue(Enum.GetName(typeof(NewsStatus), result[i].PublishStatus).ToString());
+                row.CreateCell(9).SetCellValue(result[i].NewsImages.ToString());
+                row.CreateCell(10).SetCellValue(result[i].NewsContent.ToString());
+                row.CreateCell(11).SetCellValue(result[i].CreateTime.ToString());
+            }
+
+            return File(excelUrl, "application/ms-excel", "运单异常记录.xls");
+        }
+
         #endregion
     }
 }
