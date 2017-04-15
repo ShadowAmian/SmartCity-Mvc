@@ -1,9 +1,12 @@
-﻿using SmartCity.Common;
+﻿using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using SmartCity.Common;
 using SmartCity.Domain.Abstract;
 using SmartCity.Domain.Entities;
 using SmartCity.WebUI.Areas.Admin.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -159,6 +162,45 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             var result = repository.GetUserInfoByID(OwnerID);
             return View(result.First());
         }
+
+        /// <summary>
+        /// 导出用户信息列表
+        /// </summary>
+        /// <returns></returns>
+        public FileResult UserInfoDataToExcl()
+        {
+            var result = repository.GetUserInfoList().ToList();
+            string[] colInfos = { "用户编号", "用户账户", "用户名字", "用户性别", "用户电话", "用户邮箱", "用户地址", "创建时间" };
+            NpoiHelper Npoi = new NpoiHelper("用户信息报表记录", colInfos);
+            ICellStyle cellStyle = Npoi.Workbook.CreateCellStyle();
+            cellStyle.Alignment = HorizontalAlignment.Center;
+            cellStyle.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
+            cellStyle.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
+            cellStyle.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
+            cellStyle.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
+            int k = 2;  //注意内容的行数并不是从第一行开始的
+            int colCount = Npoi._params.Length;
+            //先遍历dt 取出行数（dr数目），每行第一列添加一个序号的表头，再遍历表头信息数组填充数据
+            for (int i = 0; i < result.Count; i++)
+            {
+                HSSFRow row = (HSSFRow)Npoi._sheet1.CreateRow(i + 2);
+                row.CreateCell(0).SetCellValue(result[i].OwnerID.ToString());
+                row.CreateCell(1).SetCellValue(result[i].UserAccount.ToString());
+                row.CreateCell(2).SetCellValue(result[i].UserName.ToString());
+                row.CreateCell(3).SetCellValue(result[i].UserSex==0?"男":"女");
+                row.CreateCell(4).SetCellValue(result[i].UserPhone.ToString());
+                row.CreateCell(5).SetCellValue(result[i].UserEmail.ToString());
+                row.CreateCell(6).SetCellValue(result[i].UserAddress.ToString());
+                row.CreateCell(7).SetCellValue(result[i].CreateTime.ToString());
+            }
+            System.IO.MemoryStream ms = new MemoryStream();
+            Npoi.Workbook.Write(ms);
+            ms.Seek(0, SeekOrigin.Begin);
+            return File(ms, "application/vnd.ms-excel", HttpUtility.UrlPathEncode("用户信息报表记录" + DateTime.Now.ToString() + ".xls"));
+        }
+
+
+
         #endregion
     }
 }

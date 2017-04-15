@@ -172,7 +172,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         }
         [HttpPost, ActionName("NewsInfoEdit")]
         public ActionResult EditNews(NewsList model)
-        {     
+        {
             //if (CurrentUser.ManagerType != "超级管理员")
             //{
             //    //普通管理员无操作权限
@@ -226,7 +226,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         {
             var model = new List<NewsModel>();
             var Model = new NewsList();
-            var result = repository.SerachNewsByNewsName(NewsName,startTime,endTime).ToList();
+            var result = repository.SerachNewsByNewsName(NewsName, startTime, endTime).ToList();
             foreach (var item in result)
             {
                 var newsModel = new NewsModel()
@@ -287,12 +287,11 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         /// 导出通知公告列表
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
         public FileResult NewsDataToExcl()
         {
             var result = repository.GetNewsList().ToList();
-            string[] colInfos = { "公告编号", "公告标题", "简单标题", "公告类别", "关键字", "公告摘要", "公告作者", "是否发表", "公告状态", "公告图片路径" , "公告内容", "创建时间" };
-            NpoiHelper Npoi = new NpoiHelper("操作日志信息", colInfos);
+            string[] colInfos = { "公告编号", "公告标题", "简单标题", "公告类别", "关键字", "公告摘要", "公告作者", "是否发表", "公告状态", "公告图片路径", "公告内容", "创建时间" };
+            NpoiHelper Npoi = new NpoiHelper("通知公告记录", colInfos);
             ICellStyle cellStyle = Npoi.Workbook.CreateCellStyle();
             cellStyle.Alignment = HorizontalAlignment.Center;
             cellStyle.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
@@ -312,14 +311,16 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
                 row.CreateCell(4).SetCellValue(result[i].NewsKaywords.ToString());
                 row.CreateCell(5).SetCellValue(result[i].NewsDigest.ToString());
                 row.CreateCell(6).SetCellValue(result[i].NewsAuthor.ToString());
-                row.CreateCell(7).SetCellValue(result[i].IsComment==0?"是":"否");
+                row.CreateCell(7).SetCellValue(result[i].IsComment == 0 ? "是" : "否");
                 row.CreateCell(8).SetCellValue(Enum.GetName(typeof(NewsStatus), result[i].PublishStatus).ToString());
                 row.CreateCell(9).SetCellValue(result[i].NewsImages.ToString());
                 row.CreateCell(10).SetCellValue(result[i].NewsContent.ToString());
                 row.CreateCell(11).SetCellValue(result[i].CreateTime.ToString());
             }
-
-            return File(excelUrl, "application/ms-excel", "运单异常记录.xls");
+            System.IO.MemoryStream ms = new MemoryStream();
+            Npoi.Workbook.Write(ms);
+            ms.Seek(0,SeekOrigin.Begin);
+            return File(ms, "application/vnd.ms-excel", HttpUtility.UrlPathEncode("通知公告记录" +DateTime.Now.ToString()+".xls"));
         }
 
         #endregion

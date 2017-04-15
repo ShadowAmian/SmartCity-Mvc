@@ -103,7 +103,7 @@ namespace SmartCity.Common
         /// </summary>
         /// <param name="Response">当前页面的response</param>
         /// <param name="fileName">文件名，无须输入后缀名</param>
-        public void OutPutDownload(HttpResponseBase Response, string fileName)
+        public MemoryStream OutPutDownload(HttpResponseBase Response, string fileName)
         {
             //导出，让用户下载
             if (!fileName.EndsWith(@".xls"))
@@ -117,7 +117,8 @@ namespace SmartCity.Common
             Response.Clear();
             MemoryStream file = new MemoryStream();
             this.Workbook.Write(file);
-            Response.BinaryWrite(file.GetBuffer());
+            file.Seek(0,SeekOrigin.Begin);
+            return file;
         }
     }
 }
