@@ -41,7 +41,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult EditRepairStatus(int RepairID,int Status)
+        public ActionResult EditRepairStatus(int RepairID, int Status)
         {
             //if (CurrentUser.ManagerType != "超级管理员")
             //{
@@ -64,21 +64,21 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult MaintenanceDistribution(int RepairID)
         {
-            var model=Manager.SearchMaintenance();
+            var model = Manager.SearchMaintenance();
             var models = new RepairMaintenanceModel();
             models.Iteams = model.ToList();
             models.RepairID = RepairID;
             return View(models);
         }
         [HttpPost]
-        public ActionResult MaintenanceDistributionByManager(int RepairID, int ManagerID,DateTime time)
+        public ActionResult MaintenanceDistributionByManager(int RepairID, int ManagerID, DateTime time)
         {
             //if (CurrentUser.ManagerType != "超级管理员")
             //{
             //    //普通管理员无操作权限
             //    return Json(new { IsSuccess = 1, Message = "无权限添加该信息！" });
             //}
-            var result = repository.EditRepairToManager(ManagerID,RepairID,time);
+            var result = repository.EditRepairToManager(ManagerID, RepairID, time);
             if (result)
             {
                 //log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Repair", "通知公告状态修改添加);
@@ -149,7 +149,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         public FileResult RepairDataToExcl()
         {
             var result = repository.GetRepairInfoList().ToList();
-            string[] colInfos = { "报修编号", "报修主题", "报修类型", "报修内容", "报修人名称", "报修人地址", "报修人电话", "维修人名称", "报修状态", "报修时间", "创建时间"};
+            string[] colInfos = { "报修编号", "报修主题", "报修类型", "报修内容", "报修人名称", "报修人地址", "报修人电话", "维修人名称", "报修状态", "报修时间", "创建时间" };
             NpoiHelper Npoi = new NpoiHelper("维修记录", colInfos);
             ICellStyle cellStyle = Npoi.Workbook.CreateCellStyle();
             cellStyle.Alignment = HorizontalAlignment.Center;
@@ -180,7 +180,20 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             ms.Seek(0, SeekOrigin.Begin);
             return File(ms, "application/vnd.ms-excel", HttpUtility.UrlPathEncode("维修记录" + DateTime.Now.ToString() + ".xls"));
         }
-
-
+        /// <summary>
+        /// 维修统计
+        /// </summary>
+        /// <returns></returns>
+        
+        public ActionResult RepairStatistics()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult GetRepairStatistics(string StartDate, string EndDate)
+        {
+            var result = repository.SerachRepairType();
+            return Json(new { IsSuccess = 0, data = result });
+        }
     }
 }

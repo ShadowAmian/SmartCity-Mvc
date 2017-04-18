@@ -63,6 +63,7 @@
     <Compile Include="Entities\Manager.cs" />
     <Compile Include="Entities\Notice.cs" />
     <Compile Include="Entities\Repair.cs" />
+    <Compile Include="Entities\RepairTypes.cs" />
     <Compile Include="Entities\SysLog.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="IRepositoryContext.cs" />

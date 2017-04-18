@@ -94,5 +94,14 @@ namespace SmartCity.Domain.Concrete
             }
             return false;
         }
+        /// <summary>
+        /// 维修类型统计
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<RepairTypes> SerachRepairType()
+        {
+            var resule = Conn.Query<RepairTypes>("select RepairType, count(*) MaintenanceStatusNumber  from Repair_Table group by RepairType");
+            return resule;
+        }
     }
 }

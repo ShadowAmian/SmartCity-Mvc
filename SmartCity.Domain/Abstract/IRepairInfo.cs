@@ -41,5 +41,10 @@ namespace SmartCity.Domain.Abstract
         /// <param name="id"></param>
         /// <returns></returns>
          bool BatchRemoveRepairInfo(List<int> id);
+        /// <summary>
+        /// 维修类型统计
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<RepairTypes> SerachRepairType();
     }
 }
