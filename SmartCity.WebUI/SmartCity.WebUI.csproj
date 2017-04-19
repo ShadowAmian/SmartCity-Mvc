@@ -153,6 +153,38 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\echarts.min.js" />
+    <Content Include="Content\HomeStyle\1.jpg" />
+    <Content Include="Content\HomeStyle\1459482861977PCf404011.jpg" />
+    <Content Include="Content\HomeStyle\2.jpg" />
+    <Content Include="Content\HomeStyle\2016030306122418.jpg" />
+    <Content Include="Content\HomeStyle\2016031912005352.jpg" />
+    <Content Include="Content\HomeStyle\2016041607584282.jpg" />
+    <Content Include="Content\HomeStyle\2016050208553249.jpg" />
+    <Content Include="Content\HomeStyle\2016050208561597.jpg" />
+    <Content Include="Content\HomeStyle\3.jpg" />
+    <Content Include="Content\HomeStyle\4.jpg" />
+    <Content Include="Content\HomeStyle\default.png" />
+    <Content Include="Content\HomeStyle\font-awesome.css" />
+    <Content Include="Content\HomeStyle\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\HomeStyle\group.png" />
+    <Content Include="Content\HomeStyle\hm.js" />
+    <Content Include="Content\HomeStyle\jquery.js" />
+    <Content Include="Content\HomeStyle\jquery.min.js" />
+    <Content Include="Content\HomeStyle\js\html5.js" />
+    <Content Include="Content\HomeStyle\js\jquery.js" />
+    <Content Include="Content\HomeStyle\js\jquery.min.js" />
+    <Content Include="Content\HomeStyle\js\my_quicktags.js" />
+    <Content Include="Content\HomeStyle\js\responsiveslides.min.js" />
+    <Content Include="Content\HomeStyle\js\slider.js" />
+    <Content Include="Content\HomeStyle\js\tougao.js" />
+    <Content Include="Content\HomeStyle\logo.png" />
+    <Content Include="Content\HomeStyle\responsiveslides.min.js" />
+    <Content Include="Content\HomeStyle\style.css" />
+    <Content Include="Content\HomeStyle\t01605ab9200e1b43f8.jpg" />
+    <Content Include="Content\HomeStyle\um.css" />
+    <Content Include="Content\HomeStyle\um.js" />
+    <Content Include="Content\HomeStyle\weixin.gif" />
+    <Content Include="Content\HomeStyle\wp-embed.min.js" />
     <Content Include="Content\script\datatables\1.10.0\jquery.dataTables.min.js" />
     <Content Include="Content\script\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Content\script\h-ui.admin\css\H-ui.admin.css" />
@@ -591,7 +623,7 @@
     <Compile Include="Areas\Admin\Models\Repairs\RepairMaintenanceModel.cs" />
     <Compile Include="Areas\Admin\Models\SysLogs\SysLogModel.cs" />
     <Compile Include="Areas\Admin\Models\UserListModel.cs" />
-    <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -655,6 +687,11 @@
     <Content Include="Areas\Admin\Views\FeedBack\FeedBackList.cshtml" />
     <Content Include="Areas\Admin\Views\UserInfo\SearchUserInfoByID.cshtml" />
     <Content Include="Areas\Admin\Views\Repair\RepairStatistics.cshtml" />
+    <Content Include="Views\HomePage\Index.cshtml" />
+    <Content Include="Content\HomeStyle\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\HomeStyle\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\HomeStyle\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\HomeStyle\fonts\FontAwesome.otf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
