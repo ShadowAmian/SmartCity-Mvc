@@ -56,6 +56,7 @@ namespace SmartCity.WebUI.Infrastructure
             kennel.Bind<ISysLogInfo>().To<SysLogInfo>();
             kennel.Bind<IRepairInfo>().To<RepairInfo>();
             kennel.Bind<IFeedBackInfo>().To<FeedBackInfo>();
+            kennel.Bind<IPostsInfo>().To<PostsInfo>();
         }
     }
 }

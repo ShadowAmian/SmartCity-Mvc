@@ -12,9 +12,11 @@ namespace SmartCity.WebUI.Controllers
     {
         #region 字段 构造函数
         private INoticeInfo NewsInfoService;
-        public HomePageController(INoticeInfo NewsInfo)
+        private IPostsInfo PostInfoService;
+        public HomePageController(INoticeInfo NewsInfo,IPostsInfo PostInfo)
         {
             this.NewsInfoService = NewsInfo;
+            this.PostInfoService = PostInfo;
         }
         #endregion
         // GET: HomePage
@@ -24,6 +26,9 @@ namespace SmartCity.WebUI.Controllers
             var Model = new HomePageModel();
             var result = NewsInfoService.GetNewsList().ToList();
             Model.NewsItems = result;
+            //获取论坛
+            var PostsModel = PostInfoService.GetPostsInfoList().ToList();
+            Model.PostsItems = PostsModel;
             return View(Model);
         }
     }
