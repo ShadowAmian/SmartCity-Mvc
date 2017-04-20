@@ -1,4 +1,4 @@
-﻿
+﻿@model SmartCity.WebUI.Models.HomePageModel
 @{
     Layout = null;
 }
@@ -9,7 +9,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>小区首页</title>
-    <script src=".//Content/HomeStyle/hm.js"></script>
+    <script src="../Content/HomeStyle/hm.js"></script>
     <script>
         window._deel = { name: '小区物业系统', url: '#', ajaxpager: '', commenton: 0, roll: [4, ] }
     </script>
@@ -43,7 +43,7 @@
                 <div id="top-menu_1">
                     <span class="nav-search"><i class="fa fa-search"></i></span> <span class="nav-search_1"><a href="#"><i class="fa fa-navicon"></i></a></span>
                     <hgroup class="logo-site" style="margin-top: 5px;">
-                        <h1 class="site-title"> <a href="#"><img src="../Content/HomeStyle/logo.png" alt="Sky 1.0博客主题"></a></h1>
+                        <h1 class="site-title"> <a href="#"><img src="../Content/HomeStyle/logo.png" alt="小区物业管理"></a></h1>
                     </hgroup>
                     <div id="site-nav-wrap">
                         <nav id="site-nav" class="main-nav">
@@ -113,11 +113,11 @@
                 <div class="slick_bor">
                     <script src="../Content/HomeStyle/responsiveslides.min.js"></script>
                     <ul class="slick centered-btns centered-btns1" style="max-width: 1903px;">
-                        <li id="centered-btns1_s0" class="" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;"><a href="#"><img class="img_855x300" src="../Content/HomeStyle/2016041607584282.jpg" alt=""><span></span></a></li>
-                        <li id="centered-btns1_s1" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Content/HomeStyle/2016031912005352.jpg" alt="简介"><span>简介</span></a></li>
-                        <li id="centered-btns1_s2" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Content/HomeStyle/2016050208561597.jpg" alt=""><span></span></a></li>
-                        <li id="centered-btns1_s3" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Content/HomeStyle/2016030306122418.jpg" alt=""><span></span></a></li>
-                        <li id="centered-btns1_s4" style="display: list-item; float: left; position: relative; opacity: 1; z-index: 2; transition: opacity 700ms ease-in-out;" class="centered-btns1_on"><a href="#"><img class="img_855x300" src=".//Content/HomeStyle/1459482861977PCf404011.jpg" alt=""><span></span></a></li>
+                        <li id="centered-btns1_s0" class="" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;"><a href="#"><img class="img_855x300" src="../Images/lunbo1.jpg" alt=""><span></span></a></li>
+                        <li id="centered-btns1_s1" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Images/lunbo2.png" alt=""><span></span></a></li>
+                        <li id="centered-btns1_s2" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Images/lunbo3.png" alt=""><span></span></a></li>
+                        <li id="centered-btns1_s3" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Images/lunbo4.png" alt=""><span></span></a></li>
+                        <li id="centered-btns1_s4" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Content/HomeStyle/1459482861977PCf404011.jpg" alt=""><span></span></a></li>
                     </ul>
                     <a href="#" class="centered-btns_nav centered-btns1_nav prev">Previous</a><a href="#" class="centered-btns_nav centered-btns1_nav next">Next</a><ul class="centered-btns_tabs centered-btns1_tabs"><li class="centered-btns1_s1"><a href="#" class="centered-btns1_s1">1</a></li><li class="centered-btns1_s2"><a href="#" class="centered-btns1_s2">2</a></li><li class="centered-btns1_s3"><a href="#" class="centered-btns1_s3">3</a></li><li class="centered-btns1_s4"><a href="#" class="centered-btns1_s4">4</a></li><li class="centered-btns1_s5 centered-btns_here"><a href="#" class="centered-btns1_s5">5</a></li></ul>
                     <script>
@@ -141,54 +141,22 @@
                         <h4>通知公告</h4>
                     </div>
                     <ul class="dd-list">
-                        <li>
-                            <figure class="dd-img">
-                                <a title="Google Chrome终于支持CSS Variables了！" target="_blank" href="http://demo7.ledkongzhiqi.com/css/105.html">
-                                    <img src="../Content/HomeStyle/1.jpg" style="display: inline;width:168px;height:112px;" alt="Google Chrome终于支持CSS Variables了！">
-                                </a>
-                            </figure>
-                            <div class="dd-content">
-                                <h2 class="dd-title"> <a rel="bookmark" title="Google Chrome终于支持CSS Variables了！" href="http://demo7.ledkongzhiqi.com/css/105.html">Google Chrome终于支持CSS Variables了！</a> </h2>
-                                <div class="dd-site xs-hidden">
-                                    这篇文章要报道的并不是“新闻”，因为W3C早已开始着手CSS变量（又称 自定义...
+                        @for (int i = 0; i < 4; i++)
+                        {
+                            <li>
+                                <figure class="dd-img">
+                                    <a title="@Model.NewsItems[i].NewsTitle" target="_blank" href="#">
+                                        <img src="@Model.NewsItems[i].NewsImages" style="display: inline;width:168px;height:112px;" alt="@Model.NewsItems[i].NewsTitle">
+                                    </a>
+                                </figure>
+                                <div class="dd-content">
+                                    <h2 class="dd-title"> <a rel="bookmark" title="@Model.NewsItems[i].NewsTitle" href="#">@Model.NewsItems[i].NewsTitle</a> </h2>
+                                    <div class="dd-site xs-hidden">
+                                        @Model.NewsItems[i].NewsDigest
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li>
-                            <figure class="dd-img">
-                                <a title="CSS代码重构与优化之路" target="_blank" href="http://demo7.ledkongzhiqi.com/zhuti/91.html">
-                                    <img src="../Content/HomeStyle/2.jpg" style="display: inline;width:168px;height:112px;" alt="CSS代码重构与优化之路">
-                                </a>
-                            </figure>
-                            <div class="dd-content">
-                                <h2 class="dd-title"> <a rel="bookmark" title="CSS代码重构与优化之路" href="http://demo7.ledkongzhiqi.com/zhuti/91.html">CSS代码重构与优化之路</a> </h2>
-                                <div class="dd-site xs-hidden">写CSS的同学们往往会体会到，随着项目规模的增加，项目中的CSS代码也会越来越多...</div>
-                            </div>
-                        </li>
-                        <li>
-                            <figure class="dd-img">
-                                <a title="如何选择html5 移动开发公司" target="_blank" href="http://demo7.ledkongzhiqi.com/zhuti/75.html">
-                                    <img src="../Content/HomeStyle/3.jpg" style="display: inline;width:168px;height:112px;" alt="如何选择html5 移动开发公司">
-                                </a>
-                            </figure>
-                            <div class="dd-content">
-                                <h2 class="dd-title"> <a rel="bookmark" title="如何选择html5 移动开发公司" href="http://demo7.ledkongzhiqi.com/zhuti/75.html">如何选择html5 移动开发公司</a> </h2>
-                                <div class="dd-site xs-hidden">
-                                    随着移动设备越来越先进，对html5 移动开发的支持度越来越高，我们进军移动领...
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <figure class="dd-img">
-                                <a title="如何看待HTML5抓住微信应用号千亿级市场！" target="_blank" href="http://demo7.ledkongzhiqi.com/zhuti/73.html">
-                                    <img src="../Content/HomeStyle/4.jpg" style="display: inline;width:168px;height:112px;" alt="如何看待HTML5抓住微信应用号千亿级市场！">
-                                </a>
-                            </figure>
-                            <div class="dd-content">
-                                <h2 class="dd-title"> <a rel="bookmark" title="如何看待HTML5抓住微信应用号千亿级市场！" href="http://demo7.ledkongzhiqi.com/zhuti/73.html">如何看待HTML5抓住微信应用号千亿级市场！</a> </h2>
-                                <div class="dd-site xs-hidden">不久前，“微信之父”张小龙轻描淡写的宣布了计划推出“应用号”的消息，激起了千层浪...</div>
-                            </div>
-                        </li>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <header class="archive-header"><h1>在线交流</h1></header>
@@ -384,23 +352,25 @@
                     <strong>加群啦</strong><h2>小区QQ群-主群</h2><p>
                         小区QQ群-主群 群号：847712857，欢迎大家！
                         <br>
+                        小区QQ群-①群 群号：847712857，欢迎大家！
                         <br>
-                        <img border="0" src=".//Content/HomeStyle/group.png" alt="翠竹林wordpress主题" title="翠竹林wordpress主题">
+                        小区QQ群-②群 群号：847712857，欢迎大家！
+                        <br>
                     </p>
                 </a>
             </div><div class="widget d_textbanner"><a class="style01" href="#"><strong>SKY主题 新一代主题</strong><h2>吐血推荐</h2><p>SKY wordpress主题是翠竹林当前使用的主题，是翠竹林积累多年wordpress主题经验设计而成，更加扁平的风格和干净，白色的架构会让网站显得内涵而出色...</p></a></div> <div class="widget widget_umucenter form-inline">
                 <li><span class="local-account"><a data-sign="0" class="btn btn-primary user-login"><i class="fa fa-wordpress"></i>本地帐号</a></span><span class="other-sign"><a class="qqlogin btn" href="#"><i class="fa fa-qq"></i><span>QQ 登 录</span></a></span><span class="other-sign"><a class="weibologin btn" href="#"><i class="fa fa-weibo"></i><span>微博登录</span></a></span></li>
             </div> <div class="widget d_banner">
                 <div class="d_banner_inner">
-                    <a href="http://www.cuizl.com/bokezhuti/1761.html#5566" title="垂直自媒体wordpress博客主题：Geek"><img src=".//Content/HomeStyle/2016050208553249.jpg" alt="棕红色响应式垂直自媒体wordpress博客主题：Geek"><span></span></a>
+                    <a href="#" title="垂直自媒体wordpress博客主题：Geek"><img src="../Content/HomeStyle/2016050208553249.jpg" alt="棕红色响应式垂直自媒体wordpress博客主题：Geek"><span></span></a>
                 </div>
             </div><div class="widget d_postlist">
                 <div class="title"><h2><sapn class="title_span">热门推荐</sapn></h2></div><ul>
-                    <li><a href="#" title="DTCC 2016:MySQL中国组主席谈DBA的炼成"><span class="thumbnail"><img src=".//Content/HomeStyle/timthumb(16).php" alt="DTCC 2016:MySQL中国组主席谈DBA的炼成"></span><span class="text">DTCC 2016:MySQL中国组主席谈DBA的炼成</span><span class="muted">2016-02-25</span><span class="muted_1">2评论</span></a></li>
-                    <li><a href="#" title="WordPress页面链接添加.html后缀"><span class="thumbnail"><img src=".//Content/HomeStyle/timthumb(17).php" alt="WordPress页面链接添加.html后缀"></span><span class="text">WordPress页面链接添加.html后缀</span><span class="muted">2016-01-18</span><span class="muted_1">1评论</span></a></li>
-                    <li><a href="#" title="HTML5响应式网站给我们的生活带来哪些改变"><span class="thumbnail"><img src=".//Content/HomeStyle/timthumb(18).php" alt="HTML5响应式网站给我们的生活带来哪些改变"></span><span class="text">HTML5响应式网站给我们的生活带来哪些改变</span><span class="muted">2016-01-26</span><span class="muted_1">1评论</span></a></li>
-                    <li><a href="#" title="Google Chrome终于支持CSS Variables了！"><span class="thumbnail"><img src=".//Content/HomeStyle/timthumb(19).php" alt="Google Chrome终于支持CSS Variables了！"></span><span class="text">Google Chrome终于支持CSS Variables了！</span><span class="muted">2016-02-25</span><span class="muted_1">1评论</span></a></li>
-                    <li><a href="#" title="避免使用复杂的选择器，层级越少越好"><span class="thumbnail"><img src=".//Content/HomeStyle/timthumb(19).php" alt="避免使用复杂的选择器，层级越少越好"></span><span class="text">避免使用复杂的选择器，层级越少越好</span><span class="muted">2016-02-17</span><span class="muted_1">1评论</span></a></li>
+                    <li><a href="#" title="DTCC 2016:MySQL中国组主席谈DBA的炼成"><span class="thumbnail"><img src="../Content/HomeStyle/timthumb(16).php" alt="DTCC 2016:MySQL中国组主席谈DBA的炼成"></span><span class="text">DTCC 2016:MySQL中国组主席谈DBA的炼成</span><span class="muted">2016-02-25</span><span class="muted_1">2评论</span></a></li>
+                    <li><a href="#" title="WordPress页面链接添加.html后缀"><span class="thumbnail"><img src="../Content/HomeStyle/timthumb(17).php" alt="WordPress页面链接添加.html后缀"></span><span class="text">WordPress页面链接添加.html后缀</span><span class="muted">2016-01-18</span><span class="muted_1">1评论</span></a></li>
+                    <li><a href="#" title="HTML5响应式网站给我们的生活带来哪些改变"><span class="thumbnail"><img src="../Content/HomeStyle/timthumb(18).php" alt="HTML5响应式网站给我们的生活带来哪些改变"></span><span class="text">HTML5响应式网站给我们的生活带来哪些改变</span><span class="muted">2016-01-26</span><span class="muted_1">1评论</span></a></li>
+                    <li><a href="#" title="Google Chrome终于支持CSS Variables了！"><span class="thumbnail"><img src="../Content/HomeStyle/timthumb(19).php" alt="Google Chrome终于支持CSS Variables了！"></span><span class="text">Google Chrome终于支持CSS Variables了！</span><span class="muted">2016-02-25</span><span class="muted_1">1评论</span></a></li>
+                    <li><a href="#" title="避免使用复杂的选择器，层级越少越好"><span class="thumbnail"><img src="../Content/HomeStyle/timthumb(19).php" alt="避免使用复杂的选择器，层级越少越好"></span><span class="text">避免使用复杂的选择器，层级越少越好</span><span class="muted">2016-02-17</span><span class="muted_1">1评论</span></a></li>
                 </ul>
             </div><div class="widget widget_categories">
                 <div class="title"><h2><sapn class="title_span">分类目录</sapn></h2></div> <ul>
