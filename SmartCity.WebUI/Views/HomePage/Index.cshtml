@@ -11,7 +11,7 @@
     <title>小区首页</title>
     <script src="../Content/HomeStyle/hm.js"></script>
     <script>
-        window._deel = { name: '小区物业系统', url: '#', ajaxpager: '', commenton: 0, roll: [4, ] }
+        window._deel = { name: '宜居小区物业系统', url: '#', ajaxpager: '', commenton: 0, roll: [4, ] }
     </script>
     <link rel="stylesheet" id="um-css" href="../Content/HomeStyle/um.css" type="text/css" media="all">
     <link rel="stylesheet" id="fa-css" href="../Content/HomeStyle/font-awesome.css" type="text/css" media="all">
@@ -254,25 +254,27 @@
             <p>
                 <a href="#" title="翠竹林wordpress主题">翠竹林wordpress主题</a> 版权所有，保留一切权利 基于WordPress构建 © 2010-2016 · 托管于阿里云服务器&nbsp;&nbsp;
             </p>
-            <p>Powered by WordPress · Theme by <a title="翠竹林wordpress主题" href="http://www.cuizl.com/">翠竹林</a> </p>
+            <p>Powered by WordPress · Theme by <a title="翠竹林wordpress主题" href="#">翠竹林</a> </p>
         </div>
     </footer>
     <div class="overlay-login"></div>
     <div id="sign" class="um_sign">
         <div class="part loginPart">
-            <form id="login" action="#" method="post" novalidate="novalidate">
+
+            @using (Html.BeginForm("UserLogin", "HomePage", new { @method="post", @id="login", @novalidate= "novalidate" }))
+            {
                 <div id="register-active" class="switch"><i class="fa fa-toggle-on"></i>切换注册</div> <h3>登录<p class="status"></p></h3>
                 <p>
                     <label class="icon" for="username"><i class="fa fa-user"></i></label>
-                    <input class="input-control" id="username" type="text" placeholder="请输入用户名" name="username" required="" aria-required="true">
+                    <input class="input-control" id="username" name="Account" type="text" placeholder="请输入用户名" aria-required="true">
                 </p>
                 <p>
                     <label class="icon" for="password"><i class="fa fa-lock"></i></label>
-                    <input class="input-control" id="password" type="password" placeholder="请输入密码" name="password" required="" aria-required="true">
+                    <input class="input-control" id="password" name="Password" type="password" placeholder="请输入密码" aria-required="true">
                 </p>
                 <p class="safe">
                     <label class="remembermetext" for="rememberme"><input name="rememberme" type="checkbox" checked="checked" id="rememberme" class="rememberme" value="forever">记住我的登录</label>
-                    <a class="lost" href="http://demo7.ledkongzhiqi.com/wp-login.php?action=lostpassword">忘记密码 ?</a>
+                    <a class="lost" href="#">忘记密码 ?</a>
                 </p>
                 <p>
                     <input class="submit" type="submit" value="登录" name="submit">
@@ -280,7 +282,8 @@
                 <a class="close"><i class="fa fa-times"></i></a>
                 <input type="hidden" id="security" name="security" value="094087f976">
                 <input type="hidden" name="_wp_http_referer" value="/">
-            </form>
+            }
+
             <div class="other-sign">
                 <p>您也可以使用第三方帐号快捷登录</p>
                 <div><a class="qqlogin" href="#"><i class="fa fa-qq"></i><span>Q Q 登 录</span></a></div>
