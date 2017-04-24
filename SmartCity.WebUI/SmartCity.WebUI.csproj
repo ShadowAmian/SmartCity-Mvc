@@ -616,6 +616,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RepairController.cs" />
     <Compile Include="Areas\Admin\Controllers\SysLogController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserInfoController.cs" />
@@ -623,6 +624,7 @@
     <Compile Include="Areas\Admin\Models\ManagerListModel.cs" />
     <Compile Include="Areas\Admin\Models\NewsList.cs" />
     <Compile Include="Areas\Admin\Models\News\NewsModel.cs" />
+    <Compile Include="Areas\Admin\Models\Postss\PostsListModel.cs" />
     <Compile Include="Areas\Admin\Models\Repairs\RepairList.cs" />
     <Compile Include="Areas\Admin\Models\Repairs\RepairListModel.cs" />
     <Compile Include="Areas\Admin\Models\Repairs\RepairMaintenanceModel.cs" />
@@ -697,6 +699,7 @@
     <Content Include="Content\HomeStyle\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\HomeStyle\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\HomeStyle\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Admin\Views\Posts\PostsList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

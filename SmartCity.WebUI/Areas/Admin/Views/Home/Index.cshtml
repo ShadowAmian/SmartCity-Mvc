@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>后台主页</title>
+    <title>翠竹林小区物业管理系统</title>
     <link href="~/Content/script/h-ui/css/H-ui.min.css" rel="stylesheet" />
     <link href="~/Content/script/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" />
     <link href="~/Content/script/lib/Hui-iconfont/1.0.8/iconfont.min.css" rel="stylesheet" />
@@ -18,7 +18,7 @@
     <header class="navbar-wrapper">
         <div class="navbar navbar-fixed-top">
             <div class="container-fluid cl">
-                <a class="logo navbar-logo f-l mr-10 hidden-xs" href="@Url.Action("Home","Index", new { area = "Admin" })">小区物业管理系统</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">小区物业管理系统</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs">v1.0</span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+                <a class="logo navbar-logo f-l mr-10 hidden-xs" href="@Url.Action("Home","Index", new { area = "Admin" })">翠竹林小区物业管理系统</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">翠竹林小区物业管理系统</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs"></span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
                 <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
                     <ul class="cl">
                         <li>@ViewBag.UserType</li>
@@ -66,12 +66,10 @@
                 </dd>
             </dl>
             <dl id="menu-product">
-                <dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                <dt><i class="Hui-iconfont">&#xe620;</i> 论坛管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
                 <dd>
                     <ul>
-                        <li><a data-href="product-brand.html" data-title="品牌管理" href="javascript:void(0)">品牌管理</a></li>
-                        <li><a data-href="product-category.html" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
-                        <li><a data-href="product-list.html" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>
+                        <li><a data-href="@Url.Action("PostsList","Posts",new { area="Admin"})" data-title="在线交流" href="javascript:void(0)">在线交流</a></li>
                     </ul>
                 </dd>
             </dl>

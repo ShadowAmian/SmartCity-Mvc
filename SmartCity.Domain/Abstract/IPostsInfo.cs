@@ -14,5 +14,28 @@ namespace SmartCity.Domain.Abstract
         /// </summary>
         /// <returns></returns>
          IEnumerable<Posts> GetPostsInfoList();
+        /// <summary>
+        /// 获取热门报修信息集合
+        /// </summary>
+        /// <returns></returns>
+         IEnumerable<Posts> GetHotPostsInfo();
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+         bool BatchRemovePosts(List<int> id);
+        /// <summary>
+        /// 删除在线交流内容
+        /// </summary>
+        /// <param name="NewsID"></param>
+        /// <returns></returns>
+        bool DeletePosts(int PostsID);
+        /// <summary>
+        /// 查询论坛内容
+        /// </summary>
+        /// <param name="NewsID"></param>
+        /// <returns></returns>
+        IEnumerable<Posts> SerachPosts(List<int> id, DateTime? startTime, DateTime? endTime);
     }
 }

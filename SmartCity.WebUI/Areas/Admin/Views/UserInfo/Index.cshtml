@@ -90,11 +90,12 @@
             layer_show(title, url, w, h);
         }
         /*管理员-删除*/
-        function admin_del(obj, id) {
+        $('#pass').click(function () {
+            var par
             layer.confirm('确认要删除吗？', function (index) {
                 $.ajax({
                     type: 'POST',
-                    url: '@Url.Action("DeleteUserInfoByID", "UserInfo")',
+                    url: '@Url.Action("UserLogin", "UserInfo")',
                     dataType: 'json',
                     data: { "OwnerID": id },
 
@@ -107,7 +108,7 @@
                     },
                 });
             });
-        }
+        });
         /*管理员-编辑*/
         function admin_edit(title, url, id, w, h) {
             layer_show(title, url, w, h);

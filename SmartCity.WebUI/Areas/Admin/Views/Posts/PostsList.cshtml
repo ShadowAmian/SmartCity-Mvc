@@ -1,4 +1,4 @@
-﻿@model SmartCity.WebUI.Areas.Admin.Models.FeedBacks.FeedBackListModel
+﻿@model SmartCity.WebUI.Areas.Admin.Models.Postss.PostsListModel
 @{
     Layout = null;
 }
@@ -8,16 +8,16 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>意见反馈列表</title>
+    <title>在线交流</title>
     <link href="~/Content/script/h-ui/css/H-ui.min.css" rel="stylesheet" />
     <link href="~/Content/script/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" />
     <link href="~/Content/script/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
     <link href="~/Content/script/h-ui.admin/skin/default/skin.css" rel="stylesheet" id="skin" />
 </head>
 <body>
-    <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 评论管理 <span class="c-gray en">&gt;</span> 意见反馈 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+    <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 论坛管理 <span class="c-gray en">&gt;</span> 在线交流 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
     <div class="page-container">
-        @using (Html.BeginForm("SerachFeedBack", "FeedBack"))
+        @using (Html.BeginForm("SerachPosts", "Posts"))
         {
             <div class="text-c">
                 日期范围：
@@ -33,26 +33,32 @@
             <table class="table table-border table-bordered table-hover table-bg table-sort">
                 <thead>
                     <tr class="text-c">
-                        <th width="25"><input type="checkbox" name="" value=""></th>
+                        <th width="25"><input type="checkbox"></th>
                         <th width="60">编号</th>
-                        <th width="60">用户名</th>
-                        <th>留言内容</th>
-                        <th>留言时间</th>
-                        <th width="100">操作</th>
+                        <th>标题</th>
+                        <th>标签</th>
+                        <th>时间</th>
+                        <th width="100">浏览数</th>
+                        <th>评论数</th>
+                        <th>简要内容</th>
+                        <th>发布人</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.FeedBackIteams)
+                    @foreach (var item in Model.PostsIteams)
                     {
                         <tr class="text-c">
-                            <td><input type="checkbox" value="@(item.ComplaintID+"-"+item.OwnerInfo.UserName)" name="checkItem"></td>
-                            <td>@item.ComplaintID</td>
-                            <td><a href="javascript:;" onclick="member_show('@item.OwnerInfo.UserName','@Url.Action("SearchUserInfoByID", "UserInfo", new RouteValueDictionary { { "OwnerID", item.OwnerInfo.OwnerID } })',@item.OwnerInfo.OwnerID,'360','400')">@item.OwnerInfo.UserName</a></td>
-                            <td class="text-l">
-                                <div>@item.ComplaintContent</div>
-                            </td>
-                            <td>@item.CreateTime</td>
-                            <td class="td-manage"><a title="删除" href="javascript:;" onclick="member_del(this,@item.ComplaintID)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                            <td><input type="checkbox" value="@(item.PostsID+"-"+item.UserModel.UserName)" name="checkItem"></td>
+                            <td>@item.PostsID</td>
+                            <td>@item.PostsTitle</td>
+                            <td>@item.PostsLable</td>
+                            <td>@item.CreateTime.ToString()</td>
+                            <td>@item.TimesWatched</td>
+                            <td>@item.CommentsNumber</td>
+                            <td>@item.BriefContent</td>
+                            <td>@item.UserModel.UserName</td>
+                            <td class="td-manage"><a title="删除" href="javascript:;" onclick="member_del(this,@item.PostsID)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                         </tr>
                     }
                 </tbody>
@@ -89,8 +95,8 @@
             layer.confirm('确认要删除吗？', function (index) {
                 $.ajax({
                     type: 'POST',
-                    url: '@Url.Action("DeleteFeedBack", "FeedBack",new { area="Admin"})',
-                    data: { FeedBackID: id },
+                    url: '@Url.Action("DeletePosts", "Posts", new { area="Admin"})',
+                    data: { PostsID: id },
                     dataType: 'json',
                     success: function (data) {
                         $(obj).parents("tr").remove();
@@ -113,7 +119,7 @@
                         ids += id + ",";
                     }
                 }
-                $.post('@Url.Action("BatchRemoveFeedBack", "FeedBack", new { area = "Admin" })', { id: ids }, function (msg) {
+                $.post('@Url.Action("BatchRemovePosts", "Posts", new { area = "Admin" })', { id: ids }, function (msg) {
                     if (msg.IsSuccess == 0) {
                         layer.msg('已删除!', { icon: 1, time: 1000 });
                         window.location.reload();

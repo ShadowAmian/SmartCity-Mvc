@@ -86,6 +86,10 @@ namespace SmartCity.Common
         /// 数据包
         /// </summary>
         public object Data { get; set; }
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        public string UserName { get; set; }
         #endregion
     }
 }
