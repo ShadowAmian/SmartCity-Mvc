@@ -1,19 +1,20 @@
-﻿@model SmartCity.WebUI.Models.HomePageModel
+﻿@model SmartCity.WebUI.Models.FourumIndexModel
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>翠竹林小区首页</title>
+    <title>翠竹林小区评论页</title>
     <link href="~/Content/HomeStyle/um.css" id="um-css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/HomeStyle/font-awesome.css" id="fa-css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/HomeStyle/style.css" id="style-css" rel="stylesheet" type="text/css" media="all" />
     <script type="text/javascript" src="~/Content/HomeStyle/jquery.min.js"></script>
     <script type="text/javascript" src="~/Content/HomeStyle/jquery.js"></script>
-    <script src="~/Content/HomeStyle/hm.js"></script>
+    <script src="../Content/HomeStyle/hm.js"></script>
     <script>
         window._deel = { name: '翠竹林小区物业系统', url: '#', ajaxpager: '', commenton: 0, roll: [0] }
     </script>
@@ -108,75 +109,138 @@
         <div class="speedbar">
         </div>
         <div class="content-wrap">
-            <div class="content">
-                <div class="slick_bor">
-                    <script src="../Content/HomeStyle/responsiveslides.min.js"></script>
-                    <ul class="slick centered-btns centered-btns1" style="max-width: 1903px;">
-                        <li id="centered-btns1_s0" class="" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;"><a href="#"><img class="img_855x300" src="../Images/lunbo1.jpg" alt=""><span></span></a></li>
-                        <li id="centered-btns1_s1" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Images/lunbo2.png" alt=""><span></span></a></li>
-                        <li id="centered-btns1_s2" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Images/lunbo3.png" alt=""><span></span></a></li>
-                        <li id="centered-btns1_s3" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Images/lunbo4.png" alt=""><span></span></a></li>
-                        <li id="centered-btns1_s4" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Content/HomeStyle/1459482861977PCf404011.jpg" alt=""><span></span></a></li>
-                    </ul>
-                    <a href="#" class="centered-btns_nav centered-btns1_nav prev">Previous</a><a href="#" class="centered-btns_nav centered-btns1_nav next">Next</a><ul class="centered-btns_tabs centered-btns1_tabs"><li class="centered-btns1_s1"><a href="#" class="centered-btns1_s1">1</a></li><li class="centered-btns1_s2"><a href="#" class="centered-btns1_s2">2</a></li><li class="centered-btns1_s3"><a href="#" class="centered-btns1_s3">3</a></li><li class="centered-btns1_s4"><a href="#" class="centered-btns1_s4">4</a></li><li class="centered-btns1_s5 centered-btns_here"><a href="#" class="centered-btns1_s5">5</a></li></ul>
-                    <script>
-                        $(function () {
-                            var mx = document.body.clientWidth;
-                            $(".slick").responsiveSlides({
-                                auto: true,
-                                pager: true,
-                                nav: true,
-                                speed: 700,
-                                timeout: 7000,
-                                maxwidth: mx,
-                                namespace: "centered-btns"
-                            });
-                        });
-                    </script>
-                    <div class="ws_shadow"></div>
-                </div>
-                <div class="daodu clr">
-                    <div class="tip">
-                        <h4>通知公告</h4>
-                    </div>
-                    <ul class="dd-list">
-                        @for (int i = 0; i < 4; i++)
-                        {
-                            <li>
-                                <figure class="dd-img">
-                                    <a title="@Model.NewsItems[i].NewsTitle" target="_blank" href="#">
-                                        <img src="@Model.NewsItems[i].NewsImages" style="display: inline;width:168px;height:112px;" alt="@Model.NewsItems[i].NewsTitle">
-                                    </a>
-                                </figure>
-                                <div class="dd-content">
-                                    <h2 class="dd-title"> <a rel="bookmark" title="@Model.NewsItems[i].NewsTitle" href="#">@Model.NewsItems[i].NewsTitle</a> </h2>
-                                    <div class="dd-site xs-hidden">
-                                        @Model.NewsItems[i].NewsDigest
-                                    </div>
-                                </div>
-                            </li>
-                        }
-                    </ul>
-                </div>
-                <header class="archive-header"><h1>在线交流</h1></header>
-                @foreach (var item in Model.PostsItems)
-                {
-                    <article class="excerpt">
-                        <div class="focus"><a target="_blank" href=""></a></div>
-                        <header>
-                            <a class="label label-important" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID", item.PostsID } })">@item.PostsLable<i class="label-arrow"></i></a><h2><a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID", item.PostsID } })" title="@item.PostsTitle">@item.PostsTitle </a></h2>
-                        </header>
-                        <p class="auth-span">
-                            <span class="muted"><i class="fa fa-clock-o"></i>@item.CreateTime.ToString()</span> <span class="muted"><i class="fa fa-eye"></i> @item.TimesWatched</span> <span class="muted"><i class="fa fa-comments-o"></i> <a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID", item.PostsID } })">@(item.CommentsNumber + "评论")</a></span>
-                        </p>
-                        <span class="note">
-                            @item.BriefContent
-                        </span>
-                    </article>
-                }
 
-                <div class="pagination"><ul><li class="prev-page"></li><li class="active"><span>1</span></li><li><a href="http://demo7.ledkongzhiqi.com/page/2">2</a></li><li class="next-page"><a href="http://demo7.ledkongzhiqi.com/page/2">下一页</a></li></ul></div>
+            <div class="content">
+                <div class="breadcrumbs"><a title="返回首页" href="@Url.Action("Index","HomePage")"><i class="fa fa-home"></i></a> <small>&gt;</small> <a href="http://demo7.ledkongzhiqi.com/category/php">@Model.PostsItems.First().PostsLable</a> <small>&gt;</small> <span class="muted">@Model.PostsItems.First().PostsTitle</span></div>
+                <header class="article-header">
+                    <h1 class="article-title"><a href="#">@Model.PostsItems.First().PostsTitle</a></h1>
+                    <div class="meta">
+                        <span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="http://demo7.ledkongzhiqi.com/category/php">@Model.PostsItems.First().PostsLable</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="#">@Model.PostsItems.First().UserModel.UserName</a></span>
+                        <time class="muted"><i class="fa fa-clock-o"></i> 1年前 (2016-02-25)</time>
+                        <span class="muted"><i class="fa fa-eye"></i> @Model.PostsItems.First().TimesWatched</span>
+                        <span class="muted"><i class="fa fa-comments-o"></i> <a href="http://demo7.ledkongzhiqi.com/php/114.html#comments">@(Model.PostsItems.First().CommentsNumber + "评论")</a></span>
+                    </div>
+                </header>
+                <article class="article-content">
+                    <p>
+                        @Model.PostsItems.First().Contents
+                    </p>
+                    <div class="activity-btn"><a class="like-btn" pid="114" href="javascript:;" title="" data-original-title="赞一个"><i class="fa fa-heart-o">&nbsp;</i>赞一个 (<span>11</span>)</a><a class="collect-btn collect-no" title="" data-original-title="你必须注册并登录才能收藏"><i class="fa fa-star-o">&nbsp;</i>收藏 (<span>0</span>)</a></div>
+                    <div class="article-social">
+                        <a href="javascript:;" data-action="ding" data-id="114" id="Addlike" class="action" data-original-title="" title=""><i class="fa fa-heart-o"></i>喜欢 (<span class="count">19</span>)</a><span class="or">or</span><span class="action action-share bdsharebuttonbox bdshare-button-style0-24" data-bd-bind="1493087499975"><i class="fa fa-share-alt"></i>分享 (<span class="bds_count" data-cmd="count" title="累计分享12次">12</span>)<div class="action-popover"><div class="popover top in"><div class="arrow"></div><div class="popover-content"><a href="http://demo7.ledkongzhiqi.com/php/114.html#" class="sinaweibo fa fa-weibo" data-cmd="tsina" title="" data-original-title="分享到新浪微博"></a><a href="http://demo7.ledkongzhiqi.com/php/114.html#" class="bds_qzone fa fa-star" data-cmd="qzone" title="" data-original-title="分享到QQ空间"></a><a href="http://demo7.ledkongzhiqi.com/php/114.html#" class="tencentweibo fa fa-tencent-weibo" data-cmd="tqq" title="" data-original-title="分享到腾讯微博"></a><a href="http://demo7.ledkongzhiqi.com/php/114.html#" class="qq fa fa-qq" data-cmd="sqq" title="" data-original-title="分享到QQ好友"></a><a href="http://demo7.ledkongzhiqi.com/php/114.html#" class="bds_renren fa fa-renren" data-cmd="renren" title="" data-original-title="分享到人人网"></a><a href="http://demo7.ledkongzhiqi.com/php/114.html#" class="bds_weixin fa fa-weixin" data-cmd="weixin" title="" data-original-title="分享到微信"></a><a href="http://demo7.ledkongzhiqi.com/php/114.html#" class="bds_more fa fa-ellipsis-h" data-cmd="more" data-original-title="" title=""></a></div></div></div></span>
+                    </div>
+                </article>
+                <footer class="article-footer"></footer>
+                <nav class="article-nav">
+                    <span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="http://demo7.ledkongzhiqi.com/jquery/111.html" rel="prev">最受欢迎JavaScript库：jQuery已经10岁啦！</a></span>
+                    <span class="article-nav-next"><a href="http://demo7.ledkongzhiqi.com/mysql/119.html" rel="next">DTCC 2016:MySQL中国组主席谈DBA的炼成</a>  <i class="fa fa-angle-double-right"></i></span>
+                </nav>
+                @*<div class="related_top">
+                        <div class="related_posts">
+                            <ul class="related_img">
+                                <h2>相关推荐</h2>
+                                <li class="related_box">
+                                    <a href="http://demo7.ledkongzhiqi.com/zhuti/95.html" title="精简页面的样式文件，去掉不用的样式" target="_blank">
+                                        <img src="./PHP 7.0.2正式版发布：WordPress速度提升3倍！ - 翠竹林_files/timthumb.php" alt="精简页面的样式文件，去掉不用的样式"><br><span class="r_title">精简页面的样式文件，去掉不用的样式</span>
+                                    </a>
+                                </li>
+
+                                <li class="related_box">
+                                    <a href="http://demo7.ledkongzhiqi.com/zhuti/91.html" title="CSS代码重构与优化之路" target="_blank">
+                                        <img src="./PHP 7.0.2正式版发布：WordPress速度提升3倍！ - 翠竹林_files/timthumb(1).php" alt="CSS代码重构与优化之路"><br><span class="r_title">CSS代码重构与优化之路</span>
+                                    </a>
+                                </li>
+
+                                <li class="related_box">
+                                    <a href="http://demo7.ledkongzhiqi.com/zhuti/77.html" title="HTML5响应式网站给我们的生活带来哪些改变" target="_blank">
+                                        <img src="./PHP 7.0.2正式版发布：WordPress速度提升3倍！ - 翠竹林_files/timthumb(2).php" alt="HTML5响应式网站给我们的生活带来哪些改变"><br><span class="r_title">HTML5响应式网站给我们的生活带来哪些改变</span>
+                                    </a>
+                                </li>
+
+                                <li class="related_box">
+                                    <a href="http://demo7.ledkongzhiqi.com/zhuti/75.html" title="如何选择html5 移动开发公司" target="_blank">
+                                        <img src="./PHP 7.0.2正式版发布：WordPress速度提升3倍！ - 翠竹林_files/timthumb(3).php" alt="如何选择html5 移动开发公司"><br><span class="r_title">如何选择html5 移动开发公司</span>
+                                    </a>
+                                </li>
+
+                                <li class="related_box">
+                                    <a href="http://demo7.ledkongzhiqi.com/zhuti/73.html" title="如何看待HTML5抓住微信应用号千亿级市场！" target="_blank">
+                                        <img src="./PHP 7.0.2正式版发布：WordPress速度提升3倍！ - 翠竹林_files/timthumb(2).php" alt="如何看待HTML5抓住微信应用号千亿级市场！"><br><span class="r_title">如何看待HTML5抓住微信应用号千亿级市场！</span>
+                                    </a>
+                                </li>
+
+                                <li class="related_box">
+                                    <a href="http://demo7.ledkongzhiqi.com/zhuti/65.html" title="微商城和微店有什么区别" target="_blank">
+                                        <img src="./PHP 7.0.2正式版发布：WordPress速度提升3倍！ - 翠竹林_files/timthumb(4).php" alt="微商城和微店有什么区别"><br><span class="r_title">微商城和微店有什么区别</span>
+                                    </a>
+                                </li>
+
+                                <li class="related_box">
+                                    <a href="http://demo7.ledkongzhiqi.com/zhuti/61.html" title="为何要学HTML5开发?HTML5发展前景如何？" target="_blank">
+                                        <img src="./PHP 7.0.2正式版发布：WordPress速度提升3倍！ - 翠竹林_files/timthumb(5).php" alt="为何要学HTML5开发?HTML5发展前景如何？"><br><span class="r_title">为何要学HTML5开发?HTML5发展前景如何？</span>
+                                    </a>
+                                </li>
+
+                                <li class="related_box">
+                                    <a href="http://demo7.ledkongzhiqi.com/php/46.html" title="兄弟连PHP培训：如何从崛起走向IT巅峰" target="_blank">
+                                        <img src="./PHP 7.0.2正式版发布：WordPress速度提升3倍！ - 翠竹林_files/timthumb(6).php" alt="兄弟连PHP培训：如何从崛起走向IT巅峰"><br><span class="r_title">兄弟连PHP培训：如何从崛起走向IT巅峰</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>*@
+                <div id="respond" class="no_webshot">
+                    <form action="http://demo7.ledkongzhiqi.com/wp-comments-post.php" method="post" id="commentform">
+
+                        <div class="comt-title">
+                            <div class="comt-avatar pull-left">
+                                <img alt="" src="./PHP 7.0.2正式版发布：WordPress速度提升3倍！ - 翠竹林_files/54-.jpg" srcset="http://demo7.ledkongzhiqi.com/avatar/108*.jpg" class="avatar avatar-54 photo" height="54" width="54">
+                            </div>
+                            <div class="comt-author pull-left">
+                                发表我的评论
+                            </div>
+                            <a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
+                        </div>
+
+                        <div class="comt">
+                            <div class="comt-box">
+                                <textarea placeholder="写点什么..." class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById(&#39;submit&#39;).click();return false};"></textarea>
+                                <div class="comt-ctrl">
+                                    <button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
+                                    <div class="comt-tips pull-right">
+                                        <input type="hidden" name="comment_post_ID" value="114" id="comment_post_ID">
+                                        <input type="hidden" name="comment_parent" id="comment_parent" value="0">
+                                        <p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="6389a90aef"></p><span class="mail-notify-check"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked" style="vertical-align:middle;"><label for="comment_mail_notify" style="vertical-align:middle;">有人回复时邮件通知我</label></span><p style="display: none;"></p><div class="comt-tip comt-loading" style="display: none;">正在提交, 请稍候...</div><div class="comt-tip comt-error" style="display: none;">#</div>
+                                    </div>
+                                    <span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
+                                    <span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked">有人回复时邮件通知我</label></span>
+                                </div>
+                            </div>
+                            <div class="comt-comterinfo" id="comment-author-info">
+                                <h4>Hi，您需要填写昵称和邮箱！</h4>
+                                <ul>
+                                    <li class="form-inline"><label class="hide" for="author">昵称</label><input class="ipt" type="text" name="author" id="author" value="" tabindex="2" placeholder="昵称"><span class="help-inline">昵称 (必填)</span></li>
+                                    <li class="form-inline"><label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="" tabindex="3" placeholder="邮箱"><span class="help-inline">邮箱 (必填)</span></li>
+                                    <li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="" tabindex="4" placeholder="网址"><span class="help-inline">网址</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="ak_js" name="ak_js" value="1493087499896">
+                    </form>
+                </div>
+                <div id="postcomments">
+                    <div id="comments">
+                        <i class="fa fa-comments-o"></i> <b> (1)</b>个小伙伴在吐槽
+                    </div>
+                    <ol class="commentlist">
+                        <li class="comment even thread-even depth-1" id="comment-576"><div class="c-avatar"><img alt="" data-original="http://demo7.ledkongzhiqi.com/avatar/54*b1ba69f855c62a7033283fbb625b9950.jpg" srcset="http://demo7.ledkongzhiqi.com/avatar/108*b1ba69f855c62a7033283fbb625b9950.jpg" class="avatar avatar-54 photo" height="54" width="54" src="./PHP 7.0.2正式版发布：WordPress速度提升3倍！ - 翠竹林_files/54-b1ba69f855c62a7033283fbb625b9950.jpg" style="display: block;"><div class="c-main" id="div-comment-576">很简介的wordpress主题<div class="c-meta"><span class="c-author">不错</span>2016-08-28 13:55 <a rel="nofollow" class="comment-reply-link" href="http://demo7.ledkongzhiqi.com/php/114.html?replytocom=576#respond" onclick="return addComment.moveForm( &quot;div-comment-576&quot;, &quot;576&quot;, &quot;respond&quot;, &quot;114&quot; )" aria-label="回复给不错">回复</a></div></div></div></li><!-- #comment-## -->
+                    </ol>
+                    <div class="commentnav">
+                    </div>
+                </div>
             </div>
+
         </div>
         <aside class="sidebar">
             <div class="widget widget_text">
@@ -205,6 +269,33 @@
                     {
                         <li><a href="#" title="@item.PostsTitle" style="padding-left:15px"><span class="text">@item.PostsTitle </span><span class="muted">@item.CreateTime</span><span class="muted_1">@(item.CommentsNumber + "评论")</span></a></li>
                     }
+                </ul>
+            </div><div class="widget widget_categories">
+                <div class="title"><h2><sapn class="title_span">分类目录</sapn></h2></div> <ul>
+                    <li class="cat-item cat-item-3">
+                        <a href="#">css</a>
+                    </li>
+                    <li class="cat-item cat-item-2">
+                        <a href="#">html</a>
+                    </li>
+                    <li class="cat-item cat-item-4">
+                        <a href="#">JavaScript</a>
+                    </li>
+                    <li class="cat-item cat-item-5">
+                        <a href="#">jquery</a>
+                    </li>
+                    <li class="cat-item cat-item-7">
+                        <a href="#">mysql</a>
+                    </li>
+                    <li class="cat-item cat-item-6">
+                        <a href="#">php</a>
+                    </li>
+                    <li class="cat-item cat-item-1">
+                        <a href="#">wordpress主题</a>
+                    </li>
+                    <li class="cat-item cat-item-8">
+                        <a href="#">前端开发</a>
+                    </li>
                 </ul>
             </div>
             <div class="widget d_banner">

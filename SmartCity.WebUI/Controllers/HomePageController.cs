@@ -41,8 +41,11 @@ namespace SmartCity.WebUI.Controllers
             var PostsModel = PostInfoService.GetPostsInfoList().ToList();
             //获取热门帖子
             var HotPostsModel = PostInfoService.GetHotPostsInfo().ToList();
+            //获取标签
+            var PostsType = PostInfoService.SerachPostsType().ToList();
             Model.HotPostsItems = HotPostsModel;
             Model.PostsItems = PostsModel;
+            Model.PostsTypeItems = PostsType;
             Model.Title1 = "Hi, 请登录";
             Model.Tiltle2 = "我要注册";
             Model.TitleUrL1 = "#";

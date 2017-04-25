@@ -6,8 +6,9 @@ using System.Web;
 
 namespace SmartCity.WebUI.Models
 {
-    public class HomePageModel
+    public class FourumIndexModel
     {
+
         /// <summary>
         /// 公告类
         /// </summary>
@@ -29,8 +30,5 @@ namespace SmartCity.WebUI.Models
         public string Tiltle2 { get; set; }
 
         public string TitleUrl2 { get; set; }
-
-
-
     }
 }

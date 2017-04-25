@@ -24,6 +24,14 @@ namespace SmartCity.Domain.Concrete
             return Conn.Query<Posts, User, Posts>("select * from Posts_Table as P join User_Table as u on P.UserID=u.OwnerID  ", (posts, user) => { posts.UserModel = user; return posts; }, splitOn: "OwnerID");
         }
         /// <summary>
+        ///获取报修信息集合
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Posts> GetPostsInfoByID(int id)
+        {
+            return Conn.Query<Posts, User, Posts>("select * from Posts_Table as P join User_Table as u on P.UserID=u.OwnerID where PostsID=@PostsID ", (posts, user) => { posts.UserModel = user; return posts; }, new { PostsID = id }, null, true, splitOn: "OwnerID");
+        }
+        /// <summary>
         /// 获取热门报修信息集合
         /// </summary>
         /// <returns></returns>
@@ -84,6 +92,15 @@ namespace SmartCity.Domain.Concrete
                 sql = "select * from Posts_Table as P join User_Table as u on P.UserID = u.OwnerID";
             }
             return Conn.Query<Posts, User, Posts>(sql, (posts, user) => { posts.UserModel = user; return posts; }, new { OwnerID = id, Time1 = startTime, Time2 = endTime }, null, true, splitOn: "OwnerID");
+        }
+        /// <summary>
+        /// 论坛类型统计
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<PostsType> SerachPostsType()
+        {
+            var resule = Conn.Query<PostsType>("select PostsLable, count(*) PostsLableCount from Posts_Table group by PostsLable");
+            return resule;
         }
     }
 }

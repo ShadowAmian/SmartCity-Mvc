@@ -37,5 +37,15 @@ namespace SmartCity.Domain.Abstract
         /// <param name="NewsID"></param>
         /// <returns></returns>
         IEnumerable<Posts> SerachPosts(List<int> id, DateTime? startTime, DateTime? endTime);
+        /// <summary>
+        ///获取报修信息集合ByID
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<Posts> GetPostsInfoByID(int id);
+        /// <summary>
+        /// 论坛类型统计
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<PostsType> SerachPostsType();
     }
 }
