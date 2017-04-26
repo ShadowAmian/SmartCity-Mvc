@@ -1,0 +1,18 @@
+﻿using SmartCity.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SmartCity.Domain.Abstract
+{
+     public interface IReviewInfo
+    {
+        /// <summary>
+        ///获取最新评论信息
+        /// </summary>
+        /// <returns></returns>
+         IEnumerable<Review> GetLatestReviews();
+    }
+}

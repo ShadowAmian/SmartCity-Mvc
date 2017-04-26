@@ -47,7 +47,6 @@ namespace SmartCity.WebUI.Infrastructure
             //};
             //kennel.Bind<IOrderProcessor>().To<EmailOrderProcessor>()
             // .WithConstructorArgument("settings", emailSettings);
-
             //kennel.Bind<IAuthProvider>().To<FormsAuthProvider>();
             kennel.Bind<IProductCheshi>().To<ProductCheshi>();
             kennel.Bind<IUserInfo>().To<UserInfo>();
@@ -57,6 +56,8 @@ namespace SmartCity.WebUI.Infrastructure
             kennel.Bind<IRepairInfo>().To<RepairInfo>();
             kennel.Bind<IFeedBackInfo>().To<FeedBackInfo>();
             kennel.Bind<IPostsInfo>().To<PostsInfo>();
+            kennel.Bind<IReviewInfo>().To<ReviewInfo>();
+            kennel.Bind<IReplyInfo>().To<ReplyInfo>();
         }
     }
 }

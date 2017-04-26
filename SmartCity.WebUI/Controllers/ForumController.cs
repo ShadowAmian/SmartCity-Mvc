@@ -21,11 +21,13 @@ namespace SmartCity.WebUI.Controllers
         private INoticeInfo NewsInfoService;
         private IPostsInfo PostInfoService;
         private IUserInfo UserInfoService;
-        public ForumController(INoticeInfo NewsInfo, IPostsInfo PostInfo, IUserInfo UserInfos)
+        private IReviewInfo ReviewInfoService;
+        public ForumController(INoticeInfo NewsInfo, IPostsInfo PostInfo, IUserInfo UserInfos,IReviewInfo ReviewInfo)
         {
             this.NewsInfoService = NewsInfo;
             this.PostInfoService = PostInfo;
             this.UserInfoService = UserInfos;
+            this.ReviewInfoService = ReviewInfo;
         }
         #endregion
 
@@ -41,9 +43,13 @@ namespace SmartCity.WebUI.Controllers
             var HotPostsModel = PostInfoService.GetHotPostsInfo().ToList();
             //获取标签
             var PostsType = PostInfoService.SerachPostsType().ToList();
+            //获取最新评论
+            var LatestReviews = ReviewInfoService.GetLatestReviews().ToList();
+
             Model.HotPostsItems = HotPostsModel;
             Model.PostsItems = PostsModel;
             Model.PostsTypeItems = PostsType;
+            Model.LatestReviewsItems = LatestReviews;
             Model.Title1 = "Hi, 请登录";
             Model.Tiltle2 = "我要注册";
             Model.TitleUrL1 = "#";

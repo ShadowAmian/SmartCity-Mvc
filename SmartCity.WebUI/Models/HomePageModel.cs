@@ -21,6 +21,10 @@ namespace SmartCity.WebUI.Models
         /// </summary>
         public List<Posts> HotPostsItems { get; set; }
         /// <summary>
+        /// 最新评论
+        /// </summary>
+        public List<Review> LatestReviewsItems { get; set; }
+        /// <summary>
         /// 标签分布
         /// </summary>
         public List<PostsType> PostsTypeItems { get; set; }

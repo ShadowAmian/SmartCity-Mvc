@@ -1,304 +1,317 @@
 ﻿@model SmartCity.WebUI.Models.HomePageModel
-@{
-    Layout = null;
-}
-<!DOCTYPE html>
+@using SmartCity.Common
+    @{
+        Layout = null;
+    }
+    <!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>翠竹林小区首页</title>
-    <link href="~/Content/HomeStyle/um.css" id="um-css" rel="stylesheet" type="text/css" media="all" />
-    <link href="~/Content/HomeStyle/font-awesome.css" id="fa-css" rel="stylesheet" type="text/css" media="all" />
-    <link href="~/Content/HomeStyle/style.css" id="style-css" rel="stylesheet" type="text/css" media="all" />
-    <script type="text/javascript" src="~/Content/HomeStyle/jquery.min.js"></script>
-    <script type="text/javascript" src="~/Content/HomeStyle/jquery.js"></script>
-    <script src="~/Content/HomeStyle/hm.js"></script>
-    <script>
-        window._deel = { name: '翠竹林小区物业系统', url: '#', ajaxpager: '', commenton: 0, roll: [0] }
-    </script>
-</head>
-<body>
-    <header id="masthead" class="site-header">
-        <nav id="top-header">
-            <div class="top-nav">
-                <div id="user-profile">
-                    <span class="nav-set">
-                        <span class="nav-login">
-                            <a id="Tile1" href="@Model.TitleUrL1" class="signin-loader">@Model.Title1</a>&nbsp; &nbsp; <a id="Title2" href="@Model.TitleUrl2" class="signup-loader">@Model.Tiltle2</a>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>翠竹林小区首页</title>
+        <link href="~/Content/HomeStyle/um.css" id="um-css" rel="stylesheet" type="text/css" media="all" />
+        <link href="~/Content/HomeStyle/font-awesome.css" id="fa-css" rel="stylesheet" type="text/css" media="all" />
+        <link href="~/Content/HomeStyle/style.css" id="style-css" rel="stylesheet" type="text/css" media="all" />
+        <script type="text/javascript" src="~/Content/HomeStyle/jquery.min.js"></script>
+        <script type="text/javascript" src="~/Content/HomeStyle/jquery.js"></script>
+        <script src="~/Content/HomeStyle/hm.js"></script>
+        <script>
+            window._deel = { name: '翠竹林小区物业系统', url: '#', ajaxpager: '', commenton: 0, roll: [0] }
+        </script>
+    </head>
+    <body>
+        <header id="masthead" class="site-header">
+            <nav id="top-header">
+                <div class="top-nav">
+                    <div id="user-profile">
+                        <span class="nav-set">
+                            <span class="nav-login">
+                                <a id="Tile1" href="@Model.TitleUrL1" class="signin-loader">@Model.Title1</a>&nbsp; &nbsp; <a id="Title2" href="@Model.TitleUrl2" class="signup-loader">@Model.Tiltle2</a>
+                            </span>
                         </span>
-                    </span>
-                </div>
-                <div class="menu-container">
-                    <ul id="menu-%e5%a4%b4%e9%83%a8" class="top-menu">
-                        <a target="_blank" href="#">关于我们</a> |
-                        <a target="_blank" href="#">联系我们</a>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div id="nav-header" class="fixed shadow">
-            <div id="top-menu">
-                <div id="top-menu_1">
-                    <span class="nav-search"><i class="fa fa-search"></i></span> <span class="nav-search_1"><a href="#"><i class="fa fa-navicon"></i></a></span>
-                    <hgroup class="logo-site" style="margin-top: 5px;">
-                        <h1 class="site-title"> <a href="#"><img src="~/Content/HomeStyle/logo.png" alt="小区物业管理"></a></h1>
-                    </hgroup>
-                    <div id="site-nav-wrap">
-                        <nav id="site-nav" class="main-nav">
-                            <div>
-                                <ul class="down-menu nav-menu">
-                                    <li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-23"><a href="#" style="padding: 10px;">首页</a></li>
-                                    <li id="menu-item-193" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-193">
-                                        <a href="#" style="padding: 10px;">通知公告</a>
-                                        <ul class="sub-menu" style="padding-top: 5px;">
-                                            <li id="menu-item-194" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a href="#" style="padding: 10px;">日常通告</a></li>
-                                            <li id="menu-item-192" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-192"><a href="#" style="padding: 10px;">行业资讯</a></li>
-                                            <li id="menu-item-191" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-191"><a href="#" style="padding: 10px;">缴费通知</a></li>
-                                        </ul>
-                                    </li>
-                                    <li id="menu-item-204" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="#" style="padding: 10px;">在线交流</a></li>
-                                    <li id="menu-item-201" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201"><a href="#" style="padding: 10px;">在线报修</a></li>
-                                    <!--<li id="menu-item-202" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-202"><a href="#" style="padding: 10px;">网站运营</a></li>-->
-                                    <li id="menu-item-205" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-205"><a href="#" style="padding: 10px;">关于我们</a></li>
-                                    <li id="menu-item-212" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="#" style="padding: 10px;">投稿</a></li>
-                                </ul>
-                            </div>
-                        </nav>
+                    </div>
+                    <div class="menu-container">
+                        <ul id="menu-%e5%a4%b4%e9%83%a8" class="top-menu">
+                            <a target="_blank" href="#">关于我们</a> |
+                            <a target="_blank" href="#">联系我们</a>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </div>
-        <nav>
-            <ul class="nav_sj" id="nav-search_1">
-                <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-23"><a href="#">首页</a></li>
-                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-193">
-                    <a href="#">通知公告</a>
-                    <ul class="sub-menu">
-                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a href="#">日常通告</a></li>
-                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-192"><a href="#">行业资讯</a></li>
-                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-191"><a href="#">缴费通知</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="#">在线交流</a></li>
-                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201"><a href="#">在线报修</a></li>
-                <!--<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-202"><a href="#">网站运营</a></li>-->
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-205"><a href="#">关于我们</a></li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="#">投稿</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div id="search-main">
-        <div id="searchbar">
-            <form id="searchform" action="#" method="get">
-                <input id="s" type="text" required="" placeholder="输入搜索内容" name="s" value="">
-                <button id="searchsubmit" type="submit">搜索</button>
-            </form>
-        </div>
-        <div id="searchbar">
-            <form id="searchform" target="_blank" action="#" method="get">
-                <input type="hidden" name="entry" value="1">
-                <input class="swap_value" name="q" placeholder="输入百度站内搜索关键词">
-                <button id="searchsubmit" type="submit">百度</button>
-            </form>
-        </div>
-        <div class="clear"></div>
-    </div>
-    <section class="container">
-        <div class="speedbar">
-        </div>
-        <div class="content-wrap">
-            <div class="content">
-                <div class="slick_bor">
-                    <script src="../Content/HomeStyle/responsiveslides.min.js"></script>
-                    <ul class="slick centered-btns centered-btns1" style="max-width: 1903px;">
-                        <li id="centered-btns1_s0" class="" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;"><a href="#"><img class="img_855x300" src="../Images/lunbo1.jpg" alt=""><span></span></a></li>
-                        <li id="centered-btns1_s1" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Images/lunbo2.png" alt=""><span></span></a></li>
-                        <li id="centered-btns1_s2" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Images/lunbo3.png" alt=""><span></span></a></li>
-                        <li id="centered-btns1_s3" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Images/lunbo4.png" alt=""><span></span></a></li>
-                        <li id="centered-btns1_s4" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Content/HomeStyle/1459482861977PCf404011.jpg" alt=""><span></span></a></li>
-                    </ul>
-                    <a href="#" class="centered-btns_nav centered-btns1_nav prev">Previous</a><a href="#" class="centered-btns_nav centered-btns1_nav next">Next</a><ul class="centered-btns_tabs centered-btns1_tabs"><li class="centered-btns1_s1"><a href="#" class="centered-btns1_s1">1</a></li><li class="centered-btns1_s2"><a href="#" class="centered-btns1_s2">2</a></li><li class="centered-btns1_s3"><a href="#" class="centered-btns1_s3">3</a></li><li class="centered-btns1_s4"><a href="#" class="centered-btns1_s4">4</a></li><li class="centered-btns1_s5 centered-btns_here"><a href="#" class="centered-btns1_s5">5</a></li></ul>
-                    <script>
-                        $(function () {
-                            var mx = document.body.clientWidth;
-                            $(".slick").responsiveSlides({
-                                auto: true,
-                                pager: true,
-                                nav: true,
-                                speed: 700,
-                                timeout: 7000,
-                                maxwidth: mx,
-                                namespace: "centered-btns"
-                            });
-                        });
-                    </script>
-                    <div class="ws_shadow"></div>
-                </div>
-                <div class="daodu clr">
-                    <div class="tip">
-                        <h4>通知公告</h4>
-                    </div>
-                    <ul class="dd-list">
-                        @for (int i = 0; i < 4; i++)
-                        {
-                            <li>
-                                <figure class="dd-img">
-                                    <a title="@Model.NewsItems[i].NewsTitle" target="_blank" href="#">
-                                        <img src="@Model.NewsItems[i].NewsImages" style="display: inline;width:168px;height:112px;" alt="@Model.NewsItems[i].NewsTitle">
-                                    </a>
-                                </figure>
-                                <div class="dd-content">
-                                    <h2 class="dd-title"> <a rel="bookmark" title="@Model.NewsItems[i].NewsTitle" href="#">@Model.NewsItems[i].NewsTitle</a> </h2>
-                                    <div class="dd-site xs-hidden">
-                                        @Model.NewsItems[i].NewsDigest
-                                    </div>
+            </nav>
+            <div id="nav-header" class="fixed shadow">
+                <div id="top-menu">
+                    <div id="top-menu_1">
+                        <span class="nav-search"><i class="fa fa-search"></i></span> <span class="nav-search_1"><a href="#"><i class="fa fa-navicon"></i></a></span>
+                        <hgroup class="logo-site" style="margin-top: 5px;">
+                            <h1 class="site-title"> <a href="#"><img src="~/Content/HomeStyle/logo.png" alt="小区物业管理"></a></h1>
+                        </hgroup>
+                        <div id="site-nav-wrap">
+                            <nav id="site-nav" class="main-nav">
+                                <div>
+                                    <ul class="down-menu nav-menu">
+                                        <li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-23"><a href="#" style="padding: 10px;">首页</a></li>
+                                        <li id="menu-item-193" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-193">
+                                            <a href="#" style="padding: 10px;">通知公告</a>
+                                            <ul class="sub-menu" style="padding-top: 5px;">
+                                                <li id="menu-item-194" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a href="#" style="padding: 10px;">日常通告</a></li>
+                                                <li id="menu-item-192" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-192"><a href="#" style="padding: 10px;">行业资讯</a></li>
+                                                <li id="menu-item-191" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-191"><a href="#" style="padding: 10px;">缴费通知</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="menu-item-204" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="#" style="padding: 10px;">在线交流</a></li>
+                                        <li id="menu-item-201" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201"><a href="#" style="padding: 10px;">在线报修</a></li>
+                                        <!--<li id="menu-item-202" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-202"><a href="#" style="padding: 10px;">网站运营</a></li>-->
+                                        <li id="menu-item-205" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-205"><a href="#" style="padding: 10px;">关于我们</a></li>
+                                        <li id="menu-item-212" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="#" style="padding: 10px;">投稿</a></li>
+                                    </ul>
                                 </div>
-                            </li>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav_sj" id="nav-search_1">
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-23"><a href="#">首页</a></li>
+                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-193">
+                        <a href="#">通知公告</a>
+                        <ul class="sub-menu">
+                            <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a href="#">日常通告</a></li>
+                            <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-192"><a href="#">行业资讯</a></li>
+                            <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-191"><a href="#">缴费通知</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="#">在线交流</a></li>
+                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201"><a href="#">在线报修</a></li>
+                    <!--<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-202"><a href="#">网站运营</a></li>-->
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-205"><a href="#">关于我们</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="#">投稿</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div id="search-main">
+            <div id="searchbar">
+                <form id="searchform" action="#" method="get">
+                    <input id="s" type="text" required="" placeholder="输入搜索内容" name="s" value="">
+                    <button id="searchsubmit" type="submit">搜索</button>
+                </form>
+            </div>
+            <div id="searchbar">
+                <form id="searchform" target="_blank" action="#" method="get">
+                    <input type="hidden" name="entry" value="1">
+                    <input class="swap_value" name="q" placeholder="输入百度站内搜索关键词">
+                    <button id="searchsubmit" type="submit">百度</button>
+                </form>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <section class="container">
+            <div class="speedbar">
+            </div>
+            <div class="content-wrap">
+                <div class="content">
+                    <div class="slick_bor">
+                        <script src="../Content/HomeStyle/responsiveslides.min.js"></script>
+                        <ul class="slick centered-btns centered-btns1" style="max-width: 1903px;">
+                            <li id="centered-btns1_s0" class="" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;"><a href="#"><img class="img_855x300" src="../Images/lunbo1.jpg" alt=""><span></span></a></li>
+                            <li id="centered-btns1_s1" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Images/lunbo2.png" alt=""><span></span></a></li>
+                            <li id="centered-btns1_s2" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Images/lunbo3.png" alt=""><span></span></a></li>
+                            <li id="centered-btns1_s3" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Images/lunbo4.png" alt=""><span></span></a></li>
+                            <li id="centered-btns1_s4" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Content/HomeStyle/1459482861977PCf404011.jpg" alt=""><span></span></a></li>
+                        </ul>
+                        <a href="#" class="centered-btns_nav centered-btns1_nav prev">Previous</a><a href="#" class="centered-btns_nav centered-btns1_nav next">Next</a><ul class="centered-btns_tabs centered-btns1_tabs"><li class="centered-btns1_s1"><a href="#" class="centered-btns1_s1">1</a></li><li class="centered-btns1_s2"><a href="#" class="centered-btns1_s2">2</a></li><li class="centered-btns1_s3"><a href="#" class="centered-btns1_s3">3</a></li><li class="centered-btns1_s4"><a href="#" class="centered-btns1_s4">4</a></li><li class="centered-btns1_s5 centered-btns_here"><a href="#" class="centered-btns1_s5">5</a></li></ul>
+                        <script>
+                            $(function () {
+                                var mx = document.body.clientWidth;
+                                $(".slick").responsiveSlides({
+                                    auto: true,
+                                    pager: true,
+                                    nav: true,
+                                    speed: 700,
+                                    timeout: 7000,
+                                    maxwidth: mx,
+                                    namespace: "centered-btns"
+                                });
+                            });
+                        </script>
+                        <div class="ws_shadow"></div>
+                    </div>
+                    <div class="daodu clr">
+                        <div class="tip">
+                            <h4>通知公告</h4>
+                        </div>
+                        <ul class="dd-list">
+                            @for (int i = 0; i < 4; i++)
+                            {
+                                <li>
+                                    <figure class="dd-img">
+                                        <a title="@Model.NewsItems[i].NewsTitle" target="_blank" href="#">
+                                            <img src="@Model.NewsItems[i].NewsImages" style="display: inline;width:168px;height:112px;" alt="@Model.NewsItems[i].NewsTitle">
+                                        </a>
+                                    </figure>
+                                    <div class="dd-content">
+                                        <h2 class="dd-title"> <a rel="bookmark" title="@Model.NewsItems[i].NewsTitle" href="#">@Model.NewsItems[i].NewsTitle</a> </h2>
+                                        <div class="dd-site xs-hidden">
+                                            @Model.NewsItems[i].NewsDigest
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <header class="archive-header"><h1>在线交流</h1></header>
+                    @foreach (var item in Model.PostsItems)
+                    {
+                        <article class="excerpt">
+                            <div class="focus"><a target="_blank" href=""></a></div>
+                            <header>
+                                <a class="label label-important" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID", item.PostsID } })">@item.PostsLable<i class="label-arrow"></i></a><h2><a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID", item.PostsID } })" title="@item.PostsTitle">@item.PostsTitle </a></h2>
+                            </header>
+                            <p class="auth-span">
+                                <span class="muted"><i class="fa fa-clock-o"></i>@item.CreateTime.ToString()</span> <span class="muted"><i class="fa fa-eye"></i> @item.TimesWatched</span> <span class="muted"><i class="fa fa-comments-o"></i> <a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID", item.PostsID } })">@(item.CommentsNumber + "评论")</a></span>
+                            </p>
+                            <span class="note">
+                                @item.BriefContent
+                            </span>
+                        </article>
+                    }
+
+                    <div class="pagination"><ul><li class="prev-page"></li><li class="active"><span>1</span></li><li><a href="http://demo7.ledkongzhiqi.com/page/2">2</a></li><li class="next-page"><a href="http://demo7.ledkongzhiqi.com/page/2">下一页</a></li></ul></div>
+                </div>
+            </div>
+            <aside class="sidebar">
+                <div class="widget widget_text">
+                    <div class="textwidget">
+                        <div class="social">
+                            <a href="#" rel="external nofollow" data-original-title="新浪微博"><i class="sinaweibo fa fa-weibo"></i></a><a href="#" rel="external nofollow" data-original-title="腾讯微博"><i class="tencentweibo fa fa-tencent-weibo"></i></a><a class="weixin"><i class="weixins fa fa-weixin"></i><div class="weixin-popover"><div class="popover bottom in"><div class="arrow"></div><div class="popover-title">小区订阅号</div><div class="popover-content"><img src="../Content/HomeStyle/weixin.gif"></div></div></div></a><a href="#" rel="external nofollow" data-original-title="联系QQ"><i class="qq fa fa-qq"></i></a><a href="#" rel="external nofollow" data-original-title="订阅本站"><i class="rss fa fa-rss"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget d_textbanner">
+                    <a class="style03" href="#">
+                        <strong>加群啦</strong><h2>小区QQ群-主群</h2><p>
+                            小区QQ群-主群 群号：847712857，欢迎大家！
+                            <br>
+                            小区QQ群-①群 群号：847712857，欢迎大家！
+                            <br>
+                            小区QQ群-②群 群号：847712857，欢迎大家！
+                            <br>
+                        </p>
+                    </a>
+                </div><div class="widget d_textbanner"><a class="style01" href="#"><strong>翠竹林小区物业网站</strong><h2>吐血推荐</h2><p>欢迎你的使用，我们会积极推动社区生态圈的繁荣昌盛，并最终促进物业管理的良性发展和社区生活方式的蝶变式进化。</p></a></div> <div class="widget widget_umucenter form-inline">
+                    <li><span class="local-account"><a data-sign="0" class="btn btn-primary user-login"><i class="fa fa-wordpress"></i>本地帐号</a></span><span class="other-sign"><a class="qqlogin btn" href="#"><i class="fa fa-qq"></i><span>QQ 登 录</span></a></span><span class="other-sign"><a class="weibologin btn" href="#"><i class="fa fa-weibo"></i><span>微博登录</span></a></span></li>
+                </div><div class="widget d_postlist">
+                    <div class="title"><h2><sapn class="title_span">热门推荐</sapn></h2></div><ul>
+                        @foreach (var item in Model.HotPostsItems)
+                        {
+                            <li><a href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID", item.PostsID } })" title="@item.PostsTitle" style="padding-left:15px"><span class="text">@item.PostsTitle </span><span class="muted">@item.CreateTime</span><span class="muted_1">@(item.CommentsNumber + "评论")</span></a></li>
                         }
                     </ul>
                 </div>
-                <header class="archive-header"><h1>在线交流</h1></header>
-                @foreach (var item in Model.PostsItems)
-                {
-                    <article class="excerpt">
-                        <div class="focus"><a target="_blank" href=""></a></div>
-                        <header>
-                            <a class="label label-important" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID", item.PostsID } })">@item.PostsLable<i class="label-arrow"></i></a><h2><a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID", item.PostsID } })" title="@item.PostsTitle">@item.PostsTitle </a></h2>
-                        </header>
-                        <p class="auth-span">
-                            <span class="muted"><i class="fa fa-clock-o"></i>@item.CreateTime.ToString()</span> <span class="muted"><i class="fa fa-eye"></i> @item.TimesWatched</span> <span class="muted"><i class="fa fa-comments-o"></i> <a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID", item.PostsID } })">@(item.CommentsNumber + "评论")</a></span>
-                        </p>
-                        <span class="note">
-                            @item.BriefContent
-                        </span>
-                    </article>
-                }
-
-                <div class="pagination"><ul><li class="prev-page"></li><li class="active"><span>1</span></li><li><a href="http://demo7.ledkongzhiqi.com/page/2">2</a></li><li class="next-page"><a href="http://demo7.ledkongzhiqi.com/page/2">下一页</a></li></ul></div>
-            </div>
-        </div>
-        <aside class="sidebar">
-            <div class="widget widget_text">
-                <div class="textwidget">
-                    <div class="social">
-                        <a href="#" rel="external nofollow" data-original-title="新浪微博"><i class="sinaweibo fa fa-weibo"></i></a><a href="#" rel="external nofollow" data-original-title="腾讯微博"><i class="tencentweibo fa fa-tencent-weibo"></i></a><a class="weixin"><i class="weixins fa fa-weixin"></i><div class="weixin-popover"><div class="popover bottom in"><div class="arrow"></div><div class="popover-title">小区订阅号</div><div class="popover-content"><img src="../Content/HomeStyle/weixin.gif"></div></div></div></a><a href="#" rel="external nofollow" data-original-title="联系QQ"><i class="qq fa fa-qq"></i></a><a href="#" rel="external nofollow" data-original-title="订阅本站"><i class="rss fa fa-rss"></i></a>
+                <div class="widget d_banner">
+                    <div class="d_banner_inner">
+                        <img class="alignnone size-full wp-image-516" src="~/Content/HomeStyle/t01605ab9200e1b43f8.jpg" alt="ddy" width="308">
                     </div>
                 </div>
+                <div class="widget d_tag">
+                    <div class="title">
+                        <h2><sapn class="title_span">标签云</sapn></h2>
+                    </div><div class="d_tags">
+                        @foreach (var item in Model.PostsTypeItems)
+                        {
+                            <a title="" href="#" data-original-title="@(item.PostsLableCount+"个话题")">@(item.PostsLable + "(" + item.PostsLableCount + ")")</a>
+                        }
+                    </div>
+                </div>
+                <div class="widget d_comment">
+                    <div class="title"><h2><sapn class="title_span">最新评论</sapn></h2></div>
+                    <ul>
+                        @foreach (var item in Model.LatestReviewsItems)
+                        {
+                            <li>
+                                <a href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID", item.PostsModel.PostsID } })" title="@item.PostsModel.PostsTitle">
+                                    <img alt="" data-original="http://demo7.ledkongzhiqi.com/avatar/36*b1ba69f855c62a7033283fbb625b9950.jpg" srcset="http://demo7.ledkongzhiqi.com/avatar/72*b1ba69f855c62a7033283fbb625b9950.jpg" class="avatar avatar-36 photo" height="36" width="36" src="../Content/HomeStyle/default.png"> <div class="muted"><i>@item.UserModel.UserName</i>&nbsp;&nbsp;@(TimeHelper.GetTimeSpan(item.CreateTime)+ "("+item.CreateTime.ToString("yyyy-MM-dd") +")说：")<br>@item.ReviewContent</div>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div><div class="widget widget_text">
+                    <div class="title"><h2><sapn class="title_span">友情链接</sapn></h2></div> <div class="textwidget"><div class="d_tags_1"> <a target="_blank" href="#">物业之家</a> <a target="_blank" href="http://www.zhixin99.com/">物业资讯</a> </div></div>
+                </div>
+            </aside>
+        </section>
+        <div class="branding branding-black">
+            <div class="container_f">
+                <h2>高效，专业，小区管理系统</h2><a class="btn btn-lg" href="#" target="_blank">联系我们</a>
             </div>
-            <div class="widget d_textbanner">
-                <a class="style03" href="#">
-                    <strong>加群啦</strong><h2>小区QQ群-主群</h2><p>
-                        小区QQ群-主群 群号：847712857，欢迎大家！
-                        <br>
-                        小区QQ群-①群 群号：847712857，欢迎大家！
-                        <br>
-                        小区QQ群-②群 群号：847712857，欢迎大家！
-                        <br>
+        </div>
+        <footer class="footer">
+            <div class="footer-inner">
+                <p>
+                    <a href="#" title="翠竹林">翠竹林小区物业管理</a> 版权所有，保留一切权利 翠竹林小区物业管理&nbsp;&nbsp;
+                </p>
+                <p>小区物业管理 by <a title="翠竹林" href="#">翠竹林</a> </p>
+            </div>
+        </footer>
+        <div class="overlay-login"></div>
+        <div id="sign" class="um_sign">
+            <div class="part loginPart">
+                <form id="login" method="post" novalidate="novalidate">
+                    <div id="register-active" class="switch"><i class="fa fa-toggle-on"></i>切换注册</div> <h3>登录<p class="status"></p></h3>
+                    <p>
+                        <label class="icon" for="username"><i class="fa fa-user"></i></label>
+                        <input class="input-control" id="username" name="Account" type="text" placeholder="请输入用户名" aria-required="true">
                     </p>
-                </a>
-            </div><div class="widget d_textbanner"><a class="style01" href="#"><strong>翠竹林小区物业网站</strong><h2>吐血推荐</h2><p>欢迎你的使用，我们会积极推动社区生态圈的繁荣昌盛，并最终促进物业管理的良性发展和社区生活方式的蝶变式进化。</p></a></div> <div class="widget widget_umucenter form-inline">
-                <li><span class="local-account"><a data-sign="0" class="btn btn-primary user-login"><i class="fa fa-wordpress"></i>本地帐号</a></span><span class="other-sign"><a class="qqlogin btn" href="#"><i class="fa fa-qq"></i><span>QQ 登 录</span></a></span><span class="other-sign"><a class="weibologin btn" href="#"><i class="fa fa-weibo"></i><span>微博登录</span></a></span></li>
-            </div><div class="widget d_postlist">
-                <div class="title"><h2><sapn class="title_span">热门推荐</sapn></h2></div><ul>
-                    @foreach (var item in Model.HotPostsItems)
-                    {
-                        <li><a href="#" title="@item.PostsTitle" style="padding-left:15px"><span class="text">@item.PostsTitle </span><span class="muted">@item.CreateTime</span><span class="muted_1">@(item.CommentsNumber + "评论")</span></a></li>
-                    }
-                </ul>
-            </div>
-            <div class="widget d_banner">
-                <div class="d_banner_inner">
-                    <img class="alignnone size-full wp-image-516" src="../Content/HomeStyle/t01605ab9200e1b43f8.jpg" alt="ddy" width="308">
-                </div>
-            </div>
-            <div class="widget d_tag">
-                <div class="title">
-                    <h2><sapn class="title_span">标签云</sapn></h2>
-                </div><div class="d_tags">
-                    @foreach (var item in Model.PostsTypeItems)
-                    {
-                        <a title="" href="#" data-original-title="@(item.PostsLableCount+"个话题")">@(item.PostsLable + "(" + item.PostsLableCount + ")")</a>
-                    }
-                </div>
-            </div>
-            <div class="widget d_comment"><div class="title"><h2><sapn class="title_span">最新评论</sapn></h2></div><ul><li><a href="http://demo7.ledkongzhiqi.com/php/114.html#comment-576" title="PHP 7.0.2正式版发布：WordPress速度提升3倍！上的评论"><img alt="" data-original="http://demo7.ledkongzhiqi.com/avatar/36*b1ba69f855c62a7033283fbb625b9950.jpg" srcset="http://demo7.ledkongzhiqi.com/avatar/72*b1ba69f855c62a7033283fbb625b9950.jpg" class="avatar avatar-36 photo" height="36" width="36" src="../Content/HomeStyle/default.png"> <div class="muted"><i>不错</i>&nbsp;&nbsp;8个月前 (08-28)说：<br>很简介的wordpress主题</div></a></li><li><a href="http://demo7.ledkongzhiqi.com/zhuti/93.html#comment-574" title="避免使用复杂的选择器，层级越少越好上的评论"><img alt="" data-original="http://demo7.ledkongzhiqi.com/avatar/36*f7ae1a9208bf91d706c76e2bf022a992.jpg" srcset="http://demo7.ledkongzhiqi.com/avatar/72*f7ae1a9208bf91d706c76e2bf022a992.jpg" class="avatar avatar-36 photo" height="36" width="36" src="../Content/HomeStyle/default.png"> <div class="muted"><i>翠竹林</i>&nbsp;&nbsp;8个月前 (08-26)说：<br>顶一下</div></a></li><li><a href="http://demo7.ledkongzhiqi.com/mysql/119.html#comment-573" title="DTCC 2016:MySQL中国组主席谈DBA的炼成上的评论"><img alt="" data-original="http://demo7.ledkongzhiqi.com/avatar/36*f7ae1a9208bf91d706c76e2bf022a992.jpg" srcset="http://demo7.ledkongzhiqi.com/avatar/72*f7ae1a9208bf91d706c76e2bf022a992.jpg" class="avatar avatar-36 photo" height="36" width="36" src="../Content/HomeStyle/default.png"> <div class="muted"><i>翠竹林</i>&nbsp;&nbsp;8个月前 (08-15)说：<br>顶一下</div></a></li></ul></div><div class="widget widget_text">
-                <div class="title"><h2><sapn class="title_span">友情链接</sapn></h2></div> <div class="textwidget"><div class="d_tags_1"> <a target="_blank" href="#">物业之家</a> <a target="_blank" href="http://www.zhixin99.com/">物业资讯</a> </div></div>
-            </div>
-        </aside>
-    </section>
-    <div class="branding branding-black">
-        <div class="container_f">
-            <h2>高效，专业，小区管理系统</h2><a class="btn btn-lg" href="#" target="_blank">联系我们</a>
-        </div>
-    </div>
-    <footer class="footer">
-        <div class="footer-inner">
-            <p>
-                <a href="#" title="翠竹林">翠竹林小区物业管理</a> 版权所有，保留一切权利 翠竹林小区物业管理&nbsp;&nbsp;
-            </p>
-            <p>小区物业管理 by <a title="翠竹林" href="#">翠竹林</a> </p>
-        </div>
-    </footer>
-    <div class="overlay-login"></div>
-    <div id="sign" class="um_sign">
-        <div class="part loginPart">
-            <form id="login" method="post" novalidate="novalidate">
-                <div id="register-active" class="switch"><i class="fa fa-toggle-on"></i>切换注册</div> <h3>登录<p class="status"></p></h3>
-                <p>
-                    <label class="icon" for="username"><i class="fa fa-user"></i></label>
-                    <input class="input-control" id="username" name="Account" type="text" placeholder="请输入用户名" aria-required="true">
-                </p>
-                <p>
-                    <label class="icon" for="password"><i class="fa fa-lock"></i></label>
-                    <input class="input-control" id="password" name="Password" type="password" placeholder="请输入密码" aria-required="true">
-                </p>
-                <p class="safe">
-                    <label class="remembermetext" for="rememberme"><input name="rememberme" type="checkbox" checked="checked" id="rememberme" class="rememberme" value="forever">记住我的登录</label>
-                    <a class="lost" href="#">忘记密码 ?</a>
-                </p>
-                <p>
-                    <input class="submit" type="button" id="Login" value="登录" name="submit">
-                </p>
-            </form>
-            <a class="close"><i class="fa fa-times"></i></a>
-            <div class="other-sign">
-                <p>您也可以使用第三方帐号快捷登录</p>
-                <div><a class="qqlogin" href="#"><i class="fa fa-qq"></i><span>Q Q 登 录</span></a></div>
-                <div><a class="weibologin" href="#"><i class="fa fa-weibo"></i><span>微 博 登 录</span></a></div>
-            </div>
-        </div>
-        <div class="part registerPart">
-            <form id="register" action="#" method="post" novalidate="novalidate">
-                <div id="login-active" class="switch"><i class="fa fa-toggle-off"></i>切换登录</div>
-                <h3>注册<p class="status"></p></h3>
-                <p>
-                    <label class="icon" for="user_name"><i class="fa fa-user"></i></label>
-                    <input class="input-control" id="user_name" type="text" name="user_name" placeholder="输入英文用户名" required="" aria-required="true">
-                </p>
-                <p>
-                    <label class="icon" for="user_email"><i class="fa fa-envelope"></i></label>
-                    <input class="input-control" id="user_email" type="email" name="user_email" placeholder="输入常用邮箱" required="" aria-required="true">
-                </p>
-                <p>
-                    <label class="icon" for="user_pass"><i class="fa fa-lock"></i></label>
-                    <input class="input-control" id="user_pass" type="password" name="user_pass" placeholder="密码最小长度为6" required="" aria-required="true">
-                </p>
-                <p>
-                    <label class="icon" for="user_pass2"><i class="fa fa-retweet"></i></label>
-                    <input class="input-control" type="password" id="user_pass2" name="user_pass2" placeholder="再次输入密码" required="" aria-required="true">
-                </p>
-                <p id="captcha_inline">
-                    <input class="submit inline" type="submit" value="注册" name="submit">
-                </p>
+                    <p>
+                        <label class="icon" for="password"><i class="fa fa-lock"></i></label>
+                        <input class="input-control" id="password" name="Password" type="password" placeholder="请输入密码" aria-required="true">
+                    </p>
+                    <p class="safe">
+                        <label class="remembermetext" for="rememberme"><input name="rememberme" type="checkbox" checked="checked" id="rememberme" class="rememberme" value="forever">记住我的登录</label>
+                        <a class="lost" href="#">忘记密码 ?</a>
+                    </p>
+                    <p>
+                        <input class="submit" type="button" id="Login" value="登录" name="submit">
+                    </p>
+                </form>
                 <a class="close"><i class="fa fa-times"></i></a>
-                <input type="hidden" id="user_security" name="user_security" value="7482b43d85"><input type="hidden" name="_wp_http_referer" value="/">
-            </form>
+                <div class="other-sign">
+                    <p>您也可以使用第三方帐号快捷登录</p>
+                    <div><a class="qqlogin" href="#"><i class="fa fa-qq"></i><span>Q Q 登 录</span></a></div>
+                    <div><a class="weibologin" href="#"><i class="fa fa-weibo"></i><span>微 博 登 录</span></a></div>
+                </div>
+            </div>
+            <div class="part registerPart">
+                <form id="register" action="#" method="post" novalidate="novalidate">
+                    <div id="login-active" class="switch"><i class="fa fa-toggle-off"></i>切换登录</div>
+                    <h3>注册<p class="status"></p></h3>
+                    <p>
+                        <label class="icon" for="user_name"><i class="fa fa-user"></i></label>
+                        <input class="input-control" id="user_name" type="text" name="user_name" placeholder="输入英文用户名" required="" aria-required="true">
+                    </p>
+                    <p>
+                        <label class="icon" for="user_email"><i class="fa fa-envelope"></i></label>
+                        <input class="input-control" id="user_email" type="email" name="user_email" placeholder="输入常用邮箱" required="" aria-required="true">
+                    </p>
+                    <p>
+                        <label class="icon" for="user_pass"><i class="fa fa-lock"></i></label>
+                        <input class="input-control" id="user_pass" type="password" name="user_pass" placeholder="密码最小长度为6" required="" aria-required="true">
+                    </p>
+                    <p>
+                        <label class="icon" for="user_pass2"><i class="fa fa-retweet"></i></label>
+                        <input class="input-control" type="password" id="user_pass2" name="user_pass2" placeholder="再次输入密码" required="" aria-required="true">
+                    </p>
+                    <p id="captcha_inline">
+                        <input class="submit inline" type="submit" value="注册" name="submit">
+                    </p>
+                    <a class="close"><i class="fa fa-times"></i></a>
+                    <input type="hidden" id="user_security" name="user_security" value="7482b43d85"><input type="hidden" name="_wp_http_referer" value="/">
+                </form>
+            </div>
         </div>
-    </div>
-    <script type="text/javascript" src="../Content/HomeStyle/um.js"></script>
-    <script type="text/javascript" src="../Content/HomeStyle/wp-embed.min.js"></script>
-    <script>
+        <script type="text/javascript" src="../Content/HomeStyle/um.js"></script>
+        <script type="text/javascript" src="../Content/HomeStyle/wp-embed.min.js"></script>
+        <script>
         var _hmt = _hmt || [];
         (function () {
             var hm = document.createElement("script");
@@ -330,7 +343,7 @@
             });
         });
 
-    </script>
-    <div class="rollto" style="display: block;"><button class="btn btn-inverse" data-type="totop" title="回顶部"><i class="fa fa-arrow-up"></i></button></div>
-</body>
+        </script>
+        <div class="rollto" style="display: block;"><button class="btn btn-inverse" data-type="totop" title="回顶部"><i class="fa fa-arrow-up"></i></button></div>
+    </body>
 </html>

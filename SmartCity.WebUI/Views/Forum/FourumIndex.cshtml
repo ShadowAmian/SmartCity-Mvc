@@ -1,4 +1,5 @@
 ﻿@model SmartCity.WebUI.Models.FourumIndexModel
+@using SmartCity.Common
 @{
     Layout = null;
 }
@@ -115,8 +116,8 @@
                 <header class="article-header">
                     <h1 class="article-title"><a href="#">@Model.PostsItems.First().PostsTitle</a></h1>
                     <div class="meta">
-                        <span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="http://demo7.ledkongzhiqi.com/category/php">@Model.PostsItems.First().PostsLable</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="#">@Model.PostsItems.First().UserModel.UserName</a></span>
-                        <time class="muted"><i class="fa fa-clock-o"></i> 1年前 (2016-02-25)</time>
+                        <span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="http://demo7.ledkongzhiqi.com/category/php">@Model.PostsItems.First().PostsLable</a></span><span class="muted"><i class="fa fa-user"></i> <a href="#">@Model.PostsItems.First().UserModel.UserName</a></span>
+                        <time class="muted"><i class="fa fa-clock-o"></i> @TimeHelper.GetTimeSpan(Model.PostsItems.First().CreateTime)</time>
                         <span class="muted"><i class="fa fa-eye"></i> @Model.PostsItems.First().TimesWatched</span>
                         <span class="muted"><i class="fa fa-comments-o"></i> <a href="http://demo7.ledkongzhiqi.com/php/114.html#comments">@(Model.PostsItems.First().CommentsNumber + "评论")</a></span>
                     </div>
@@ -225,7 +226,6 @@
                                 </ul>
                             </div>
                         </div>
-
                         <input type="hidden" id="ak_js" name="ak_js" value="1493087499896">
                     </form>
                 </div>
@@ -270,37 +270,10 @@
                         <li><a href="#" title="@item.PostsTitle" style="padding-left:15px"><span class="text">@item.PostsTitle </span><span class="muted">@item.CreateTime</span><span class="muted_1">@(item.CommentsNumber + "评论")</span></a></li>
                     }
                 </ul>
-            </div><div class="widget widget_categories">
-                <div class="title"><h2><sapn class="title_span">分类目录</sapn></h2></div> <ul>
-                    <li class="cat-item cat-item-3">
-                        <a href="#">css</a>
-                    </li>
-                    <li class="cat-item cat-item-2">
-                        <a href="#">html</a>
-                    </li>
-                    <li class="cat-item cat-item-4">
-                        <a href="#">JavaScript</a>
-                    </li>
-                    <li class="cat-item cat-item-5">
-                        <a href="#">jquery</a>
-                    </li>
-                    <li class="cat-item cat-item-7">
-                        <a href="#">mysql</a>
-                    </li>
-                    <li class="cat-item cat-item-6">
-                        <a href="#">php</a>
-                    </li>
-                    <li class="cat-item cat-item-1">
-                        <a href="#">wordpress主题</a>
-                    </li>
-                    <li class="cat-item cat-item-8">
-                        <a href="#">前端开发</a>
-                    </li>
-                </ul>
             </div>
             <div class="widget d_banner">
                 <div class="d_banner_inner">
-                    <img class="alignnone size-full wp-image-516" src="../Content/HomeStyle/t01605ab9200e1b43f8.jpg" alt="ddy" width="308">
+                    <img class="alignnone size-full wp-image-516" src="~/Content/HomeStyle/t01605ab9200e1b43f8.jpg" alt="ddy" width="308">
                 </div>
             </div>
             <div class="widget d_tag">
@@ -309,12 +282,26 @@
                 </div><div class="d_tags">
                     @foreach (var item in Model.PostsTypeItems)
                     {
-                        <a title="" href="#" data-original-title="@(item.PostsLableCount+"个话题")">@(item.PostsLable + "(" + item.PostsLableCount + ")")</a>
+                <a title="" href="#" data-original-title="@(item.PostsLableCount+"个话题")">@(item.PostsLable + "(" + item.PostsLableCount + ")")</a>
                     }
                 </div>
             </div>
-            <div class="widget d_comment"><div class="title"><h2><sapn class="title_span">最新评论</sapn></h2></div><ul><li><a href="http://demo7.ledkongzhiqi.com/php/114.html#comment-576" title="PHP 7.0.2正式版发布：WordPress速度提升3倍！上的评论"><img alt="" data-original="http://demo7.ledkongzhiqi.com/avatar/36*b1ba69f855c62a7033283fbb625b9950.jpg" srcset="http://demo7.ledkongzhiqi.com/avatar/72*b1ba69f855c62a7033283fbb625b9950.jpg" class="avatar avatar-36 photo" height="36" width="36" src="../Content/HomeStyle/default.png"> <div class="muted"><i>不错</i>&nbsp;&nbsp;8个月前 (08-28)说：<br>很简介的wordpress主题</div></a></li><li><a href="http://demo7.ledkongzhiqi.com/zhuti/93.html#comment-574" title="避免使用复杂的选择器，层级越少越好上的评论"><img alt="" data-original="http://demo7.ledkongzhiqi.com/avatar/36*f7ae1a9208bf91d706c76e2bf022a992.jpg" srcset="http://demo7.ledkongzhiqi.com/avatar/72*f7ae1a9208bf91d706c76e2bf022a992.jpg" class="avatar avatar-36 photo" height="36" width="36" src="../Content/HomeStyle/default.png"> <div class="muted"><i>翠竹林</i>&nbsp;&nbsp;8个月前 (08-26)说：<br>顶一下</div></a></li><li><a href="http://demo7.ledkongzhiqi.com/mysql/119.html#comment-573" title="DTCC 2016:MySQL中国组主席谈DBA的炼成上的评论"><img alt="" data-original="http://demo7.ledkongzhiqi.com/avatar/36*f7ae1a9208bf91d706c76e2bf022a992.jpg" srcset="http://demo7.ledkongzhiqi.com/avatar/72*f7ae1a9208bf91d706c76e2bf022a992.jpg" class="avatar avatar-36 photo" height="36" width="36" src="../Content/HomeStyle/default.png"> <div class="muted"><i>翠竹林</i>&nbsp;&nbsp;8个月前 (08-15)说：<br>顶一下</div></a></li></ul></div><div class="widget widget_text">
-                <div class="title"><h2><sapn class="title_span">友情链接</sapn></h2></div> <div class="textwidget"><div class="d_tags_1"> <a target="_blank" href="#">物业之家</a> <a target="_blank" href="http://www.zhixin99.com/">物业资讯</a> </div></div>
+            <div class="widget d_comment">
+                <div class="title">
+                    <h2><sapn class="title_span">最新评论</sapn></h2>
+                </div>
+                <ul>
+                    @foreach (var item in Model.LatestReviewsItems)
+                    {
+                        <li>
+                            <a href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID", item.PostsModel.PostsID } })" title="@item.PostsModel.PostsTitle">
+                                <img alt="" data-original="http://demo7.ledkongzhiqi.com/avatar/36*b1ba69f855c62a7033283fbb625b9950.jpg" srcset="http://demo7.ledkongzhiqi.com/avatar/72*b1ba69f855c62a7033283fbb625b9950.jpg" class="avatar avatar-36 photo" height="36" width="36" src="../Content/HomeStyle/default.png"> <div class="muted"><i>@item.UserModel.UserName</i>&nbsp;&nbsp;@(TimeHelper.GetTimeSpan(item.CreateTime) + "(" + item.CreateTime.ToString("yyyy-MM-dd") + ")说：")<br>@item.ReviewContent</div>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div><div class="widget widget_text">
+                <div class="title"><h2><sapn class="title_span">友情链接</sapn></h2></div> <div class="textwidget"><div class="d_tags_1"> <a target="_blank" href="http://www.iwuye.com/">物业之家</a> <a target="_blank" href="http://news.combpm.com/">物业资讯</a> </div></div>
             </div>
         </aside>
     </section>

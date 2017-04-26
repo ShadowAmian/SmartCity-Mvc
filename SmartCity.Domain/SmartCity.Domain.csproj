@@ -51,6 +51,8 @@
     <Compile Include="Abstract\IPostsInfo.cs" />
     <Compile Include="Abstract\IProductCheshi.cs" />
     <Compile Include="Abstract\IRepairInfo.cs" />
+    <Compile Include="Abstract\IReplyInfo.cs" />
+    <Compile Include="Abstract\IReviewInfo.cs" />
     <Compile Include="Abstract\ISysLogInfo.cs" />
     <Compile Include="Abstract\IUserInfo.cs" />
     <Compile Include="Concrete\FeedBackInfo.cs" />
@@ -59,6 +61,8 @@
     <Compile Include="Concrete\PostsInfo.cs" />
     <Compile Include="Concrete\ProductCheshi.cs" />
     <Compile Include="Concrete\RepairInfo.cs" />
+    <Compile Include="Concrete\ReplyInfo.cs" />
+    <Compile Include="Concrete\ReviewInfo.cs" />
     <Compile Include="Concrete\SysLogInfo.cs" />
     <Compile Include="Concrete\UserInfo.cs" />
     <Compile Include="Entities\FeedBack.cs" />
@@ -68,6 +72,7 @@
     <Compile Include="Entities\PostsType.cs" />
     <Compile Include="Entities\Repair.cs" />
     <Compile Include="Entities\RepairTypes.cs" />
+    <Compile Include="Entities\Reply.cs" />
     <Compile Include="Entities\Review.cs" />
     <Compile Include="Entities\SysLog.cs" />
     <Compile Include="Entities\User.cs" />

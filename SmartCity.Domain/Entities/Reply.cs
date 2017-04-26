@@ -7,31 +7,29 @@ using System.Threading.Tasks;
 namespace SmartCity.Domain.Entities
 {
     /// <summary>
-    /// 评论列表
+    /// 回复类
     /// </summary>
-     public class Review
+    public class Reply
     {
         /// <summary>
-        /// 评论编号
+        /// 回复编号
         /// </summary>
-        public int ReviewID { get; set; }
+        public int ReplyID { get; set; }
         /// <summary>
-        /// 评论内容
+        /// 回复内容
         /// </summary>
-        public string ReviewContent { get; set; }
+        public int ReplyContent { get; set; }
         /// <summary>
-        /// 评论时间
+        /// 创建时间
         /// </summary>
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// 用户Model
+        /// 用户类Model
         /// </summary>
         public User UserModel { get; set; }
         /// <summary>
-        /// 论坛model
+        /// 评论ID
         /// </summary>
-        public Posts PostsModel { get; set; }
-
-
+        public int ReviewID { get; set; }
     }
 }
