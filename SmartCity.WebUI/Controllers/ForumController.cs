@@ -22,12 +22,14 @@ namespace SmartCity.WebUI.Controllers
         private IPostsInfo PostInfoService;
         private IUserInfo UserInfoService;
         private IReviewInfo ReviewInfoService;
-        public ForumController(INoticeInfo NewsInfo, IPostsInfo PostInfo, IUserInfo UserInfos,IReviewInfo ReviewInfo)
+        private IReplyInfo ReplyInfoService;
+        public ForumController(INoticeInfo NewsInfo, IPostsInfo PostInfo, IUserInfo UserInfos, IReviewInfo ReviewInfo, IReplyInfo ReplyInfo)
         {
             this.NewsInfoService = NewsInfo;
             this.PostInfoService = PostInfo;
             this.UserInfoService = UserInfos;
             this.ReviewInfoService = ReviewInfo;
+            this.ReplyInfoService = ReplyInfo;
         }
         #endregion
 
@@ -45,7 +47,26 @@ namespace SmartCity.WebUI.Controllers
             var PostsType = PostInfoService.SerachPostsType().ToList();
             //获取最新评论
             var LatestReviews = ReviewInfoService.GetLatestReviews().ToList();
-
+            //显示当前评论
+            var CurrentReviews = ReviewInfoService.GetLatestReviewsByID(ID).ToList();
+            var CurrentModel = new CurrentReview();
+            var CurrentList = new List<CurrentReview>();
+            foreach (var item in CurrentReviews)
+            {
+                CurrentModel.ReviewID = item.ReviewID;
+                CurrentModel.ReviewContent = item.ReviewContent;
+                CurrentModel.CreateTime = item.CreateTime;
+                CurrentModel.PostsModel = item.PostsModel;
+                CurrentModel.UserModel = item.UserModel;
+                List<Reply> ReplyList = ReplyInfoService.GetLatestReviews(item.ReviewID).ToList();
+                CurrentModel.ReplyModel = null;
+                if (ReplyList != null)
+                {
+                    CurrentModel.ReplyModel = ReplyList;
+                }
+                CurrentList.Add(CurrentModel);
+            }
+            Model.CurrentReviewItems = CurrentList;
             Model.HotPostsItems = HotPostsModel;
             Model.PostsItems = PostsModel;
             Model.PostsTypeItems = PostsType;

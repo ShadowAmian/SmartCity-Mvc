@@ -7,12 +7,17 @@ using System.Threading.Tasks;
 
 namespace SmartCity.Domain.Abstract
 {
-     public interface IReviewInfo
+    public interface IReviewInfo
     {
         /// <summary>
         ///获取最新评论信息
         /// </summary>
         /// <returns></returns>
-         IEnumerable<Review> GetLatestReviews();
+        IEnumerable<Review> GetLatestReviews();
+        /// <summary>
+        ///获取最新评论信息
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<Review> GetLatestReviewsByID(int id);
     }
 }

@@ -132,10 +132,10 @@
                     </div>
                 </article>
                 <footer class="article-footer"></footer>
-                <nav class="article-nav">
-                    <span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="http://demo7.ledkongzhiqi.com/jquery/111.html" rel="prev">最受欢迎JavaScript库：jQuery已经10岁啦！</a></span>
-                    <span class="article-nav-next"><a href="http://demo7.ledkongzhiqi.com/mysql/119.html" rel="next">DTCC 2016:MySQL中国组主席谈DBA的炼成</a>  <i class="fa fa-angle-double-right"></i></span>
-                </nav>
+                @*<nav class="article-nav">
+                        <span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="http://demo7.ledkongzhiqi.com/jquery/111.html" rel="prev">最受欢迎JavaScript库：jQuery已经10岁啦！</a></span>
+                        <span class="article-nav-next"><a href="http://demo7.ledkongzhiqi.com/mysql/119.html" rel="next">DTCC 2016:MySQL中国组主席谈DBA的炼成</a>  <i class="fa fa-angle-double-right"></i></span>
+                    </nav>*@
                 @*<div class="related_top">
                         <div class="related_posts">
                             <ul class="related_img">
@@ -231,10 +231,37 @@
                 </div>
                 <div id="postcomments">
                     <div id="comments">
-                        <i class="fa fa-comments-o"></i> <b> (1)</b>个小伙伴在吐槽
+                        <i class="fa fa-comments-o"></i> <b> (@Model.CurrentReviewItems.Count)</b>个小伙伴在吐槽
                     </div>
                     <ol class="commentlist">
-                        <li class="comment even thread-even depth-1" id="comment-576"><div class="c-avatar"><img alt="" data-original="http://demo7.ledkongzhiqi.com/avatar/54*b1ba69f855c62a7033283fbb625b9950.jpg" srcset="http://demo7.ledkongzhiqi.com/avatar/108*b1ba69f855c62a7033283fbb625b9950.jpg" class="avatar avatar-54 photo" height="54" width="54" src="./PHP 7.0.2正式版发布：WordPress速度提升3倍！ - 翠竹林_files/54-b1ba69f855c62a7033283fbb625b9950.jpg" style="display: block;"><div class="c-main" id="div-comment-576">很简介的wordpress主题<div class="c-meta"><span class="c-author">不错</span>2016-08-28 13:55 <a rel="nofollow" class="comment-reply-link" href="http://demo7.ledkongzhiqi.com/php/114.html?replytocom=576#respond" onclick="return addComment.moveForm( &quot;div-comment-576&quot;, &quot;576&quot;, &quot;respond&quot;, &quot;114&quot; )" aria-label="回复给不错">回复</a></div></div></div></li><!-- #comment-## -->
+                        @foreach (var item in Model.CurrentReviewItems)
+                        {
+                            <li class="comment even thread-even depth-1" id="comment-572">
+                                <div class="c-avatar">
+                                    <img alt="" data-original="#" srcset="#" class="avatar avatar-54 photo" height="54" width="54" src="../Content/HomeStyle/default.png" style="display: block;">
+                                    <div class="c-main" id="div-comment-572">
+                                        @item.UserModel.UserName
+                                        <div class="c-meta">
+                                            <span class="c-author">
+                                                @item.ReviewContent
+                                            </span>
+                                        @(item.CreateTime.ToString() + "(" + TimeHelper.GetTimeSpan(item.CreateTime) + ")")
+                                            <a rel="nofollow" class="comment-reply-link" href="#" onclick="return addComment.moveForm( &quot;div-comment-572&quot;, &quot;572&quot;, &quot;respond&quot;, &quot;119&quot; )" aria-label="@("回复给"+item.UserModel.UserName)">回复</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                @if (item.ReplyModel != null)
+                                {
+                                    foreach (var Replyitem in item.ReplyModel)
+                                    {
+                                        <ul class="children">
+                                            <li class="comment odd alt depth-2" id="comment-606"><div class="c-avatar"><img alt="" data-original="../Content/HomeStyle/default.png" srcset="../Content/HomeStyle/default.png" class="avatar avatar-54 photo" height="54" width="54" src="../Content/HomeStyle/default.png" style="display: block;"><div class="c-main" id="div-comment-606">@Replyitem.UserModel.UserName<br><div class="c-meta"><span class="c-author">@Replyitem.ReplyContent</span>@(Replyitem.CreateTime.ToString()+"("+TimeHelper.GetTimeSpan(Replyitem.CreateTime) +")")</div></div></div></li>
+                                        </ul><!-- .children -->
+                                    }
+                                }
+
+                            </li>
+                        }
                     </ol>
                     <div class="commentnav">
                     </div>

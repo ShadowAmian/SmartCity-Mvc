@@ -8,7 +8,6 @@ namespace SmartCity.WebUI.Models
 {
     public class FourumIndexModel
     {
-
         /// <summary>
         /// 公告类
         /// </summary>
@@ -29,6 +28,11 @@ namespace SmartCity.WebUI.Models
         /// 最新评论
         /// </summary>
         public List<Review> LatestReviewsItems { get; set; }
+        /// <summary>
+        /// 当前评论
+        /// </summary>
+        public List<CurrentReview> CurrentReviewItems { get; set; }
+
         public string Title1 { get; set; }
         public string TitleUrL1 { get; set; }
         public string Tiltle2 { get; set; }

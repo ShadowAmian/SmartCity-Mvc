@@ -24,12 +24,13 @@ namespace SmartCity.Domain.Entities
         /// </summary>
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// 用户类Model
-        /// </summary>
-        public User UserModel { get; set; }
-        /// <summary>
         /// 评论ID
         /// </summary>
         public int ReviewID { get; set; }
+        /// <summary>
+        /// 用户类Model
+        /// </summary>
+        public User UserModel { get; set; }
+
     }
 }
