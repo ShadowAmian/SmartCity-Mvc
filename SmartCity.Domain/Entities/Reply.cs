@@ -18,11 +18,15 @@ namespace SmartCity.Domain.Entities
         /// <summary>
         /// 回复内容
         /// </summary>
-        public int ReplyContent { get; set; }
+        public string ReplyContent { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>
         public DateTime CreateTime { get; set; }
+        /// <summary>
+        /// 用户编号
+        /// </summary>
+        public int UserID { get; set; }
         /// <summary>
         /// 评论ID
         /// </summary>
