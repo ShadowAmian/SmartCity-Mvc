@@ -315,9 +315,8 @@
     </div>
     <script type="text/javascript" src="~/Content/HomeStyle/um.js"></script>
     <script type="text/javascript" src="~/Content/HomeStyle/wp-embed.min.js"></script>
-    <script src="~/Content/script/lib/layer/2.4/layer.js"></script>
     <script src="~/Content/layui.js"></script>
-    <script>
+    <script type="text/javascript">
         var _hmt = _hmt || [];
         (function () {
             var hm = document.createElement("script");
@@ -333,12 +332,12 @@
                     cont: 'demo3',
                     pages: total,
                     curr: 1,
-                    groups: 10,
+                    groups: 5,
                     skin: '#009688',
                     jump: function (obj, first) {
                         if (!first) {
                             var curr = obj.curr;
-                            LoadUserInfo(curr);
+                            LoadPosts(curr);
                         }
                     }
                 });
@@ -354,10 +353,10 @@
                         var Content = "";
                         if (result.IsSuccess == 0) {
                             $(result.Items).each(function (n, Row) {
-                                Content += " <article class='excerpt'><div class='focus'><a target='_blank' href=''></a></div><header>";
-                                Content += "<a class='label label-important' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.PostsLable+"<i class='label-arrow'></i></a><h2><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"' title="+Row.PostsTitle+">"+item.PostsTitle+" </a></h2>";
+                                Content += "<article class='excerpt'><div class='focus'><a target='_blank' href=''></a></div><header>";
+                                Content += "<a class='label label-important' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.PostsLable+"<i class='label-arrow'></i></a><h2><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"' title="+Row.PostsTitle+">"+Row.PostsTitle+" </a></h2>";
                                 Content += "</header><p class='auth-span'>";
-                                Content += "<span class='muted'><i class='fa fa-clock-o'></i>"+item.CreateTime+"</span><span class='muted'><i class='fa fa-eye'></i>"+item.TimesWatched+"</span><span class='muted'><i class='fa fa-comments-o'></i><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.CommentsNumber+"评论</a></span>";
+                                Content += "<span class='muted'><i class='fa fa-clock-o'></i>"+Row.CreateTime+"</span><span class='muted'><i class='fa fa-eye'></i>"+Row.TimesWatched+"</span><span class='muted'><i class='fa fa-comments-o'></i><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.CommentsNumber+"评论</a></span>";
                                 Content += "</p><span class='note'>"+Row.BriefContent+"'</span></article>";
                             })
                             $("#divContent").empty();

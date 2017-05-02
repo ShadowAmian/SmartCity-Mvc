@@ -1,30 +1,26 @@
 ﻿using SmartCity.Common;
-using SmartCity.Common.log4net.Ext;
 using SmartCity.Domain.Abstract;
-using SmartCity.Domain.Concrete;
 using SmartCity.Domain.Entities;
-using SmartCity.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using SmartCity.WebUI.Models;
 
 namespace SmartCity.WebUI.Controllers
 {
-    public class HomePageController : Controller
+    public class PostsController : BaseController
     {
         #region 字段 构造函数
         /// <summary>
         /// 日志记录
         /// </summary>
-        public IExtLog log = ExtLogManager.GetLogger("dblog");
         private INoticeInfo NewsInfoService;
         private IPostsInfo PostInfoService;
         private IUserInfo UserInfoService;
         private IReviewInfo ReviewInfoService;
-        public HomePageController(INoticeInfo NewsInfo, IPostsInfo PostInfo, IUserInfo UserInfos, IReviewInfo ReviewInfo)
+        public PostsController(INoticeInfo NewsInfo, IPostsInfo PostInfo, IUserInfo UserInfos, IReviewInfo ReviewInfo)
         {
             this.NewsInfoService = NewsInfo;
             this.PostInfoService = PostInfo;
@@ -32,14 +28,13 @@ namespace SmartCity.WebUI.Controllers
             this.ReviewInfoService = ReviewInfo;
         }
         #endregion
-        // GET: HomePage
+
+        // GET: Posts
         public ActionResult Index()
         {
             var model = SessionHelper.GetSession("HomeUserInfo");
             //获取通知公告
-            var Model = new HomePageModel();
-            var result = NewsInfoService.GetNewsList().ToList();
-            Model.NewsItems = result;
+            var Model = new PostsModel();
             int PageCount = 0;
             //获取论坛
             var PostsModel = PostInfoService.GetPostsInfoListByPage(5, 1, out PageCount).ToList();
@@ -67,13 +62,5 @@ namespace SmartCity.WebUI.Controllers
             }
             return View(Model);
         }
-
-        public ActionResult GetPostInfoByPage(int Curr)
-        {
-            int PageCount = 0;
-            var model = PostInfoService.GetPostsInfoListByPage(5, Curr, out PageCount).ToList();
-            return Json(new { IsSuccess = 0, Items = model });
-        }
-
     }
 }
