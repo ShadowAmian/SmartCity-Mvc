@@ -33,6 +33,10 @@ namespace SmartCity.WebUI.Models
         public string Tiltle2 { get; set; }
 
         public string TitleUrl2 { get; set; }
+        /// <summary>
+        /// 记录总条数
+        /// </summary>
+        public int PageCount { get; set; }
 
 
 

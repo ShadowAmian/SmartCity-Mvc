@@ -11,13 +11,9 @@ using System.Web.Mvc;
 
 namespace SmartCity.WebUI.Controllers
 {
-    public class ForumController : Controller
+    public class ForumController : BaseController
     {
         #region 字段 构造函数
-        /// <summary>
-        /// 日志记录
-        /// </summary>
-        public IExtLog log = ExtLogManager.GetLogger("dblog");
         private INoticeInfo NewsInfoService;
         private IPostsInfo PostInfoService;
         private IUserInfo UserInfoService;
@@ -36,7 +32,8 @@ namespace SmartCity.WebUI.Controllers
         // GET: Forum
         public ActionResult FourumIndex(int ID)
         {
-            var model = SessionHelper.GetSession("HomeUserInfo");
+            var model = CurrentUserInfo;
+            var result = PostInfoService.AddNumberForWatch(ID);
             //获取通知公告
             var Model = new FourumIndexModel();
             //获取论坛
@@ -49,10 +46,11 @@ namespace SmartCity.WebUI.Controllers
             var LatestReviews = ReviewInfoService.GetLatestReviews().ToList();
             //显示当前评论
             var CurrentReviews = ReviewInfoService.GetLatestReviewsByID(ID).ToList();
-            var CurrentModel = new CurrentReview();
+
             var CurrentList = new List<CurrentReview>();
             foreach (var item in CurrentReviews)
             {
+                var CurrentModel = new CurrentReview();
                 CurrentModel.ReviewID = item.ReviewID;
                 CurrentModel.ReviewContent = item.ReviewContent;
                 CurrentModel.CreateTime = item.CreateTime;
@@ -83,5 +81,52 @@ namespace SmartCity.WebUI.Controllers
             }
             return View(Model);
         }
+       /// <summary>
+       /// 评论添加
+       /// </summary>
+       /// <param name="model"></param>
+       /// <returns></returns>
+        [HttpPost]
+        public ActionResult ReviewAdd(Review model)
+        {
+            if (CurrentUserInfo!=null)
+            {
+                model.CreateTime = DateTime.Now;
+                model.UserID = CurrentUserInfo.OwnerID;
+                var result= ReviewInfoService.AddReview(model);
+                if (result)
+                {
+                    var result1 = PostInfoService.AddNumberForReview(model.ForumID);
+                    if (result1)
+                    {
+                        return Json(new { IsSuccess = 0, Message = "评论成功！" });
+                    }
+                    return Json(new { IsSuccess = 1, Message = "评论失败，请稍后重试！" });
+                }
+                return Json(new { IsSuccess = 1, Message = "评论失败，请稍后重试！" });
+            }
+            return Json(new { IsSuccess = 1, Message = "对不起，你还未登陆，不能进行评论！" });
+        }
+        /// <summary>
+        /// 回复添加
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public ActionResult ReplyAdd(Reply model)
+        {
+            if (CurrentUserInfo != null)
+            {
+                model.CreateTime = DateTime.Now;
+                model.UserID = CurrentUserInfo.OwnerID;
+                var result = ReplyInfoService.AddReply(model);
+                if (result)
+                {
+                    return Json(new { IsSuccess = 0, Message = "回复成功！" });
+                }
+                return Json(new { IsSuccess = 1, Message = "回复失败，请稍后重试！" });
+            }
+            return Json(new { IsSuccess = 1, Message = "对不起，你还未登陆，不能进行评论！" });
+        }
+
     }
 }

@@ -30,5 +30,19 @@ namespace SmartCity.Domain.Concrete
         {
             return Conn.Query<Review, User, Posts, Review>("select * from Review_Table as r join User_Table as u on r.UserID=u.OwnerID  join Posts_Table as P on r.ForumID=P.PostsID where r.ForumID=@ForumID", (review, user, posts) => { review.UserModel = user; review.PostsModel = posts; return review; },new { ForumID=id },null,true, splitOn: "OwnerID,PostsID");
         }
+        /// <summary>
+        /// 添加新的评论
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool AddReview(Review model)
+        {
+            var resule = Conn.Execute("Insert into Review_Table values(@ReviewContent,@CreateTime,@UserID,@ForumID)", model);
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

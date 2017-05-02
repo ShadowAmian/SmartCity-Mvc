@@ -22,5 +22,6 @@ namespace SmartCity.Domain.Concrete
         {
             return Conn.Query<SysLog>("select * from SysLog_Table");
         }
+
     }
 }

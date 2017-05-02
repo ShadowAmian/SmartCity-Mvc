@@ -19,5 +19,12 @@ namespace SmartCity.Domain.Abstract
         /// </summary>
         /// <returns></returns>
         IEnumerable<Review> GetLatestReviewsByID(int id);
+
+        /// <summary>
+        /// 添加新的评论
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        bool AddReview(Review model);
     }
 }

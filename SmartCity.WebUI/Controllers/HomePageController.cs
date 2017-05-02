@@ -7,6 +7,7 @@ using SmartCity.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -39,8 +40,9 @@ namespace SmartCity.WebUI.Controllers
             var Model = new HomePageModel();
             var result = NewsInfoService.GetNewsList().ToList();
             Model.NewsItems = result;
+            int PageCount = 0;
             //获取论坛
-            var PostsModel = PostInfoService.GetPostsInfoList().ToList();
+            var PostsModel = PostInfoService.GetPostsInfoListByPage(10,1,out PageCount).ToList();
             //获取热门帖子
             var HotPostsModel = PostInfoService.GetHotPostsInfo().ToList();
             //获取标签
@@ -56,6 +58,7 @@ namespace SmartCity.WebUI.Controllers
             Model.Tiltle2 = "我要注册";
             Model.TitleUrL1 = "#";
             Model.TitleUrl2 = "#";
+            Model.PageCount = PageCount;
             if (model != null)
             {
                 var models = model as User;
@@ -64,34 +67,13 @@ namespace SmartCity.WebUI.Controllers
             }
             return View(Model);
         }
-        [HttpPost]
-        public ActionResult UserLogin(string Account, string Password)
+
+        public ActionResult GetPostInfoByPage(int Curr)
         {
-            var json = new JsonHelper() { Msg = "登录成功!", Status = "n" };
-            try
-            {
-                var result = UserInfoService.UserLogin(Account, Common.CryptHelper.EncryptAli(Password));
-                if (result)
-                {
-                    var ManagerModel = UserInfoService.GetUserInfo(Account);
-                    SessionHelper.SetSession("HomeUserInfo", ManagerModel.First());
-                    json.Status = "y";
-                    json.ReUrl = "/HomePage/Index";
-                    json.UserName = ManagerModel.First().UserName;
-                    log.Info(Utils.GetIP(), Account, Request.Url.ToString(), "Login", "系统登录，登录结果：" + json.Msg);
-                }
-                else
-                {
-                    json.Msg = "用户名或密码不正确!";
-                    log.Info(Utils.GetIP(), Account, Request.Url.ToString(), "Login", "系统登录，登录结果：" + json.Msg);
-                }
-            }
-            catch (Exception e)
-            {
-                json.Msg = e.Message;
-                log.Info(Utils.GetIP(), Account, Request.Url.ToString(), "Login", "系统登录，登录结果：" + json.Msg);
-            }
-            return Json(json, JsonRequestBehavior.AllowGet);
+            int PageCount = 0;
+            var model = PostInfoService.GetPostsInfoListByPage(10, Curr,out PageCount);
+            return Json(model);
         }
+
     }
 }

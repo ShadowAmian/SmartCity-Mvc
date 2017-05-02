@@ -153,6 +153,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\echarts.min.js" />
+    <Content Include="Content\HomeStyle\图标.jpg" />
+    <Content Include="Content\layer.css" />
+    <Content Include="Content\layui.css" />
     <Content Include="Images\1.jpg" />
     <Content Include="Content\HomeStyle\1459482861977PCf404011.jpg" />
     <Content Include="Images\2.jpg" />
@@ -630,7 +633,9 @@
     <Compile Include="Areas\Admin\Models\Repairs\RepairMaintenanceModel.cs" />
     <Compile Include="Areas\Admin\Models\SysLogs\SysLogModel.cs" />
     <Compile Include="Areas\Admin\Models\UserListModel.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
+    <Compile Include="Controllers\HomeLoginController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -704,6 +709,7 @@
     <Content Include="Content\HomeStyle\fonts\FontAwesome.otf" />
     <Content Include="Areas\Admin\Views\Posts\PostsList.cshtml" />
     <Content Include="Views\Forum\FourumIndex.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -716,6 +722,8 @@
     <Folder Include="Areas\Admin\Views\AdminBase\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Content\css\" />
+    <Folder Include="Views\Base\" />
+    <Folder Include="Views\HomeLogin\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmartCity.Common\SmartCity.Common.csproj">

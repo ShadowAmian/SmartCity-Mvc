@@ -27,6 +27,18 @@ namespace SmartCity.Domain.Concrete
         ///获取报修信息集合
         /// </summary>
         /// <returns></returns>
+        public IEnumerable<Posts> GetPostsInfoListByPage(int PageSize,int PageIndex,out int TotalPage)
+        {
+            var model = Conn.Query<PageCurr>("select total=count(*) from Posts_Table").ToList();
+            TotalPage = model.First().total;
+            var PageCount = PageSize * (PageIndex - 1);
+            var sql = "select top (@PageSize) * from Posts_Table as P join User_Table as u on P.UserID=u.OwnerID where PostsID not in( select top (@PageCount) PostsID from Posts_Table order by PostsID)order by PostsID";
+            return Conn.Query<Posts, User, Posts>(sql, (posts, user) => { posts.UserModel = user; return posts; },new { PageSize = PageSize, PageCount = PageCount }, splitOn: "OwnerID");
+        }
+        /// <summary>
+        ///获取报修信息集合
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Posts> GetPostsInfoByID(int id)
         {
             return Conn.Query<Posts, User, Posts>("select * from Posts_Table as P join User_Table as u on P.UserID=u.OwnerID where PostsID=@PostsID ", (posts, user) => { posts.UserModel = user; return posts; }, new { PostsID = id }, null, true, splitOn: "OwnerID");
@@ -101,6 +113,34 @@ namespace SmartCity.Domain.Concrete
         {
             var resule = Conn.Query<PostsType>("select PostsLable, count(*) PostsLableCount from Posts_Table group by PostsLable");
             return resule;
+        }
+        /// <summary>
+        /// 评论数加1
+        /// </summary>
+        /// <param name="PostsID"></param>
+        /// <returns></returns>
+        public bool AddNumberForReview(int PostsID)
+        {
+            var resule = Conn.Execute("update Posts_Table set CommentsNumber = CommentsNumber + 1 where PostsID=@PostsID; ", new { PostsID = PostsID });
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 观看数+1
+        /// </summary>
+        /// <param name="PostsID"></param>
+        /// <returns></returns>
+        public bool AddNumberForWatch(int PostsID)
+        {
+            var resule = Conn.Execute("update Posts_Table set TimesWatched = TimesWatched + 1 where PostsID=@PostsID; ", new { PostsID = PostsID });
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -47,5 +47,22 @@ namespace SmartCity.Domain.Abstract
         /// </summary>
         /// <returns></returns>
         IEnumerable<PostsType> SerachPostsType();
+        /// <summary>
+        /// 评论数加1
+        /// </summary>
+        /// <param name="PostsID"></param>
+        /// <returns></returns>
+        bool AddNumberForReview(int PostsID);
+        /// <summary>
+        /// 观看数+1
+        /// </summary>
+        /// <param name="PostsID"></param>
+        /// <returns></returns>
+         bool AddNumberForWatch(int PostsID);
+        /// <summary>
+        ///获取报修信息集合(分页)
+        /// </summary>
+        /// <returns></returns>
+         IEnumerable<Posts> GetPostsInfoListByPage(int PageSize, int PageIndex, out int TotalPage);
     }
 }
