@@ -42,7 +42,7 @@ namespace SmartCity.WebUI.Controllers
             Model.NewsItems = result;
             int PageCount = 0;
             //获取论坛
-            var PostsModel = PostInfoService.GetPostsInfoListByPage(10,1,out PageCount).ToList();
+            var PostsModel = PostInfoService.GetPostsInfoListByPage(5,1,out PageCount).ToList();
             //获取热门帖子
             var HotPostsModel = PostInfoService.GetHotPostsInfo().ToList();
             //获取标签
