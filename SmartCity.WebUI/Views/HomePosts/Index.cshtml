@@ -1,4 +1,4 @@
-﻿@model SmartCity.WebUI.Models.FourumIndexModel
+﻿@model SmartCity.WebUI.Models.PostsModel
 @using SmartCity.Common
 @{
     Layout = null;
@@ -9,10 +9,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>翠竹林小区评论页</title>
+    <title>分类交流模块</title>
     <link href="~/Content/HomeStyle/um.css" id="um-css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/HomeStyle/font-awesome.css" id="fa-css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/HomeStyle/style.css" id="style-css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/layui.css" rel="stylesheet" />
     <script type="text/javascript" src="~/Content/HomeStyle/jquery.min.js"></script>
     <script type="text/javascript" src="~/Content/HomeStyle/jquery.js"></script>
     <script src="~/Content/HomeStyle/hm.js"></script>
@@ -53,11 +54,11 @@
                                     <li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-23"><a href="#" style="padding: 10px;">首页</a></li>
                                     <li id="menu-item-193" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-193">
                                         <a href="#" style="padding: 10px;">通知公告</a>
-                                        @*<ul class="sub-menu" style="padding-top: 5px;">
+                                        <ul class="sub-menu" style="padding-top: 5px;">
                                             <li id="menu-item-194" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a href="#" style="padding: 10px;">日常通告</a></li>
                                             <li id="menu-item-192" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-192"><a href="#" style="padding: 10px;">行业资讯</a></li>
                                             <li id="menu-item-191" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-191"><a href="#" style="padding: 10px;">缴费通知</a></li>
-                                        </ul>*@
+                                        </ul>
                                     </li>
                                     <li id="menu-item-204" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="#" style="padding: 10px;">在线交流</a></li>
                                     <li id="menu-item-201" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201"><a href="#" style="padding: 10px;">在线报修</a></li>
@@ -110,98 +111,52 @@
         <div class="speedbar">
         </div>
         <div class="content-wrap">
-
             <div class="content">
-                <div class="breadcrumbs"><a title="返回首页" href="@Url.Action("Index","HomePage")"><i class="fa fa-home"></i></a> <small>&gt;</small> <a href="#">@Model.PostsItems.First().PostsLable</a> <small>&gt;</small> <span class="muted">@Model.PostsItems.First().PostsTitle</span></div>
-                <header class="article-header">
-                    <h1 class="article-title"><a href="#">@Model.PostsItems.First().PostsTitle</a></h1>
-                    <div class="meta">
-                        <span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="#">@Model.PostsItems.First().PostsLable</a></span><span class="muted"><i class="fa fa-user"></i> <a href="#">@Model.PostsItems.First().UserModel.UserName</a></span>
-                        <time class="muted"><i class="fa fa-clock-o"></i> @TimeHelper.GetTimeSpan(Model.PostsItems.First().CreateTime)</time>
-                        <span class="muted"><i class="fa fa-eye"></i> @Model.PostsItems.First().TimesWatched</span>
-                        <span class="muted"><i class="fa fa-comments-o"></i> <a href="#">@(Model.PostsItems.First().CommentsNumber + "评论")</a></span>
-                    </div>
+                <header class="archive-header">
+                    <h1><i class="fa fa-folder-open"></i>  &nbsp;@("分类：" + Model.PostsItems.First().PostsLable)  <a title="@Model.PostsItems.First().PostsLable" target="_blank" href="#"><i class="rss fa fa-rss"></i></a></h1>
                 </header>
-                <article class="article-content">
-                    <p>
-                        @Model.PostsItems.First().Contents
-                    </p>
-                    <input type="hidden" id="PostID" value="@Model.PostsItems.First().PostsID">
-                    <div class="activity-btn"><a class="like-btn" pid="114" href="javascript:;" title="" data-original-title="赞一个"><i class="fa fa-heart-o">&nbsp;</i>赞一个 (<span>11</span>)</a><a class="collect-btn collect-no" title="" data-original-title="你必须注册并登录才能收藏"><i class="fa fa-star-o">&nbsp;</i>收藏 (<span>0</span>)</a></div>
-                    <div class="article-social">
-                        <a href="javascript:;" data-action="ding" data-id="114" id="Addlike" class="action" data-original-title="" title=""><i class="fa fa-heart-o"></i>喜欢 (<span class="count">19</span>)</a><span class="or">or</span><span class="action action-share bdsharebuttonbox bdshare-button-style0-24" data-bd-bind="1493087499975"><i class="fa fa-share-alt"></i>分享 (<span class="bds_count" data-cmd="count" title="累计分享12次">12</span>)<div class="action-popover"><div class="popover top in"><div class="arrow"></div><div class="popover-content"><a href="#" class="sinaweibo fa fa-weibo" data-cmd="tsina" title="" data-original-title="分享到新浪微博"></a><a href="#" class="bds_qzone fa fa-star" data-cmd="qzone" title="" data-original-title="分享到QQ空间"></a><a href="#" class="tencentweibo fa fa-tencent-weibo" data-cmd="tqq" title="" data-original-title="分享到腾讯微博"></a><a href="#" class="qq fa fa-qq" data-cmd="sqq" title="" data-original-title="分享到QQ好友"></a><a href="#" class="bds_renren fa fa-renren" data-cmd="renren" title="" data-original-title="分享到人人网"></a><a href="#" class="bds_weixin fa fa-weixin" data-cmd="weixin" title="" data-original-title="分享到微信"></a><a href="#" class="bds_more fa fa-ellipsis-h" data-cmd="more" data-original-title="" title=""></a></div></div></div></span>
-                    </div>
-                </article>
-                <footer class="article-footer"></footer>
-                <div id="respond" class="no_webshot">
-                    <form action="#" method="post" id="commentform">
-                        <div class="comt-title">
-                            <div class="comt-avatar pull-left">
-                                <img alt="" src="~/Content/HomeStyle/图标.jpg" srcset="~/Content/HomeStyle/图标.jpg" class="avatar avatar-54 photo" height="54" width="54">
-                            </div>
-                            <div class="comt-author pull-left">
-                                发表我的评论
-                            </div>
-                            <a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a>
-                        </div>
-
-                        <div class="comt">
-                            <div class="comt-box">
-                                <textarea placeholder="写点什么..." class="input-block-level comt-area" name="comment" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById(&#39;submit&#39;).click();return false};"></textarea>
-                                <div class="comt-ctrl">
-                                    <button class="btn btn-primary pull-right" type="button" name="submit" id="ReviewSubmit" tabindex="5"><i class="fa fa-check-square-o"></i> 提交评论</button>
-                                    <div class="comt-tips pull-right">
-                                        <input type="hidden" name="comment_post_ID" value="114" id="comment_post_ID">
-                                        <input type="hidden" name="comment_parent" id="comment_parent" value="0">
-                                        <p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="6389a90aef"></p><span class="mail-notify-check"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked" style="vertical-align:middle;"><label for="comment_mail_notify" style="vertical-align:middle;">有人回复时邮件通知我</label></span><p style="display: none;"></p><div class="comt-tip comt-loading" style="display: none;">正在提交, 请稍候...</div><div class="comt-tip comt-error" style="display: none;">#</div>
-                                    </div>
-                                    <span data-type="comment-insert-smilie" class="muted comt-smilie"><i class="fa fa-smile-o"></i> 表情</span>
-                                    <span class="muted comt-mailme"><label for="comment_mail_notify" class="checkbox inline" style="padding-top:0"><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked">有人回复时邮件通知我</label></span>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="hidden" id="ak_js" name="ak_js" value="1493087499896">
-                    </form>
+                <div id="divContent">
+                    @foreach (var item in Model.PostsItems)
+                    {
+                    <article class="excerpt">
+                        <div class="focus"><a target="_blank" href=""></a></div>
+                        <header>
+                            <a class="label label-important" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })">@item.PostsLable<i class="label-arrow"></i></a><h2><a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })" title="@item.PostsTitle">@item.PostsTitle </a></h2>
+                        </header>
+                        <p class="auth-span">
+                            <span class="muted"><i class="fa fa-clock-o"></i>@item.CreateTime.ToString()</span> <span class="muted"><i class="fa fa-eye"></i> @item.TimesWatched</span> <span class="muted"><i class="fa fa-comments-o"></i> <a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })">@(item.CommentsNumber + "评论")</a></span>
+                        </p>
+                        <span class="note">
+                            @item.BriefContent
+                        </span>
+                    </article>
+                    }
                 </div>
-                <div id="postcomments">
-                    <div id="comments">
-                        <i class="fa fa-comments-o"></i> <b> (@Model.CurrentReviewItems.Count)</b>个小伙伴在吐槽
-                    </div>
-                    <ol class="commentlist">
-                        @foreach (var item in Model.CurrentReviewItems)
-                        {
-                            <li class="comment even thread-even depth-1" id="comment-572">
-                                <div class="c-avatar">
-                                    <img alt="" data-original="~/Content/HomeStyle/default.png" srcset="~/Content/HomeStyle/default.png" class="avatar avatar-54 photo" height="54" width="54" src="~/Content/HomeStyle/default.png" style="display: block;">
-                                    <div class="c-main" id="div-comment-572">
-                                        @item.UserModel.UserName
-                                        <div class="c-meta">
-                                            <span class="c-author">
-                                                @item.ReviewContent
-                                            </span>
-                                        @(item.CreateTime.ToString() + "(" + TimeHelper.GetTimeSpan(item.CreateTime) + ")")
-                                            <a rel="nofollow" class="comment-reply-link"  href="#" onclick="return addComment.moveForm( &quot;div-comment-572&quot;, &quot;572&quot;, &quot;respond&quot;, &quot;@item.ReviewID&quot; )" aria-label="@("回复给"+item.UserModel.UserName)">回复</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                @if (item.ReplyModel != null)
-                                {
-                                    foreach (var Replyitem in item.ReplyModel)
-                                    {
-                                        <ul class="children">
-                                            <li class="comment odd alt depth-2" id="comment-606"><div class="c-avatar"><img alt="" data-original="~/Content/HomeStyle/default.png" srcset="~/Content/HomeStyle/default.png" class="avatar avatar-54 photo" height="54" width="54" src="~/Content/HomeStyle/default.png" style="display: block;"><div class="c-main" id="div-comment-606">@Replyitem.UserModel.UserName<br><div class="c-meta"><span class="c-author">@Replyitem.ReplyContent</span>@(Replyitem.CreateTime.ToString()+"("+TimeHelper.GetTimeSpan(Replyitem.CreateTime) +")")</div></div></div></li>
-                                        </ul><!-- .children -->
-                                    }
-                                }
 
-                            </li>
-                        }
-                    </ol>
-                    <div class="commentnav">
-                    </div>
+                <div class="pagecontent" style="margin-left:0px">
+                    <header class="pageheader clearfix">
+                        <h1 class="pull-left">
+                            <a href="http://demo7.ledkongzhiqi.com/tougao">发帖交流</a>
+                        </h1>
+                    </header>
+                    <article class="article-content"></article>
+                    <ul class="submit-form">
+                        <li>
+                            <strong>标题</strong>
+                            <input id="tougao-title" class="input-block-level" type="text" size="40" placeholder="写点什么..." style="margin-top:10px; margin-bottom:10px">
+                            <p class="text-error hide"></p>
+                        </li>
+                        <li>
+                            <strong>内容</strong>
+                            <textarea id="tougao-content" rows="12" class="input-block-level" placeholder="写点什么..." style="margin-top:10px;margin-bottom:10px"></textarea>
+                            <p class="text-error hide"></p>
+                        </li>
+                    </ul>
+                    <div class="text-error"></div>
+                    <button id="tougao-submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-square-o"></i> 立即提交</button>
                 </div>
+                <div class="pagination" id="demo3"> </div>
             </div>
-
         </div>
         <aside class="sidebar">
             <div class="widget widget_text">
@@ -243,7 +198,7 @@
                 </div><div class="d_tags">
                     @foreach (var item in Model.PostsTypeItems)
                     {
-                <a title="" href="@Url.Action("Index","HomePosts",new RouteValueDictionary { { "PostsLable" , item.PostsLable } })" data-original-title="@(item.PostsLableCount+"个话题")">@(item.PostsLable + "(" + item.PostsLableCount + ")")</a>
+                        <a title="" href="@Url.Action("Index","HomePosts",new RouteValueDictionary { { "PostsLable" , item.PostsLable } })" data-original-title="@(item.PostsLableCount+"个话题")">@(item.PostsLable + "(" + item.PostsLableCount + ")")</a>
                     }
                 </div>
             </div>
@@ -337,7 +292,7 @@
     </div>
     <script type="text/javascript" src="~/Content/HomeStyle/um.js"></script>
     <script type="text/javascript" src="~/Content/HomeStyle/wp-embed.min.js"></script>
-    <script src="~/Content/script/lib/layer/2.4/layer.js"></script>
+    <script src="~/Content/layui.js"></script>
     <script>
         var _hmt = _hmt || [];
         (function () {
@@ -369,58 +324,95 @@
                 },
             });
         });
-        var boolRply=true;
-        //用户评论
-        $('#ReviewSubmit').click(function () {
-            if (boolRply) {
-                var param = {};
-                param.ReviewContent = $("#comment").val();
-                param.ForumID = $("#PostID").val();
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("ReviewAdd", "Forum")',
-                    dataType: 'json',
-                    data: param,
-                    success: function (data) {
-                        if (data.IsSuccess == 0) {
-                            window.location.reload();
+        layui.use(['laypage', 'layer', "jquery"], function () {
+            var laypage = layui.laypage, layer = layui.layer, $ = layui.jquery;
+            var total = @Model.PageCount;
+            layer.ready(function () {
+                laypage({
+                    cont: 'demo3',
+                    pages: total,
+                    curr: 1,
+                    groups: 5,
+                    skin: '#009688',
+                    jump: function (obj, first) {
+                        if (!first) {
+                            var curr = obj.curr;
+                            LoadPosts(curr);
                         }
-                        else {
-                            layer.msg(data.Message, { icon: 2, time: 1000 });
-                        }
-                    },
-                    error: function (data) {
-                        layer.msg("添加失败，请稍后重试！", { icon: 2, time: 1000 });
-                    },
+                    }
                 });
-            }
-            else {
-                var param = {};
-                param.ReplyContent = $("#comment").val();
-                param.ReviewID = $("#comment_post_ID").val();
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("ReplyAdd", "Forum")',
-                    dataType: 'json',
-                    data: param,
-                    success: function (data) {
-                        if (data.IsSuccess == 0) {
-                            window.location.reload();
-                        }
-                        else {
-                            layer.msg(data.Message, { icon: 2, time: 1000 });
-                        }
-                    },
-                    error: function (data) {
-                        layer.msg("添加失败，请稍后重试！", { icon: 2, time: 1000 });
-                    },
-                });
-            }
-           
+            });
         });
-        $('.comment-reply-link').click(function () {
-            boolRply=false;
-        })
+        Date.prototype.Format = function (fmt) {
+            var o = {
+                "M+": this.getMonth() + 1,                 //月份
+                "d+": this.getDate(),                    //日
+                "h+": this.getHours(),                   //小时
+                "m+": this.getMinutes(),                 //分
+                "s+": this.getSeconds(),                 //秒
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+                "S": this.getMilliseconds()             //毫秒
+            };
+            if (/(y+)/.test(fmt))
+                fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt))
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+        function LoadPosts(curr) {
+            var param = {};
+            param.Curr = curr;
+            $.ajax({
+                type: 'POST',
+                url: '/HomePage/GetPostInfoByPage',
+                data: param,
+                success: function (result) {
+                    var Content = "";
+                    if (result.IsSuccess == 0) {
+                        $(result.Items).each(function (n, Row) {
+                            Content += "<article class='excerpt'><div class='focus'><a target='_blank' href=''></a></div><header>";
+                            Content += "<a class='label label-important' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.PostsLable+"<i class='label-arrow'></i></a><h2><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"' title="+Row.PostsTitle+">"+Row.PostsTitle+" </a></h2>";
+                            Content += "</header><p class='auth-span'>";
+                            Content += "<span class='muted'><i class='fa fa-clock-o'></i>"+eval('new ' + Row.CreateTime.replace(/\//g, '')).Format('yyyy-MM-dd hh:mm:ss')+"";
+                            Content+="</span><span class='muted'><i class='fa fa-eye'></i>"+Row.TimesWatched+"</span><span class='muted'><i class='fa fa-comments-o'></i><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.CommentsNumber+"评论</a></span>";
+                            Content += "</p><span class='note'>"+Row.BriefContent+"</span></article>";
+                        })
+                        $("#divContent").empty();
+                        $("#divContent").html(Content);
+                        Content = null;
+                    } else {
+                        layer.msg(result.Message, { icon: 2 });
+                    }
+                },
+                datatype: "json",
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    layer.msg('获取信息失败，请稍后重试！', { icon: 2 });
+                }
+            });
+            param = null;
+        }
+
+        $('#tougao-submit').click(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/HomePage/GetPostInfoByPage',
+                data: param,
+                success: function (result) {
+                    var Content = "";
+                    if (result.IsSuccess == 0) {
+                        
+                    } else {
+                        layer.msg(result.Message, { icon: 2 });
+                    }
+                },
+                datatype: "json",
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    layer.msg('获取信息失败，请稍后重试！', { icon: 2 });
+                }
+            });
+            param = null;
+        });
 
     </script>
     <div class="rollto" style="display: block;"><button class="btn btn-inverse" data-type="totop" title="回顶部"><i class="fa fa-arrow-up"></i></button></div>

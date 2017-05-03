@@ -16,6 +16,8 @@ namespace SmartCity.WebUI.Controllers
         /// 日志记录
         /// </summary>
         public IExtLog log = ExtLogManager.GetLogger("dblog");
+
+        public int PageCounts = 10;
         #endregion
 
         #region 用户对象

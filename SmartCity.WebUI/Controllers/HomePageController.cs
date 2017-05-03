@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace SmartCity.WebUI.Controllers
 {
-    public class HomePageController : Controller
+    public class HomePageController : BaseController
     {
         #region 字段 构造函数
         /// <summary>
@@ -42,7 +42,7 @@ namespace SmartCity.WebUI.Controllers
             Model.NewsItems = result;
             int PageCount = 0;
             //获取论坛
-            var PostsModel = PostInfoService.GetPostsInfoListByPage(5, 1, out PageCount).ToList();
+            var PostsModel = PostInfoService.GetPostsInfoListByPage(PageCounts, 1, out PageCount).ToList();
             //获取热门帖子
             var HotPostsModel = PostInfoService.GetHotPostsInfo().ToList();
             //获取标签
@@ -67,11 +67,10 @@ namespace SmartCity.WebUI.Controllers
             }
             return View(Model);
         }
-
         public ActionResult GetPostInfoByPage(int Curr)
         {
             int PageCount = 0;
-            var model = PostInfoService.GetPostsInfoListByPage(5, Curr, out PageCount).ToList();
+            var model = PostInfoService.GetPostsInfoListByPage(PageCounts, Curr, out PageCount).ToList();
             return Json(new { IsSuccess = 0, Items = model });
         }
 

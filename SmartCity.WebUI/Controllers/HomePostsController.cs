@@ -10,7 +10,7 @@ using SmartCity.WebUI.Models;
 
 namespace SmartCity.WebUI.Controllers
 {
-    public class PostsController : BaseController
+    public class HomePostsController : BaseController
     {
         #region 字段 构造函数
         /// <summary>
@@ -20,7 +20,7 @@ namespace SmartCity.WebUI.Controllers
         private IPostsInfo PostInfoService;
         private IUserInfo UserInfoService;
         private IReviewInfo ReviewInfoService;
-        public PostsController(INoticeInfo NewsInfo, IPostsInfo PostInfo, IUserInfo UserInfos, IReviewInfo ReviewInfo)
+        public HomePostsController(INoticeInfo NewsInfo, IPostsInfo PostInfo, IUserInfo UserInfos, IReviewInfo ReviewInfo)
         {
             this.NewsInfoService = NewsInfo;
             this.PostInfoService = PostInfo;
@@ -30,14 +30,14 @@ namespace SmartCity.WebUI.Controllers
         #endregion
 
         // GET: Posts
-        public ActionResult Index()
+        public ActionResult Index(string PostsLable)
         {
             var model = SessionHelper.GetSession("HomeUserInfo");
             //获取通知公告
             var Model = new PostsModel();
             int PageCount = 0;
             //获取论坛
-            var PostsModel = PostInfoService.GetPostsInfoListByPage(5, 1, out PageCount).ToList();
+            var PostsModel = PostInfoService.GetPostsInfoListByPageAndType(10, 1, out PageCount,PostsLable).ToList();
             //获取热门帖子
             var HotPostsModel = PostInfoService.GetHotPostsInfo().ToList();
             //获取标签

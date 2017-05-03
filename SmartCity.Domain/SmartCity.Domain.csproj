@@ -71,6 +71,7 @@
     <Compile Include="Entities\PageCurr.cs" />
     <Compile Include="Entities\Posts.cs" />
     <Compile Include="Entities\PostsType.cs" />
+    <Compile Include="Entities\ProductInfo.cs" />
     <Compile Include="Entities\Repair.cs" />
     <Compile Include="Entities\RepairTypes.cs" />
     <Compile Include="Entities\Reply.cs" />

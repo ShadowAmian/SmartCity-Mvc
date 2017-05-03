@@ -167,10 +167,10 @@
                         <article class="excerpt">
                             <div class="focus"><a target="_blank" href=""></a></div>
                             <header>
-                                <a class="label label-important" href="@Url.Action(" FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })">@item.PostsLable<i class="label-arrow"></i></a><h2><a target="_blank" href="@Url.Action(" FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })" title="@item.PostsTitle">@item.PostsTitle </a></h2>
+                                <a class="label label-important" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })">@item.PostsLable<i class="label-arrow"></i></a><h2><a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })" title="@item.PostsTitle">@item.PostsTitle </a></h2>
                             </header>
                             <p class="auth-span">
-                                <span class="muted"><i class="fa fa-clock-o"></i>@item.CreateTime.ToString()</span> <span class="muted"><i class="fa fa-eye"></i> @item.TimesWatched</span> <span class="muted"><i class="fa fa-comments-o"></i> <a target="_blank" href="@Url.Action(" FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })">@(item.CommentsNumber + "评论")</a></span>
+                                <span class="muted"><i class="fa fa-clock-o"></i>@item.CreateTime.ToString()</span> <span class="muted"><i class="fa fa-eye"></i> @item.TimesWatched</span> <span class="muted"><i class="fa fa-comments-o"></i> <a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })">@(item.CommentsNumber + "评论")</a></span>
                             </p>
                             <span class="note">
                                 @item.BriefContent
@@ -208,7 +208,7 @@
                 <div class="title"><h2><sapn class="title_span">热门推荐</sapn></h2></div><ul>
                     @foreach (var item in Model.HotPostsItems)
                     {
-                        <li><a href="@Url.Action(" FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })" title="@item.PostsTitle" style="padding-left:15px"><span class="text">@item.PostsTitle </span><span class="muted">@item.CreateTime</span><span class="muted_1">@(item.CommentsNumber + "评论")</span></a></li>
+                        <li><a href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })" title="@item.PostsTitle" style="padding-left:15px"><span class="text">@item.PostsTitle </span><span class="muted">@item.CreateTime</span><span class="muted_1">@(item.CommentsNumber + "评论")</span></a></li>
                     }
                 </ul>
             </div>
@@ -223,7 +223,7 @@
                 </div><div class="d_tags">
                     @foreach (var item in Model.PostsTypeItems)
                     {
-                        <a title="" href="#" data-original-title="@(item.PostsLableCount+" 个话题")">@(item.PostsLable + "(" + item.PostsLableCount + ")")</a>
+                        <a title="" href="@Url.Action("Index","HomePosts",new RouteValueDictionary { { "PostsLable" , item.PostsLable } })" data-original-title="@(item.PostsLableCount+" 个话题")">@(item.PostsLable + "(" + item.PostsLableCount + ")")</a>
                     }
                 </div>
             </div>
@@ -356,8 +356,9 @@
                                 Content += "<article class='excerpt'><div class='focus'><a target='_blank' href=''></a></div><header>";
                                 Content += "<a class='label label-important' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.PostsLable+"<i class='label-arrow'></i></a><h2><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"' title="+Row.PostsTitle+">"+Row.PostsTitle+" </a></h2>";
                                 Content += "</header><p class='auth-span'>";
-                                Content += "<span class='muted'><i class='fa fa-clock-o'></i>"+Row.CreateTime+"</span><span class='muted'><i class='fa fa-eye'></i>"+Row.TimesWatched+"</span><span class='muted'><i class='fa fa-comments-o'></i><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.CommentsNumber+"评论</a></span>";
-                                Content += "</p><span class='note'>"+Row.BriefContent+"'</span></article>";
+                                Content += "<span class='muted'><i class='fa fa-clock-o'></i>"+eval('new ' + Row.CreateTime.replace(/\//g, '')).Format('yyyy-MM-dd hh:mm:ss')+"";
+                                Content+="</span><span class='muted'><i class='fa fa-eye'></i>"+Row.TimesWatched+"</span><span class='muted'><i class='fa fa-comments-o'></i><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.CommentsNumber+"评论</a></span>";
+                                Content += "</p><span class='note'>"+Row.BriefContent+"</span></article>";
                             })
                             $("#divContent").empty();
                             $("#divContent").html(Content);
@@ -375,6 +376,23 @@
             }
 
         });
+        Date.prototype.Format = function (fmt) {
+            var o = {
+                "M+": this.getMonth() + 1,                 //月份
+                "d+": this.getDate(),                    //日
+                "h+": this.getHours(),                   //小时
+                "m+": this.getMinutes(),                 //分
+                "s+": this.getSeconds(),                 //秒
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+                "S": this.getMilliseconds()             //毫秒
+            };
+            if (/(y+)/.test(fmt))
+                fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt))
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
         //用户登录
         $('#Login').click(function () {
             var param = {};

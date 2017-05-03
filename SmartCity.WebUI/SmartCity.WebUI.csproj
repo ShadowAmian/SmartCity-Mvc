@@ -162,6 +162,8 @@
     <Content Include="Content\css\modules\layer\default\loading-1.gif" />
     <Content Include="Content\css\modules\layer\default\loading-2.gif" />
     <Content Include="Content\echarts.min.js" />
+    <Content Include="Content\HomeStyle\logo2.png" />
+    <Content Include="Content\HomeStyle\logo3.png" />
     <Content Include="Content\HomeStyle\图标.jpg" />
     <Content Include="Content\laydate\laydate.js" />
     <Content Include="Content\laydate\need\laydate.css" />
@@ -680,7 +682,7 @@
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeLoginController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
-    <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\HomePostsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -755,6 +757,7 @@
     <Content Include="Areas\Admin\Views\Posts\PostsList.cshtml" />
     <Content Include="Views\Forum\FourumIndex.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\HomePosts\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -769,7 +772,6 @@
     <Folder Include="Content\lay\lib\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\HomeLogin\" />
-    <Folder Include="Views\Posts\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmartCity.Common\SmartCity.Common.csproj">

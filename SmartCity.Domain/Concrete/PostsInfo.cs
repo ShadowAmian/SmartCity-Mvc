@@ -39,6 +39,19 @@ namespace SmartCity.Domain.Concrete
         ///获取报修信息集合
         /// </summary>
         /// <returns></returns>
+        public IEnumerable<Posts> GetPostsInfoListByPageAndType(int PageSize, int PageIndex, out int TotalPage,string PostsLaber)
+        {
+            var model = Conn.Query<PageCurr>("select total=count(*) from Posts_Table").ToList();
+            var PageCount = PageSize * (PageIndex - 1);
+            TotalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal((model.First().total + PageSize - 1) / PageSize)));
+            var sql = "select top (@PageSize) * from Posts_Table as P join User_Table as u on P.UserID=u.OwnerID where PostsLable=@PostsLable and  PostsID not in( select top (@PageCount) PostsID from Posts_Table order by PostsID)order by PostsID";
+            return Conn.Query<Posts, User, Posts>(sql, (posts, user) => { posts.UserModel = user; return posts; }, new { PageSize = PageSize, PageCount = PageCount,PostsLable= PostsLaber }, splitOn: "OwnerID");
+        }
+
+        /// <summary>
+        ///获取报修信息集合
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Posts> GetPostsInfoByID(int id)
         {
             return Conn.Query<Posts, User, Posts>("select * from Posts_Table as P join User_Table as u on P.UserID=u.OwnerID where PostsID=@PostsID ", (posts, user) => { posts.UserModel = user; return posts; }, new { PostsID = id }, null, true, splitOn: "OwnerID");

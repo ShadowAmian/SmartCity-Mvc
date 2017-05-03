@@ -15,6 +15,7 @@
 </head>
 <body>
     <div class="header">
+        <a style="float:left;margin-top:4px;padding-right:6px"><img src="~/Content/HomeStyle/logo2.png" style="height:56px" /></a>
         <a class="logo navbar-logo f-l mr-10 hidden-xs" href="@Url.Action("AdminLogin","Login",new { area="Admin"})"><font style='text-align:center;font-size:34px;color:white'>翠竹林小区物业管理系统</font></a><a class="logo navbar-logo-m f-l mr-10 visible-xs" href="Index.aspx">翠竹林小区物业管理系统</a> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
     </div>
     @using (Ajax.BeginForm("AdminLogin", null, new AjaxOptions() { HttpMethod = "Post", OnSuccess = "dig.Success", OnFailure = "dig.Complete" }, new { @class = "form-signin" }))
