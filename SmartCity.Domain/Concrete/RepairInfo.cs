@@ -88,7 +88,7 @@ namespace SmartCity.Domain.Concrete
         public bool BatchRemoveRepairInfo(List<int> id)
         {
             var resule = Conn.Execute("delete from Repair_Table where RepairID in @RepairID ", new { RepairID = id.ToList() });
-            if (resule == 1)
+            if (resule > 0)
             {
                 return true;
             }

@@ -44,6 +44,10 @@ namespace SmartCity.Domain.Entities
         /// </summary>
         public string Contents{ get; set; }
         /// <summary>
+        /// 用户编号
+        /// </summary>
+        public int UserID { get; set; }
+        /// <summary>
         /// 用户model
         /// </summary>
         public User UserModel { get; set; }

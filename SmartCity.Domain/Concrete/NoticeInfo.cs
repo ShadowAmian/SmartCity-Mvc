@@ -125,7 +125,7 @@ namespace SmartCity.Domain.Concrete
         public bool BatchRemoveNoticeInfo(List<int> id)
         {
             var resule = Conn.Execute("delete from News_Table where NewsID in @NewsID ", new { NewsID = id.ToList() });
-            if (resule == 1)
+            if (resule >0)
             {
                 return true;
             }

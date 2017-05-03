@@ -110,6 +110,7 @@
     <section class="container">
         <div class="speedbar">
         </div>
+        <input type="hidden" id="PostsLable" value="@Model.PostsItems.First().PostsLable" />
         <div class="content-wrap">
             <div class="content">
                 <header class="archive-header">
@@ -394,6 +395,10 @@
         }
 
         $('#tougao-submit').click(function () {
+            var param={};
+            param.Title=$("#tougao-title").val();
+            param.Content=$("#tougao-content").val();
+            param.PostsLable=$("#PostsLable").val();
             $.ajax({
                 type: 'POST',
                 url: '/HomePage/GetPostInfoByPage',

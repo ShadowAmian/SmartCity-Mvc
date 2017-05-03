@@ -165,7 +165,7 @@ namespace SmartCity.Domain.Concrete
         public bool BatchRemoveManager(List<int> id)
         {
             var resule = Conn.Execute("delete from Manager_Table where ManagerID in @ManagerID ", new { ManagerID=id.ToList()});
-            if (resule==1)
+            if (resule>0)
             {
                 return true;
             }

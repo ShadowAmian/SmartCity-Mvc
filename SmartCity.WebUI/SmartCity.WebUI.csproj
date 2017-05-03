@@ -666,6 +666,7 @@
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RepairController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReviewController.cs" />
     <Compile Include="Areas\Admin\Controllers\SysLogController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserInfoController.cs" />
     <Compile Include="Areas\Admin\Models\FeedBacks\FeedBackListModel.cs" />
@@ -676,6 +677,7 @@
     <Compile Include="Areas\Admin\Models\Repairs\RepairList.cs" />
     <Compile Include="Areas\Admin\Models\Repairs\RepairListModel.cs" />
     <Compile Include="Areas\Admin\Models\Repairs\RepairMaintenanceModel.cs" />
+    <Compile Include="Areas\Admin\Models\ReviewModel.cs" />
     <Compile Include="Areas\Admin\Models\SysLogs\SysLogModel.cs" />
     <Compile Include="Areas\Admin\Models\UserListModel.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -758,6 +760,7 @@
     <Content Include="Views\Forum\FourumIndex.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\HomePosts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Review\ReviewList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -772,6 +775,7 @@
     <Folder Include="Content\lay\lib\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\HomeLogin\" />
+    <Folder Include="Views\Posts\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmartCity.Common\SmartCity.Common.csproj">

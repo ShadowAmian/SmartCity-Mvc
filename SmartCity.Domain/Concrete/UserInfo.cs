@@ -162,7 +162,7 @@ namespace SmartCity.Domain.Concrete
         public bool BatchRemoveUserInfo(List<int> id)
         {
             var resule = Conn.Execute("delete from User_Table where OwnerID in @OwnerID ", new { OwnerID = id.ToList() });
-            if (resule == 1)
+            if (resule > 0)
             {
                 return true;
             }

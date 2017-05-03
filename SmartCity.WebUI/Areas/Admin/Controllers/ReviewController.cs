@@ -1,6 +1,6 @@
 ﻿using SmartCity.Common;
 using SmartCity.Domain.Abstract;
-using SmartCity.WebUI.Areas.Admin.Models.Postss;
+using SmartCity.WebUI.Areas.Admin.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,47 +10,45 @@ using System.Web.Mvc;
 namespace SmartCity.WebUI.Areas.Admin.Controllers
 {
     /// <summary>
-    /// 在线交流模块控制器
+    /// 评论控制器
     /// </summary>
-    public class PostsController : AdminBaseController
+    public class ReviewController : AdminBaseController
     {
+
         #region 字段 构造函数
+        private IReviewInfo repository;
+        private IUserInfo UserService;
 
-        private IPostsInfo PostInfoService;
-        private IUserInfo UserInfoService;
-
-        public PostsController(IPostsInfo PostInfo,IUserInfo UserInfo)
+        public ReviewController(IReviewInfo RepairInfo,IUserInfo UserServie)
         {
-            this.PostInfoService = PostInfo;
-            this.UserInfoService = UserInfo;
+            this.repository = RepairInfo;
+            this.UserService = UserServie;
         }
         #endregion
-
-        // GET: Admin/Posts
-        public ActionResult PostsList()
+        // GET: Admin/Review
+        public ActionResult ReviewList()
         {
-
-            var model = PostInfoService.GetPostsInfoList();
-            var Models = new PostsListModel();
-            Models.PostsIteams = model.ToList();
-            return View(Models);
+            var model = repository.GetLatestReviewss().ToList();
+            var Model = new ReviewModel();
+            Model.ReviewItems = model;
+            return View(Model);
         }
         /// <summary>
-        /// 在线交流删除
+        /// 反馈删除
         /// </summary>
         /// <param name="FeedBackID"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult DeletePosts(int PostsID)
+        public ActionResult DeleteReview(int ReviewID)
         {
             if (CurrentUser.ManagerType != "超级管理员" || CurrentUser.ManagerType != "管理员")
             {
                 return Json(new { IsSuccess = 1, Message = "你无权限删除该数据！" });
             }
-            var result = PostInfoService.DeletePosts(PostsID);
+            var result = repository.DeleteReviews(ReviewID);
             if (result)
             {
-                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Posts", "在线交流帖子删除，删除的ID为：" + PostsID);
+                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Review", "意见反馈删除，删除的ID为：" + ReviewID);
                 return Json(new { IsSuccess = 0, Message = "删除成功！" });
             }
             return Json(new { IsSuccess = 1, Message = "删除失败，请稍后重试!" });
@@ -61,7 +59,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult BatchRemovePosts(string id)
+        public ActionResult BatchRemoveReview(string id)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -80,32 +78,31 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
                     NameList.Add(DataName[1]);
                 }
             }
-            if (PostInfoService.BatchRemovePosts(List))
+            if (repository.BatchRemoveReviews(List))
             {
                 for (int i = 0; i < NameList.Count; i++)
                 {
-                    log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Posts", "在线交流帖子删除，删除的信息为：" + NameList[i]);
+                    log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Review", "反馈信息删除，删除的信息为：" + NameList[i]);
                 }
                 return Json(new { IsSuccess = 0, Message = "删除成功！" });
             }
             return Json(new { IsSuccess = 1, Message = "删除失败，请稍后重试！" });
         }
-
         /// <summary>
-        /// 帖子搜索
+        /// 评论搜索
         /// </summary>
         /// <param name="NewsName"></param>
         /// <param name="startTime"></param>
         /// <param name="endTime"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult SerachPosts(string UserName, DateTime? startTime, DateTime? endTime)
+        public ActionResult SerachReview(string UserName, DateTime? startTime, DateTime? endTime)
         {
-            var Model = new PostsListModel();
-            var id = UserInfoService.SearchUserInfoINUserID(UserName).ToList();
-            var result = PostInfoService.SerachPosts(id, startTime, endTime).ToList();
-            Model.PostsIteams = result;
-            return View("PostsList", Model);
+            var Model = new ReviewModel();
+            var id = UserService.SearchUserInfoINUserID(UserName).ToList();
+            var result = repository.SerachReview(id, startTime, endTime).ToList();
+            Model.ReviewItems = result;
+            return View("ReviewList", Model);
         }
     }
 }

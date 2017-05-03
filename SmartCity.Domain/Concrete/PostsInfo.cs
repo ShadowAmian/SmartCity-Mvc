@@ -86,7 +86,7 @@ namespace SmartCity.Domain.Concrete
         public bool BatchRemovePosts(List<int> id)
         {
             var resule = Conn.Execute("delete from Posts_Table where PostsID in @PostsID ", new { PostsID = id.ToList() });
-            if (resule == 1)
+            if (resule > 0)
             {
                 return true;
             }

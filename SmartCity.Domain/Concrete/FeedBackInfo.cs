@@ -41,7 +41,7 @@ namespace SmartCity.Domain.Concrete
         public bool BatchRemoveFeedBack(List<int> id)
         {
             var resule = Conn.Execute("delete from Complaint_Table where ComplaintID in @ComplaintID ", new { ComplaintID = id.ToList() });
-            if (resule == 1)
+            if (resule >0)
             {
                 return true;
             }
