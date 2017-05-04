@@ -164,6 +164,7 @@
     <Content Include="Content\echarts.min.js" />
     <Content Include="Content\HomeStyle\logo2.png" />
     <Content Include="Content\HomeStyle\logo3.png" />
+    <Content Include="Content\HomeStyle\share.css" />
     <Content Include="Content\HomeStyle\图标.jpg" />
     <Content Include="Content\laydate\laydate.js" />
     <Content Include="Content\laydate\need\laydate.css" />
@@ -694,6 +695,7 @@
     <Compile Include="Infrastructure\EnumData\RepairType.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\CurrentReview.cs" />
+    <Compile Include="Models\FeedBackModel.cs" />
     <Compile Include="Models\FourumIndexModel.cs" />
     <Compile Include="Models\HomePageModel.cs" />
     <Compile Include="Models\PostsModel.cs" />

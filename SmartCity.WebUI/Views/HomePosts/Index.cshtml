@@ -12,8 +12,9 @@
     <title>分类交流模块</title>
     <link href="~/Content/HomeStyle/um.css" id="um-css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/HomeStyle/font-awesome.css" id="fa-css" rel="stylesheet" type="text/css" media="all" />
-    <link href="~/Content/HomeStyle/style.css" id="style-css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/layui.css" rel="stylesheet" />
+    <link href="~/Content/HomeStyle/style.css" id="style-css" rel="stylesheet" type="text/css" media="all" />
+
     <script type="text/javascript" src="~/Content/HomeStyle/jquery.min.js"></script>
     <script type="text/javascript" src="~/Content/HomeStyle/jquery.js"></script>
     <script src="~/Content/HomeStyle/hm.js"></script>
@@ -119,18 +120,18 @@
                 <div id="divContent">
                     @foreach (var item in Model.PostsItems)
                     {
-                    <article class="excerpt">
-                        <div class="focus"><a target="_blank" href=""></a></div>
-                        <header>
-                            <a class="label label-important" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })">@item.PostsLable<i class="label-arrow"></i></a><h2><a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })" title="@item.PostsTitle">@item.PostsTitle </a></h2>
-                        </header>
-                        <p class="auth-span">
-                            <span class="muted"><i class="fa fa-clock-o"></i>@item.CreateTime.ToString()</span> <span class="muted"><i class="fa fa-eye"></i> @item.TimesWatched</span> <span class="muted"><i class="fa fa-comments-o"></i> <a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })">@(item.CommentsNumber + "评论")</a></span>
-                        </p>
-                        <span class="note">
-                            @item.BriefContent
-                        </span>
-                    </article>
+                        <article class="excerpt">
+                            <div class="focus"><a target="_blank" href=""></a></div>
+                            <header>
+                                <a class="label label-important" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })">@item.PostsLable<i class="label-arrow"></i></a><h2><a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })" title="@item.PostsTitle">@item.PostsTitle </a></h2>
+                            </header>
+                            <p class="auth-span">
+                                <span class="muted"><i class="fa fa-clock-o"></i>@item.CreateTime.ToString()</span> <span class="muted"><i class="fa fa-eye"></i> @item.TimesWatched</span> <span class="muted"><i class="fa fa-comments-o"></i> <a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })">@(item.CommentsNumber + "评论")</a></span>
+                            </p>
+                            <span class="note">
+                                @item.BriefContent
+                            </span>
+                        </article>
                     }
                 </div>
 
