@@ -681,6 +681,7 @@
     <Compile Include="Areas\Admin\Models\SysLogs\SysLogModel.cs" />
     <Compile Include="Areas\Admin\Models\UserListModel.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HomeFeedbackController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeLoginController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
@@ -761,6 +762,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\HomePosts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Review\ReviewList.cshtml" />
+    <Content Include="Views\HomeFeedback\FeedBackIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -774,6 +776,7 @@
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Content\lay\lib\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Feedback\" />
     <Folder Include="Views\HomeLogin\" />
     <Folder Include="Views\Posts\" />
   </ItemGroup>

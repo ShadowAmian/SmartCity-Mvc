@@ -16,7 +16,7 @@ namespace SmartCity.Domain.Concrete
     public class PostsInfo : RepositoryContext, IPostsInfo
     {
         /// <summary>
-        ///获取报修信息集合
+        ///获取帖子信息集合
         /// </summary>
         /// <returns></returns>
         public IEnumerable<Posts> GetPostsInfoList()
@@ -24,7 +24,7 @@ namespace SmartCity.Domain.Concrete
             return Conn.Query<Posts, User, Posts>("select * from Posts_Table as P join User_Table as u on P.UserID=u.OwnerID  ", (posts, user) => { posts.UserModel = user; return posts; }, splitOn: "OwnerID");
         }
         /// <summary>
-        ///获取报修信息集合
+        ///获取帖子信息集合
         /// </summary>
         /// <returns></returns>
         public IEnumerable<Posts> GetPostsInfoListByPage(int PageSize,int PageIndex,out int TotalPage)
@@ -36,7 +36,7 @@ namespace SmartCity.Domain.Concrete
             return Conn.Query<Posts, User, Posts>(sql, (posts, user) => { posts.UserModel = user; return posts; },new { PageSize = PageSize, PageCount = PageCount }, splitOn: "OwnerID");
         }
         /// <summary>
-        ///获取报修信息集合
+        ///获取帖子信息集合
         /// </summary>
         /// <returns></returns>
         public IEnumerable<Posts> GetPostsInfoListByPageAndType(int PageSize, int PageIndex, out int TotalPage,string PostsLaber)
@@ -49,7 +49,7 @@ namespace SmartCity.Domain.Concrete
         }
 
         /// <summary>
-        ///获取报修信息集合
+        ///获取帖子信息集合
         /// </summary>
         /// <returns></returns>
         public IEnumerable<Posts> GetPostsInfoByID(int id)
@@ -57,7 +57,7 @@ namespace SmartCity.Domain.Concrete
             return Conn.Query<Posts, User, Posts>("select * from Posts_Table as P join User_Table as u on P.UserID=u.OwnerID where PostsID=@PostsID ", (posts, user) => { posts.UserModel = user; return posts; }, new { PostsID = id }, null, true, splitOn: "OwnerID");
         }
         /// <summary>
-        /// 获取热门报修信息集合
+        /// 获取热门帖子信息集合
         /// </summary>
         /// <returns></returns>
         public IEnumerable<Posts> GetHotPostsInfo()
@@ -65,7 +65,7 @@ namespace SmartCity.Domain.Concrete
             return Conn.Query<Posts, User, Posts>("select top 5 * from Posts_Table as P join User_Table as u on P.UserID=u.OwnerID  order by TimesWatched desc;", (posts, user) => { posts.UserModel = user; return posts; }, splitOn: "OwnerID");
         }
         /// <summary>
-        /// 删除在线交流内容
+        /// 删除在线帖子内容
         /// </summary>
         /// <param name="NewsID"></param>
         /// <returns></returns>
@@ -155,5 +155,22 @@ namespace SmartCity.Domain.Concrete
             }
             return false;
         }
+
+        /// <summary>
+        /// 帖子信息添加
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool PostsAdd(Posts model)
+        {
+            var resule = Conn.Execute("Insert into Posts_Table values(@PostsTitle,@PostsLable,@CreateTime,@TimesWatched,@CommentsNumber,@BriefContent,@Contents,@UserID)", model);
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
     }
 }

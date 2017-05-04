@@ -64,11 +64,16 @@ namespace SmartCity.Domain.Abstract
         /// </summary>
         /// <returns></returns>
          IEnumerable<Posts> GetPostsInfoListByPage(int PageSize, int PageIndex, out int TotalPage);
-
         /// <summary>
         ///获取报修信息集合(根据类型)
         /// </summary>
         /// <returns></returns>
         IEnumerable<Posts> GetPostsInfoListByPageAndType(int PageSize, int PageIndex, out int TotalPage, string PostsLaber);
+        /// <summary>
+        /// 帖子信息添加
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+         bool PostsAdd(Posts model);
     }
 }

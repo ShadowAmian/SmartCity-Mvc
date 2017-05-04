@@ -32,5 +32,11 @@ namespace SmartCity.Domain.Abstract
         /// <param name="NewsID"></param>
         /// <returns></returns>
         IEnumerable<FeedBack> SerachFeedBack(List<int> id, DateTime? startTime, DateTime? endTime);
+        /// <summary>
+        /// 反馈信息添加
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+         bool FeedBackAdd(FeedBack model);
     }
 }

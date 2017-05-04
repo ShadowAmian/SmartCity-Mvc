@@ -73,5 +73,20 @@ namespace SmartCity.Domain.Concrete
             }
             return Conn.Query<FeedBack, User, FeedBack>(sql, (feedback, user) => { feedback.OwnerInfo = user; return feedback; }, new { OwnerID = id, Time1 = startTime, Time2 = endTime },null,true, splitOn: "OwnerID");
         }
+
+        /// <summary>
+        /// 反馈信息添加
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool FeedBackAdd(FeedBack model)
+        {
+            var resule = Conn.Execute("Insert into Complaint_Table values(@ComplaintID,@OwnerID,@ComplaintContent,@CreateTime)", model);
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

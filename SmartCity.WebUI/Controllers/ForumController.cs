@@ -127,20 +127,29 @@ namespace SmartCity.WebUI.Controllers
             }
             return Json(new { IsSuccess = 1, Message = "对不起，你还未登陆，不能进行评论！" });
         }
-
+        [HttpPost]
         public ActionResult PostsAdd(string Title,string Content,string PostsLable)
         {
-            var model =new Posts();
-            model.PostsTitle = Title;
-            model.PostsLable = PostsLable;
-            model.Contents = Content;
-            model.BriefContent = Content;
-            model.TimesWatched = 0;
-            model.CommentsNumber = 0;
-            model.CreateTime = DateTime.Now;
-            model.UserID = CurrentUserInfo.OwnerID;
+            if (CurrentUserInfo != null)
+            {
+                var model = new Posts();
+                model.PostsTitle = Title;
+                model.PostsLable = PostsLable;
+                model.Contents = Content;
+                model.BriefContent = Content;
+                model.TimesWatched = 0;
+                model.CommentsNumber = 0;
+                model.CreateTime = DateTime.Now;
 
-            return View();
+                model.UserID = CurrentUserInfo.OwnerID;
+                var result = PostInfoService.PostsAdd(model);
+                if (result)
+                {
+                    return Json(new { IsSuccess = 0, Message = "发帖成功！" });
+                }
+                return Json(new { IsSuccess = 1, Message = "发帖失败，请稍后重试！" });
+            }
+            return Json(new { IsSuccess = 1, Message = "对不起，你还未登陆，不能进行发帖！" });
         }
 
     }

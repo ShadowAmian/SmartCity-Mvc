@@ -23,6 +23,14 @@ namespace SmartCity.Domain.Concrete
             return Conn.Query<Notice>("select * from News_Table");
         }
         /// <summary>
+        /// 获取已发布的通知公告
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Notice> GetNewsListByPublished()
+        {
+            return Conn.Query<Notice>("select * from News_Table where PublishStatus=0");
+        }
+        /// <summary>
         /// 通告资讯添加
         /// </summary>
         /// <param name="model"></param>

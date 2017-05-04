@@ -21,6 +21,10 @@ namespace SmartCity.Domain.Entities
         /// </summary>
         public User OwnerInfo { get; set; }
         /// <summary>
+        /// 用户编号
+        /// </summary>
+        public int OwnerID { get; set; }
+        /// <summary>
         /// 意见内容
         /// </summary>
         public string ComplaintContent { get; set; }

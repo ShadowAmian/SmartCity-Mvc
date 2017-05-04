@@ -28,6 +28,11 @@ namespace SmartCity.Domain.Abstract
         /// <returns></returns>
         bool EditPublishStatu(int ID, int Status);
         /// <summary>
+        /// 得到最新的通知
+        /// </summary>
+        /// <returns></returns>
+         IEnumerable<Notice> GetNewsListByPublished();
+        /// <summary>
         /// 修改公告
         /// </summary>
         /// <param name="ID"></param>

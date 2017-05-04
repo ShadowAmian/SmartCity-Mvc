@@ -401,19 +401,18 @@
             param.PostsLable=$("#PostsLable").val();
             $.ajax({
                 type: 'POST',
-                url: '/HomePage/GetPostInfoByPage',
+                url: '/Forum/PostsAdd',
                 data: param,
                 success: function (result) {
-                    var Content = "";
                     if (result.IsSuccess == 0) {
-                        
+                        window.location.reload();
                     } else {
                         layer.msg(result.Message, { icon: 2 });
                     }
                 },
                 datatype: "json",
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    layer.msg('获取信息失败，请稍后重试！', { icon: 2 });
+                    layer.msg('添加失败，请稍后重试！', { icon: 2 });
                 }
             });
             param = null;

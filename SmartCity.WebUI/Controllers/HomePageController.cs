@@ -38,7 +38,7 @@ namespace SmartCity.WebUI.Controllers
             var model = SessionHelper.GetSession("HomeUserInfo");
             //获取通知公告
             var Model = new HomePageModel();
-            var result = NewsInfoService.GetNewsList().ToList();
+            var result = NewsInfoService.GetNewsListByPublished().ToList();
             Model.NewsItems = result;
             int PageCount = 0;
             //获取论坛
@@ -73,6 +73,5 @@ namespace SmartCity.WebUI.Controllers
             var model = PostInfoService.GetPostsInfoListByPage(PageCounts, Curr, out PageCount).ToList();
             return Json(new { IsSuccess = 0, Items = model });
         }
-
     }
 }
