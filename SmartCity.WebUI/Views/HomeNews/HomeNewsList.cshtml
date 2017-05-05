@@ -1,0 +1,399 @@
+﻿@model SmartCity.WebUI.Models.HomeNewsModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>通知公告</title>
+    <link href="~/Content/HomeStyle/um.css" id="um-css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/HomeStyle/font-awesome.css" id="fa-css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/layui.css" rel="stylesheet" />
+    <link href="~/Content/HomeStyle/style.css" id="style-css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="~/Content/HomeStyle/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/HomeStyle/jquery.js"></script>
+    <script src="~/Content/HomeStyle/hm.js"></script>
+    <script type="text/javascript">
+        window._deel = { name: '翠竹林小区物业系统', url: '#', ajaxpager: '', commenton: 0, roll: [0] }
+    </script>
+</head>
+<body>
+    <header id="masthead" class="site-header">
+        <nav id="top-header">
+            <div class="top-nav">
+                <div id="user-profile">
+                    <span class="nav-set">
+                        <span class="nav-login">
+                            <a id="Tile1" href="@Model.TitleUrL1" class="signin-loader">@Model.Title1</a>&nbsp; &nbsp; <a id="Title2" href="@Model.TitleUrl2" class="signup-loader">@Model.Tiltle2</a>
+                        </span>
+                    </span>
+                </div>
+                <div class="menu-container">
+                    <ul id="menu-%e5%a4%b4%e9%83%a8" class="top-menu">
+                        <a target="_blank" href="#">关于我们</a> |
+                        <a target="_blank" href="#">联系我们</a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="nav-header" class="fixed shadow">
+            <div id="top-menu">
+                <div id="top-menu_1">
+                    <span class="nav-search"><i class="fa fa-search"></i></span> <span class="nav-search_1"><a href="#"><i class="fa fa-navicon"></i></a></span>
+                    <hgroup class="logo-site" style="margin-top: 5px;">
+                        <h1 class="site-title"> <a href="#"><img src="~/Content/HomeStyle/logo.png" alt="小区物业管理"></a></h1>
+                    </hgroup>
+                    <div id="site-nav-wrap">
+                        <nav id="site-nav" class="main-nav">
+                            <div>
+                                <ul class="down-menu nav-menu">
+                                    <li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-23"><a href="#" style="padding: 10px;">首页</a></li>
+                                    <li id="menu-item-193" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-193">
+                                        <a href="#" style="padding: 10px;">通知公告</a>
+                                        <ul class="sub-menu" style="padding-top: 5px;">
+                                            <li id="menu-item-194" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a href="#" style="padding: 10px;">日常通告</a></li>
+                                            <li id="menu-item-192" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-192"><a href="#" style="padding: 10px;">行业资讯</a></li>
+                                            <li id="menu-item-191" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-191"><a href="#" style="padding: 10px;">缴费通知</a></li>
+                                        </ul>
+                                    </li>
+                                    <li id="menu-item-204" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="#" style="padding: 10px;">在线交流</a></li>
+                                    <li id="menu-item-201" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201"><a href="#" style="padding: 10px;">在线报修</a></li>
+                                    <!--<li id="menu-item-202" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-202"><a href="#" style="padding: 10px;">网站运营</a></li>-->
+                                    <li id="menu-item-205" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-205"><a href="#" style="padding: 10px;">关于我们</a></li>
+                                    <li id="menu-item-212" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="#" style="padding: 10px;">投稿</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <ul class="nav_sj" id="nav-search_1">
+                <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-23"><a href="#">首页</a></li>
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-193">
+                    <a href="#">通知公告</a>
+                    <ul class="sub-menu">
+                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a href="#">日常通告</a></li>
+                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-192"><a href="#">行业资讯</a></li>
+                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-191"><a href="#">缴费通知</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="#">在线交流</a></li>
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201"><a href="#">在线报修</a></li>
+                <!--<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-202"><a href="#">网站运营</a></li>-->
+                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-205"><a href="#">关于我们</a></li>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="#">投稿</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="search-main">
+        <div id="searchbar">
+            <form id="searchform" action="#" method="get">
+                <input id="s" type="text" required="" placeholder="输入搜索内容" name="s" value="">
+                <button id="searchsubmit" type="submit">搜索</button>
+            </form>
+        </div>
+        <div id="searchbar">
+            <form id="searchform" target="_blank" action="#" method="get">
+                <input type="hidden" name="entry" value="1">
+                <input class="swap_value" name="q" placeholder="输入百度站内搜索关键词">
+                <button id="searchsubmit" type="submit">百度</button>
+            </form>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <section class="container">
+        <div class="speedbar">
+        </div>
+        <div class="content-wrap">
+            <div class="content">
+                <header class="archive-header"><h1>通知公告</h1></header>
+                <div id="divContent">
+                    @foreach (var item in Model.NewsItems)
+                    {
+                        <article class="excerpt">
+                            <div class="focus"><a target="_blank" href="#"><img class="thumb" src="@item.NewsImages" alt="@item.NewsTitle"></a></div>
+                            <header>
+                                <a class="label label-important" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.NewsID } })">@item.NewsSimpleTitle<i class="label-arrow"></i></a><h2><a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.NewsID } })" title="@item.NewsTitle">@item.NewsTitle </a></h2>
+                            </header>
+                            <p class="auth-span">
+                                <span class="muted"><i class="fa fa-clock-o"></i>@item.CreateTime.ToString()</span> 
+                            </p>
+                            <span class="note">
+                                @item.NewsDigest
+                            </span>
+                        </article>
+                    }
+                </div>
+                <div class="pagination" id="demo3">
+
+                </div>
+                <div class="pagination" id="demo3"> </div>
+            </div>
+        </div>
+        <aside class="sidebar">
+            <div class="widget widget_text">
+                <div class="textwidget">
+                    <div class="social">
+                        <a href="#" rel="external nofollow" data-original-title="新浪微博"><i class="sinaweibo fa fa-weibo"></i></a><a href="#" rel="external nofollow" data-original-title="腾讯微博"><i class="tencentweibo fa fa-tencent-weibo"></i></a><a class="weixin"><i class="weixins fa fa-weixin"></i><div class="weixin-popover"><div class="popover bottom in"><div class="arrow"></div><div class="popover-title">小区订阅号</div><div class="popover-content"><img src="../Content/HomeStyle/weixin.gif"></div></div></div></a><a href="#" rel="external nofollow" data-original-title="联系QQ"><i class="qq fa fa-qq"></i></a><a href="#" rel="external nofollow" data-original-title="订阅本站"><i class="rss fa fa-rss"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="widget d_textbanner">
+                <a class="style03" href="#">
+                    <strong>加群啦</strong><h2>小区QQ群-主群</h2><p>
+                        小区QQ群-主群 群号：847712857，欢迎大家！
+                        <br>
+                        小区QQ群-①群 群号：847712857，欢迎大家！
+                        <br>
+                        小区QQ群-②群 群号：847712857，欢迎大家！
+                        <br>
+                    </p>
+                </a>
+            </div><div class="widget d_textbanner"><a class="style01" href="#"><strong>翠竹林小区物业网站</strong><h2>吐血推荐</h2><p>欢迎你的使用，我们会积极推动社区生态圈的繁荣昌盛，并最终促进物业管理的良性发展和社区生活方式的蝶变式进化。</p></a></div> <div class="widget widget_umucenter form-inline">
+                <li><span class="local-account"><a data-sign="0" class="btn btn-primary user-login"><i class="fa fa-wordpress"></i>本地帐号</a></span><span class="other-sign"><a class="qqlogin btn" href="#"><i class="fa fa-qq"></i><span>QQ 登 录</span></a></span><span class="other-sign"><a class="weibologin btn" href="#"><i class="fa fa-weibo"></i><span>微博登录</span></a></span></li>
+            </div><div class="widget d_postlist">
+                <div class="title"><h2><sapn class="title_span">热门推荐</sapn></h2></div><ul>
+                    @foreach (var item in Model.HotPostsItems)
+                    {
+                        <li><a href="#" title="@item.PostsTitle" style="padding-left:15px"><span class="text">@item.PostsTitle </span><span class="muted">@item.CreateTime</span><span class="muted_1">@(item.CommentsNumber + "评论")</span></a></li>
+                    }
+                </ul>
+            </div>
+            <div class="widget d_banner">
+                <div class="d_banner_inner">
+                    <img class="alignnone size-full wp-image-516" src="~/Content/HomeStyle/t01605ab9200e1b43f8.jpg" alt="ddy" width="308">
+                </div>
+            </div>
+            <div class="widget d_tag">
+                <div class="title">
+                    <h2><sapn class="title_span">标签云</sapn></h2>
+                </div><div class="d_tags">
+                    @foreach (var item in Model.PostsTypeItems)
+                    {
+                        <a title="" href="@Url.Action("Index","HomePosts",new RouteValueDictionary { { "PostsLable" , item.PostsLable } })" data-original-title="@(item.PostsLableCount+"个话题")">@(item.PostsLable + "(" + item.PostsLableCount + ")")</a>
+                    }
+                </div>
+            </div>
+            <div class="widget d_comment">
+                <div class="title">
+                    <h2><sapn class="title_span">最新评论</sapn></h2>
+                </div>
+                <ul>
+                    @foreach (var item in Model.LatestReviewsItems)
+                    {
+                        <li>
+                            <a href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID", item.PostsModel.PostsID } })" title="@item.PostsModel.PostsTitle">
+                                <img alt="" data-original="http://demo7.ledkongzhiqi.com/avatar/36*b1ba69f855c62a7033283fbb625b9950.jpg" srcset="http://demo7.ledkongzhiqi.com/avatar/72*b1ba69f855c62a7033283fbb625b9950.jpg" class="avatar avatar-36 photo" height="36" width="36" src="../Content/HomeStyle/default.png"> <div class="muted"><i>@item.UserModel.UserName</i>&nbsp;&nbsp;@(TimeHelper.GetTimeSpan(item.CreateTime) + "(" + item.CreateTime.ToString("yyyy-MM-dd") + ")说：")<br>@item.ReviewContent</div>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div><div class="widget widget_text">
+                <div class="title"><h2><sapn class="title_span">友情链接</sapn></h2></div> <div class="textwidget"><div class="d_tags_1"> <a target="_blank" href="http://www.iwuye.com/">物业之家</a> <a target="_blank" href="http://news.combpm.com/">物业资讯</a> </div></div>
+            </div>
+        </aside>
+    </section>
+    <div class="branding branding-black">
+        <div class="container_f">
+            <h2>高效，专业，小区管理系统</h2><a class="btn btn-lg" href="#" target="_blank">联系我们</a>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>
+                <a href="#" title="翠竹林">翠竹林小区物业管理</a> 版权所有，保留一切权利 翠竹林小区物业管理&nbsp;&nbsp;
+            </p>
+            <p>小区物业管理 by <a title="翠竹林" href="#">翠竹林</a> </p>
+        </div>
+    </footer>
+    <div class="overlay-login"></div>
+    <div id="sign" class="um_sign">
+        <div class="part loginPart">
+            <form id="login" method="post" novalidate="novalidate">
+                <div id="register-active" class="switch"><i class="fa fa-toggle-on"></i>切换注册</div> <h3>登录<p class="status"></p></h3>
+                <p>
+                    <label class="icon" for="username"><i class="fa fa-user"></i></label>
+                    <input class="input-control" id="username" name="Account" type="text" placeholder="请输入用户名" aria-required="true">
+                </p>
+                <p>
+                    <label class="icon" for="password"><i class="fa fa-lock"></i></label>
+                    <input class="input-control" id="password" name="Password" type="password" placeholder="请输入密码" aria-required="true">
+                </p>
+                <p class="safe">
+                    <label class="remembermetext" for="rememberme"><input name="rememberme" type="checkbox" checked="checked" id="rememberme" class="rememberme" value="forever">记住我的登录</label>
+                    <a class="lost" href="#">忘记密码 ?</a>
+                </p>
+                <p>
+                    <input class="submit" type="button" id="Login" value="登录" name="submit">
+                </p>
+            </form>
+            <a class="close"><i class="fa fa-times"></i></a>
+            <div class="other-sign">
+                <p>您也可以使用第三方帐号快捷登录</p>
+                <div><a class="qqlogin" href="#"><i class="fa fa-qq"></i><span>Q Q 登 录</span></a></div>
+                <div><a class="weibologin" href="#"><i class="fa fa-weibo"></i><span>微 博 登 录</span></a></div>
+            </div>
+        </div>
+        <div class="part registerPart">
+            <form id="register" action="#" method="post" novalidate="novalidate">
+                <div id="login-active" class="switch"><i class="fa fa-toggle-off"></i>切换登录</div>
+                <h3>注册<p class="status"></p></h3>
+                <p>
+                    <label class="icon" for="user_name"><i class="fa fa-user"></i></label>
+                    <input class="input-control" id="user_name" type="text" name="user_name" placeholder="输入英文用户名" required="" aria-required="true">
+                </p>
+                <p>
+                    <label class="icon" for="user_email"><i class="fa fa-envelope"></i></label>
+                    <input class="input-control" id="user_email" type="email" name="user_email" placeholder="输入常用邮箱" required="" aria-required="true">
+                </p>
+                <p>
+                    <label class="icon" for="user_pass"><i class="fa fa-lock"></i></label>
+                    <input class="input-control" id="user_pass" type="password" name="user_pass" placeholder="密码最小长度为6" required="" aria-required="true">
+                </p>
+                <p>
+                    <label class="icon" for="user_pass2"><i class="fa fa-retweet"></i></label>
+                    <input class="input-control" type="password" id="user_pass2" name="user_pass2" placeholder="再次输入密码" required="" aria-required="true">
+                </p>
+                <p id="captcha_inline">
+                    <input class="submit inline" type="submit" value="注册" name="submit">
+                </p>
+                <a class="close"><i class="fa fa-times"></i></a>
+                <input type="hidden" id="user_security" name="user_security" value="7482b43d85"><input type="hidden" name="_wp_http_referer" value="/">
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="~/Content/HomeStyle/um.js"></script>
+    <script type="text/javascript" src="~/Content/HomeStyle/wp-embed.min.js"></script>
+    <script src="~/Content/layui.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?b6a5503b5e70ed8d54e977378ec0d39d";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        //用户登录
+        $('#Login').click(function () {
+            var param = {};
+            param.Account = $("#username").val();
+            param.Password = $("#password").val();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("UserLogin", "HomeLogin")',
+                dataType: 'json',
+                data: param,
+                success: function (data) {
+                    if (data.Status == "y") {
+                        window.location.reload();
+                    }
+                    else {
+                        layer.msg("登录失败，请稍后重试！", { icon: 1, time: 1000 });
+                    }
+                },
+                error: function (data) {
+                    layer.msg(data.msg, { icon: 1, time: 1000 });
+                },
+            });
+        });
+        layui.use(['laypage', 'layer', "jquery"], function () {
+            var laypage = layui.laypage, layer = layui.layer, $ = layui.jquery;
+            var total = @Model.PageCount;
+            layer.ready(function () {
+                laypage({
+                    cont: 'demo3',
+                    pages: total,
+                    curr: 1,
+                    groups: 5,
+                    skin: '#009688',
+                    jump: function (obj, first) {
+                        if (!first) {
+                            var curr = obj.curr;
+                            LoadPosts(curr);
+                        }
+                    }
+                });
+            });
+        });
+        Date.prototype.Format = function (fmt) {
+            var o = {
+                "M+": this.getMonth() + 1,                 //月份
+                "d+": this.getDate(),                    //日
+                "h+": this.getHours(),                   //小时
+                "m+": this.getMinutes(),                 //分
+                "s+": this.getSeconds(),                 //秒
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+                "S": this.getMilliseconds()             //毫秒
+            };
+            if (/(y+)/.test(fmt))
+                fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt))
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+        function LoadPosts(curr) {
+            var param = {};
+            param.Curr = curr;
+            $.ajax({
+                type: 'POST',
+                url: '/HomePage/GetPostInfoByPage',
+                data: param,
+                success: function (result) {
+                    var Content = "";
+                    if (result.IsSuccess == 0) {
+                        $(result.Items).each(function (n, Row) {
+                            Content += "<article class='excerpt'><div class='focus'><a target='_blank' href=''></a></div><header>";
+                            Content += "<a class='label label-important' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.PostsLable+"<i class='label-arrow'></i></a><h2><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"' title="+Row.PostsTitle+">"+Row.PostsTitle+" </a></h2>";
+                            Content += "</header><p class='auth-span'>";
+                            Content += "<span class='muted'><i class='fa fa-clock-o'></i>"+eval('new ' + Row.CreateTime.replace(/\//g, '')).Format('yyyy-MM-dd hh:mm:ss')+"";
+                            Content+="</span><span class='muted'><i class='fa fa-eye'></i>"+Row.TimesWatched+"</span><span class='muted'><i class='fa fa-comments-o'></i><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.CommentsNumber+"评论</a></span>";
+                            Content += "</p><span class='note'>"+Row.BriefContent+"</span></article>";
+                        })
+                        $("#divContent").empty();
+                        $("#divContent").html(Content);
+                        Content = null;
+                    } else {
+                        layer.msg(result.Message, { icon: 2 });
+                    }
+                },
+                datatype: "json",
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    layer.msg('获取信息失败，请稍后重试！', { icon: 2 });
+                }
+            });
+            param = null;
+        }
+
+        $('#tougao-submit').click(function () {
+            var param={};
+            param.Title=$("#tougao-title").val();
+            param.Content=$("#tougao-content").val();
+            param.PostsLable=$("#PostsLable").val();
+            $.ajax({
+                type: 'POST',
+                url: '/Forum/PostsAdd',
+                data: param,
+                success: function (result) {
+                    if (result.IsSuccess == 0) {
+                        window.location.reload();
+                    } else {
+                        layer.msg(result.Message, { icon: 2 });
+                    }
+                },
+                datatype: "json",
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    layer.msg('添加失败，请稍后重试！', { icon: 2 });
+                }
+            });
+            param = null;
+        });
+    </script>
+    <div class="rollto" style="display: block;"><button class="btn btn-inverse" data-type="totop" title="回顶部"><i class="fa fa-arrow-up"></i></button></div>
+</body>
+</html>
