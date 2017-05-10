@@ -1,21 +1,22 @@
-﻿@model SmartCity.WebUI.Models.HomePageModel
+﻿@model SmartCity.WebUI.Models.PostsModel
 @using SmartCity.Common
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>翠竹林小区首页</title>
+    <title>在线交流模块</title>
     <link href="~/Content/HomeStyle/um.css" id="um-css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/HomeStyle/font-awesome.css" id="fa-css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/layui.css" rel="stylesheet" />
     <link href="~/Content/HomeStyle/style.css" id="style-css" rel="stylesheet" type="text/css" media="all" />
+
     <script type="text/javascript" src="~/Content/HomeStyle/jquery.min.js"></script>
     <script type="text/javascript" src="~/Content/HomeStyle/jquery.js"></script>
-
     <script src="~/Content/HomeStyle/hm.js"></script>
     <script>
         window._deel = { name: '翠竹林小区物业系统', url: '#', ajaxpager: '', commenton: 0, roll: [0] }
@@ -51,15 +52,20 @@
                         <nav id="site-nav" class="main-nav">
                             <div>
                                 <ul class="down-menu nav-menu">
-                                    <li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-23"><a href="#" style="padding: 10px;">首页</a></li>
+                                    <li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-23"><a href="#" style="padding: 10px;">首页</a></li>
                                     <li id="menu-item-193" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-193">
-                                        <a href="@Url.Action("HomeNewsList","HomeNews")" style="padding: 10px;">通知公告</a>
+                                        <a href="#" style="padding: 10px;">通知公告</a>
+                                        <ul class="sub-menu" style="padding-top: 5px;">
+                                            <li id="menu-item-194" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a href="#" style="padding: 10px;">日常通告</a></li>
+                                            <li id="menu-item-192" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-192"><a href="#" style="padding: 10px;">行业资讯</a></li>
+                                            <li id="menu-item-191" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-191"><a href="#" style="padding: 10px;">缴费通知</a></li>
+                                        </ul>
                                     </li>
-                                    <li id="menu-item-204" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="@Url.Action("HomePostAllList", "HomePosts")" style="padding: 10px;">在线交流</a></li>
+                                    <li id="menu-item-204" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="#" style="padding: 10px;">在线交流</a></li>
                                     <li id="menu-item-201" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201"><a href="#" style="padding: 10px;">在线报修</a></li>
                                     <!--<li id="menu-item-202" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-202"><a href="#" style="padding: 10px;">网站运营</a></li>-->
                                     <li id="menu-item-205" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-205"><a href="#" style="padding: 10px;">关于我们</a></li>
-                                    <li id="menu-item-212" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="@Url.Action("FeedBackIndex","HomeFeedback")" style="padding: 10px;">意见反馈</a></li>
+                                    <li id="menu-item-212" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="#" style="padding: 10px;">投稿</a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -71,13 +77,18 @@
             <ul class="nav_sj" id="nav-search_1">
                 <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-23"><a href="#">首页</a></li>
                 <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-193">
-                    <a href="@Url.Action("HomeNewsList","HomeNews")">通知公告</a>
+                    <a href="#">通知公告</a>
+                    <ul class="sub-menu">
+                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a href="#">日常通告</a></li>
+                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-192"><a href="#">行业资讯</a></li>
+                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-191"><a href="#">缴费通知</a></li>
+                    </ul>
                 </li>
-                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="@Url.Action("HomePostAllList", "HomePosts")">在线交流</a></li>
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="#">在线交流</a></li>
                 <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201"><a href="#">在线报修</a></li>
                 <!--<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-202"><a href="#">网站运营</a></li>-->
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-205"><a href="#">关于我们</a></li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="@Url.Action("FeedBackIndex","HomeFeedback")">意见反馈</a></li>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="#">投稿</a></li>
             </ul>
         </nav>
     </header>
@@ -100,58 +111,12 @@
     <section class="container">
         <div class="speedbar">
         </div>
+        <input type="hidden" id="PostsLable" value="@Model.PostsItems.First().PostsLable" />
         <div class="content-wrap">
             <div class="content">
-                <div class="slick_bor">
-                    <script src="../Content/HomeStyle/responsiveslides.min.js"></script>
-                    <ul class="slick centered-btns centered-btns1" style="max-width: 1903px;">
-                        <li id="centered-btns1_s0" class="" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;"><a href="#"><img class="img_855x300" src="../Images/lunbo1.jpg" alt=""><span></span></a></li>
-                        <li id="centered-btns1_s1" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Images/lunbo2.png" alt=""><span></span></a></li>
-                        <li id="centered-btns1_s2" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Images/lunbo3.png" alt=""><span></span></a></li>
-                        <li id="centered-btns1_s3" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Images/lunbo4.png" alt=""><span></span></a></li>
-                        <li id="centered-btns1_s4" style="display: list-item; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 700ms ease-in-out;" class=""><a href="#"><img class="img_855x300" src="../Content/HomeStyle/1459482861977PCf404011.jpg" alt=""><span></span></a></li>
-                    </ul>
-                    <a href="#" class="centered-btns_nav centered-btns1_nav prev">Previous</a><a href="#" class="centered-btns_nav centered-btns1_nav next">Next</a><ul class="centered-btns_tabs centered-btns1_tabs"><li class="centered-btns1_s1"><a href="#" class="centered-btns1_s1">1</a></li><li class="centered-btns1_s2"><a href="#" class="centered-btns1_s2">2</a></li><li class="centered-btns1_s3"><a href="#" class="centered-btns1_s3">3</a></li><li class="centered-btns1_s4"><a href="#" class="centered-btns1_s4">4</a></li><li class="centered-btns1_s5 centered-btns_here"><a href="#" class="centered-btns1_s5">5</a></li></ul>
-                    <script>
-                        $(function () {
-                            var mx = document.body.clientWidth;
-                            $(".slick").responsiveSlides({
-                                auto: true,
-                                pager: true,
-                                nav: true,
-                                speed: 700,
-                                timeout: 7000,
-                                maxwidth: mx,
-                                namespace: "centered-btns"
-                            });
-                        });
-                    </script>
-                    <div class="ws_shadow"></div>
-                </div>
-                <div class="daodu clr">
-                    <div class="tip">
-                        <h4>通知公告</h4>
-                    </div>
-                    <ul class="dd-list">
-                        @for (int i = 0; i < 4; i++)
-                        {
-                            <li>
-                                <figure class="dd-img">
-                                    <a title="@Model.NewsItems[i].NewsTitle" target="_blank" href="#">
-                                        <img src="@Model.NewsItems[i].NewsImages" style="display: inline;width:168px;height:112px;" alt="@Model.NewsItems[i].NewsTitle">
-                                    </a>
-                                </figure>
-                                <div class="dd-content">
-                                    <h2 class="dd-title"> <a rel="bookmark" title="@Model.NewsItems[i].NewsTitle" href="#">@Model.NewsItems[i].NewsTitle</a> </h2>
-                                    <div class="dd-site xs-hidden">
-                                        @Model.NewsItems[i].NewsDigest
-                                    </div>
-                                </div>
-                            </li>
-                        }
-                    </ul>
-                </div>
-                <header class="archive-header"><h1>在线交流</h1></header>
+                <header class="archive-header">
+                    <h1><i class="fa fa-folder-open"></i>  &nbsp;在线交流  <a title="在线交流" target="_blank" href="#"><i class="rss fa fa-rss"></i></a></h1>
+                </header>
                 <div id="divContent">
                     @foreach (var item in Model.PostsItems)
                     {
@@ -169,9 +134,35 @@
                         </article>
                     }
                 </div>
-                <div class="pagination" id="demo3">
-                    
+
+                <div class="pagecontent" style="margin-left:0px">
+                    <header class="pageheader clearfix">
+                        <h1 class="pull-left">
+                            <a href="#">发帖交流</a>
+                        </h1>
+                    </header>
+                    <article class="article-content"></article>
+                    <ul class="submit-form">
+                        <li>
+                            <strong>标题</strong>
+                            <input id="tougao-title" class="input-block-level" type="text" size="40" placeholder="写点什么..." style="margin-top:10px; margin-bottom:10px">
+                            <p class="text-error hide"></p>
+                        </li>
+                        <li>
+                            <strong>标签分类</strong>
+                            <input id="tougao-PostsLable" class="input-block-level" type="text" size="40" placeholder="写点什么..." style="margin-top:10px; margin-bottom:10px">
+                            <p class="text-error hide"></p>
+                        </li>
+                        <li>
+                            <strong>内容</strong>
+                            <textarea id="tougao-content" rows="12" class="input-block-level" placeholder="写点什么..." style="margin-top:10px;margin-bottom:10px"></textarea>
+                            <p class="text-error hide"></p>
+                        </li>
+                    </ul>
+                    <div class="text-error"></div>
+                    <button id="tougao-submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-square-o"></i> 立即提交</button>
                 </div>
+                <div class="pagination" id="demo3"> </div>
             </div>
         </div>
         <aside class="sidebar">
@@ -199,7 +190,7 @@
                 <div class="title"><h2><sapn class="title_span">热门推荐</sapn></h2></div><ul>
                     @foreach (var item in Model.HotPostsItems)
                     {
-                        <li><a href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })" title="@item.PostsTitle" style="padding-left:15px"><span class="text">@item.PostsTitle </span><span class="muted">@item.CreateTime</span><span class="muted_1">@(item.CommentsNumber + "评论")</span></a></li>
+                        <li><a href="#" title="@item.PostsTitle" style="padding-left:15px"><span class="text">@item.PostsTitle </span><span class="muted">@item.CreateTime</span><span class="muted_1">@(item.CommentsNumber + "评论")</span></a></li>
                     }
                 </ul>
             </div>
@@ -214,24 +205,26 @@
                 </div><div class="d_tags">
                     @foreach (var item in Model.PostsTypeItems)
                     {
-                        <a title="" href="@Url.Action("Index","HomePosts",new RouteValueDictionary { { "PostsLable" , item.PostsLable } })" data-original-title="@(item.PostsLableCount+" 个话题")">@(item.PostsLable + "(" + item.PostsLableCount + ")")</a>
+                        <a title="" href="@Url.Action("Index","HomePosts",new RouteValueDictionary { { "PostsLable" , item.PostsLable } })" data-original-title="@(item.PostsLableCount+"个话题")">@(item.PostsLable + "(" + item.PostsLableCount + ")")</a>
                     }
                 </div>
             </div>
             <div class="widget d_comment">
-                <div class="title"><h2><sapn class="title_span">最新评论</sapn></h2></div>
+                <div class="title">
+                    <h2><sapn class="title_span">最新评论</sapn></h2>
+                </div>
                 <ul>
                     @foreach (var item in Model.LatestReviewsItems)
                     {
                         <li>
-                            <a href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsModel.PostsID } })" title="@item.PostsModel.PostsTitle">
-                                <img alt="" data-original="../Content/HomeStyle/default.png" srcset="../Content/HomeStyle/default.png" class="avatar avatar-36 photo" height="36" width="36" src="../Content/HomeStyle/default.png"> <div class="muted"><i>@item.UserModel.UserName</i>&nbsp;&nbsp;@(TimeHelper.GetTimeSpan(item.CreateTime) + "(" + item.CreateTime.ToString("yyyy-MM-dd") + ")说：")<br>@item.ReviewContent</div>
+                            <a href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID", item.PostsModel.PostsID } })" title="@item.PostsModel.PostsTitle">
+                                <img alt="" data-original="http://demo7.ledkongzhiqi.com/avatar/36*b1ba69f855c62a7033283fbb625b9950.jpg" srcset="http://demo7.ledkongzhiqi.com/avatar/72*b1ba69f855c62a7033283fbb625b9950.jpg" class="avatar avatar-36 photo" height="36" width="36" src="../Content/HomeStyle/default.png"> <div class="muted"><i>@item.UserModel.UserName</i>&nbsp;&nbsp;@(TimeHelper.GetTimeSpan(item.CreateTime) + "(" + item.CreateTime.ToString("yyyy-MM-dd") + ")说：")<br>@item.ReviewContent</div>
                             </a>
                         </li>
                     }
                 </ul>
             </div><div class="widget widget_text">
-                <div class="title"><h2><sapn class="title_span">友情链接</sapn></h2></div> <div class="textwidget"><div class="d_tags_1"> <a target="_blank" href="#">物业之家</a> <a target="_blank" href="http://www.zhixin99.com/">物业资讯</a> </div></div>
+                <div class="title"><h2><sapn class="title_span">友情链接</sapn></h2></div> <div class="textwidget"><div class="d_tags_1"> <a target="_blank" href="http://www.iwuye.com/">物业之家</a> <a target="_blank" href="http://news.combpm.com/">物业资讯</a> </div></div>
             </div>
         </aside>
     </section>
@@ -307,7 +300,7 @@
     <script type="text/javascript" src="~/Content/HomeStyle/um.js"></script>
     <script type="text/javascript" src="~/Content/HomeStyle/wp-embed.min.js"></script>
     <script src="~/Content/layui.js"></script>
-    <script type="text/javascript">
+    <script>
         var _hmt = _hmt || [];
         (function () {
             var hm = document.createElement("script");
@@ -315,74 +308,6 @@
             var s = document.getElementsByTagName("script")[0];
             s.parentNode.insertBefore(hm, s);
         })();
-        layui.use(['laypage', 'layer', "jquery"], function () {
-            var laypage = layui.laypage, layer = layui.layer, $ = layui.jquery;
-            var total = @Model.PageCount;
-            layer.ready(function () {
-                laypage({
-                    cont: 'demo3',
-                    pages: total,
-                    curr: 1,
-                    groups: 5,
-                    skin: '#009688',
-                    jump: function (obj, first) {
-                        if (!first) {
-                            var curr = obj.curr;
-                            LoadPosts(curr);
-                        }
-                    }
-                });
-            });
-            function LoadPosts(curr) {
-                var param = {};
-                param.Curr = curr;
-                $.ajax({
-                    type: 'POST',
-                    url: '/HomePage/GetPostInfoByPage',
-                    data: param,
-                    success: function (result) {
-                        var Content = "";
-                        if (result.IsSuccess == 0) {
-                            $(result.Items).each(function (n, Row) {
-                                Content += "<article class='excerpt'><div class='focus'><a target='_blank' href=''></a></div><header>";
-                                Content += "<a class='label label-important' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.PostsLable+"<i class='label-arrow'></i></a><h2><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"' title="+Row.PostsTitle+">"+Row.PostsTitle+" </a></h2>";
-                                Content += "</header><p class='auth-span'>";
-                                Content += "<span class='muted'><i class='fa fa-clock-o'></i>"+eval('new ' + Row.CreateTime.replace(/\//g, '')).Format('yyyy-MM-dd hh:mm:ss')+"";
-                                Content+="</span><span class='muted'><i class='fa fa-eye'></i>"+Row.TimesWatched+"</span><span class='muted'><i class='fa fa-comments-o'></i><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.CommentsNumber+"评论</a></span>";
-                                Content += "</p><span class='note'>"+Row.BriefContent+"</span></article>";
-                            })
-                            $("#divContent").empty();
-                            $("#divContent").html(Content);
-                            Content = null;
-                        } else {
-                            layer.msg(result.Message, { icon: 2 });
-                        }
-                    },
-                    datatype: "json",
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        layer.msg('获取信息失败，请稍后重试！', { icon: 2 });
-                    }
-                });
-                param = null;
-            }
-        });
-        Date.prototype.Format = function (fmt) {
-            var o = {
-                "M+": this.getMonth() + 1,                 //月份
-                "d+": this.getDate(),                    //日
-                "h+": this.getHours(),                   //小时
-                "m+": this.getMinutes(),                 //分
-                "s+": this.getSeconds(),                 //秒
-                "q+": Math.floor((this.getMonth() + 3) / 3), //季度
-                "S": this.getMilliseconds()             //毫秒
-            };
-            if (/(y+)/.test(fmt))
-                fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-            for (var k in o)
-                if (new RegExp("(" + k + ")").test(fmt))
-                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-            return fmt;
-        }
         //用户登录
         $('#Login').click(function () {
             var param = {};
@@ -405,6 +330,99 @@
                     layer.msg(data.msg, { icon: 1, time: 1000 });
                 },
             });
+        });
+        layui.use(['laypage', 'layer', "jquery"], function () {
+            var laypage = layui.laypage, layer = layui.layer, $ = layui.jquery;
+            var total = @Model.PageCount;
+            layer.ready(function () {
+                laypage({
+                    cont: 'demo3',
+                    pages: total,
+                    curr: 1,
+                    groups: 10,
+                    skin: '#009688',
+                    jump: function (obj, first) {
+                        if (!first) {
+                            var curr = obj.curr;
+                            LoadPosts(curr);
+                        }
+                    }
+                });
+            });
+        });
+        Date.prototype.Format = function (fmt) {
+            var o = {
+                "M+": this.getMonth() + 1,                 //月份
+                "d+": this.getDate(),                    //日
+                "h+": this.getHours(),                   //小时
+                "m+": this.getMinutes(),                 //分
+                "s+": this.getSeconds(),                 //秒
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+                "S": this.getMilliseconds()             //毫秒
+            };
+            if (/(y+)/.test(fmt))
+                fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt))
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+        function LoadPosts(curr) {
+            var param = {};
+            param.Curr = curr;
+            param.PotsLaber=$("#PostsLable").val();
+            $.ajax({
+                type: 'POST',
+                url: '/HomePosts/GetPostInfoByPage',
+                data: param,
+                success: function (result) {
+                    var Content = "";
+                    if (result.IsSuccess == 0) {
+                        $(result.Items).each(function (n, Row) {
+                            Content += "<article class='excerpt'><div class='focus'><a target='_blank' href=''></a></div><header>";
+                            Content += "<a class='label label-important' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.PostsLable+"<i class='label-arrow'></i></a><h2><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"' title="+Row.PostsTitle+">"+Row.PostsTitle+" </a></h2>";
+                            Content += "</header><p class='auth-span'>";
+                            Content += "<span class='muted'><i class='fa fa-clock-o'></i>"+eval('new ' + Row.CreateTime.replace(/\//g, '')).Format('yyyy-MM-dd hh:mm:ss')+"";
+                            Content+="</span><span class='muted'><i class='fa fa-eye'></i>"+Row.TimesWatched+"</span><span class='muted'><i class='fa fa-comments-o'></i><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.CommentsNumber+"评论</a></span>";
+                            Content += "</p><span class='note'>"+Row.BriefContent+"</span></article>";
+                        })
+                        $("#divContent").empty();
+                        $("#divContent").html(Content);
+                        Content = null;
+                    } else {
+                        layer.msg(result.Message, { icon: 2 });
+                    }
+                },
+                datatype: "json",
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    layer.msg('获取信息失败，请稍后重试！', { icon: 2 });
+                }
+            });
+            param = null;
+        }
+
+        $('#tougao-submit').click(function () {
+            var param={};
+            param.Title=$("#tougao-title").val();
+            param.Content=$("#tougao-content").val();
+            param.PostsLable=$("#tougao-PostsLable").val();
+            $.ajax({
+                type: 'POST',
+                url: '/Forum/PostsAdd',
+                data: param,
+                success: function (result) {
+                    if (result.IsSuccess == 0) {
+                        window.location.reload();
+                    } else {
+                        layer.msg(result.Message, { icon: 2 });
+                    }
+                },
+                datatype: "json",
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    layer.msg('添加失败，请稍后重试！', { icon: 2 });
+                }
+            });
+            param = null;
         });
 
     </script>

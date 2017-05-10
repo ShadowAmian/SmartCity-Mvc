@@ -334,7 +334,7 @@
                     cont: 'demo3',
                     pages: total,
                     curr: 1,
-                    groups: 5,
+                    groups: 10,
                     skin: '#009688',
                     jump: function (obj, first) {
                         if (!first) {
@@ -365,9 +365,10 @@
         function LoadPosts(curr) {
             var param = {};
             param.Curr = curr;
+            param.PotsLaber=$("#PostsLable").val();
             $.ajax({
                 type: 'POST',
-                url: '/HomePage/GetPostInfoByPage',
+                url: '/HomePosts/GetPostInfoByPage',
                 data: param,
                 success: function (result) {
                     var Content = "";

@@ -1,13 +1,14 @@
-﻿@model SmartCity.WebUI.Models.FeedBackModel
+﻿@model SmartCity.WebUI.Models.RepairInfoModel
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>意见反馈页</title>
+    <title>报修信息</title>
     <link href="~/Content/HomeStyle/um.css" id="um-css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/HomeStyle/font-awesome.css" id="fa-css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/layui.css" rel="stylesheet" />
@@ -110,10 +111,10 @@
     <section class="container">
         <div class="speedbar"></div>
         <div class="pagewrapper clearfix">
-            <div class="pagecontent"  style="margin-left:0px;">
+            <div class="pagecontent" style="margin-left:0px;">
                 <header class="pageheader clearfix">
                     <h1 class="pull-left">
-                        <a href="@Url.Action("FeedBackIndex", "HomeFeedBack")">意见反馈</a>
+                        <a href="@Url.Action("FeedBackIndex", "HomeFeedBack")">在线报修</a>
                     </h1>
                     <div class="pull-right">
                     </div>
@@ -121,7 +122,25 @@
                 <article class="article-content"></article>
                 <ul class="submit-form">
                     <li>
-                        <strong>反馈内容</strong>
+                        <strong>报修主题</strong>
+                        <input id="tougao-title" class="input-block-level" type="text" size="40" placeholder="写点什么..." style="margin-top:10px; margin-bottom:10px">
+                        <p class="text-error hide"></p>
+                    </li>
+                    <li>
+                        <strong>报修类别</strong>
+                        @*<input id="" class="input-block-level" type="text" size="40" placeholder="写点什么..." style="margin-top:10px; margin-bottom:10px">*@
+                        <select class="input-block-level" name="NewsChassify" id="tougao-PostsLable">
+                            <option value="水电维修">水电维修</option>
+                            <option value="管道维修">管道维修</option>
+                            <option value="网络维修">网络维修</option>
+                            <option value="电视维修">电视维修</option>
+                            <option value="日常维修">日常维修</option>
+                            <option value="电梯维修">电梯维修</option>
+                        </select>
+                        <p class="text-error hide"></p>
+                    </li>
+                    <li>
+                        <strong>报修详细信息</strong>
                         <textarea id="tougao-content" rows="12" class="input-block-level" placeholder="写点什么..."></textarea>
                         <p class="text-error hide"></p>
                     </li>
