@@ -103,5 +103,19 @@ namespace SmartCity.Domain.Concrete
             var resule = Conn.Query<RepairTypes>("select RepairType, count(*) MaintenanceStatusNumber  from Repair_Table group by RepairType");
             return resule;
         }
+        /// <summary>
+        /// 报修信息添加
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool RepairInfoAdd(Repair model)
+        {
+            var resule = Conn.Execute("Insert into Repair_Table values(@RepairType,@RepairName,@RepairContent,@OwnerID,@MaintenanceStatus,@CreateTime)", model);
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

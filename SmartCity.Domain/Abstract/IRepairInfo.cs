@@ -46,5 +46,11 @@ namespace SmartCity.Domain.Abstract
         /// </summary>
         /// <returns></returns>
         IEnumerable<RepairTypes> SerachRepairType();
+        /// <summary>
+        /// 报修信息添加
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+         bool RepairInfoAdd(Repair model);
     }
 }

@@ -129,7 +129,7 @@
                     <li>
                         <strong>报修类别</strong>
                         @*<input id="" class="input-block-level" type="text" size="40" placeholder="写点什么..." style="margin-top:10px; margin-bottom:10px">*@
-                        <select class="input-block-level" name="NewsChassify" id="tougao-PostsLable">
+                        <select class="input-block-level" name="NewsChassify" id="tougao-RepairType">
                             <option value="水电维修">水电维修</option>
                             <option value="管道维修">管道维修</option>
                             <option value="网络维修">网络维修</option>
@@ -167,7 +167,9 @@
     <script type="text/javascript">
         $('#tougao-submit').click(function () {
             var param = {};
-            param.Content = $("#tougao-content").val();
+            param.RepairName = $("#tougao-title").val();
+            param.RepairType = $("#tougao-RepairType").val();
+            param.RepairContent = $("#tougao-content").val();
             $.ajax({
                 type: 'POST',
                 url: '/HomeFeedback/FeedbackAdd',

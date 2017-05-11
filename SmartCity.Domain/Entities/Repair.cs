@@ -31,6 +31,7 @@ namespace SmartCity.Domain.Entities
         /// 报修人信息
         /// </summary>
         public User UserInfo { get; set; }
+        public long OwnerID { get; set; }
         /// <summary>
         /// 维修人信息
         /// </summary>
