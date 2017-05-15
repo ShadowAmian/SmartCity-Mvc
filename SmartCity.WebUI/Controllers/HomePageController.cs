@@ -73,5 +73,40 @@ namespace SmartCity.WebUI.Controllers
             var model = PostInfoService.GetPostsInfoListByPage(PageCounts, Curr, out PageCount).ToList();
             return Json(new { IsSuccess = 0, Items = model });
         }
+        public ActionResult EditPassword()
+        {
+            var model = SessionHelper.GetSession("HomeUserInfo");
+            var Model = new FeedBackModel();
+            Model.Title1 = "Hi, 请登录";
+            Model.Tiltle2 = "我要注册";
+            Model.TitleUrL1 = "#";
+            Model.TitleUrl2 = "#";
+            if (model != null)
+            {
+                var models = model as User;
+                Model.Title1 = "Hi, 欢迎你";
+                Model.Tiltle2 = models.UserName;
+            }
+            return View(Model);
+        }
+        [HttpPost]
+        public ActionResult EditUserPassword(string oldPassWord, string NewPassWord, string NewPassWord1)
+        {
+            if (CurrentUserInfo != null)
+            {
+                if (NewPassWord !=NewPassWord1)
+                {
+                    var result = UserInfoService.EditUserPassword(CurrentUserInfo.OwnerID, oldPassWord, NewPassWord);
+                    if (result)
+                    {
+                        return Json(new { IsSuccess = 0, Message = "修改成功！" });
+                    }
+                    return Json(new { IsSuccess = 1, Message = "修改失败，请稍后重试！" });
+                }
+                return Json(new { IsSuccess = 1, Message = "对不起，你两次输入的密码不一致！" });
+
+            }
+            return Json(new { IsSuccess = 1, Message = "对不起，你还未登陆，不能进行在线报修！" });
+        }
     }
 }

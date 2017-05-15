@@ -118,9 +118,9 @@ namespace SmartCity.Domain.Concrete
         /// </summary>
         /// <param name="UserID"></param>
         /// <returns></returns>
-        public bool EditPassword(int OwnerID)
+        public bool EditUserPassword(int OwnerID, string OldUserPassword, string NewUserPassword)
         {
-            var resule = Conn.Execute("delete from User_Table where OwnerID=@OwnerID ", new { OwnerID = OwnerID });
+            var resule = Conn.Execute("update User_Table set UserPassword=@NewUserPassWord where OwnerID=@OwnerID and UserPassword=@OldUserPassword ", new { OwnerID = OwnerID, OldUserPassword = OldUserPassword, NewUserPassWord = NewUserPassword });
             if (resule == 1)
             {
                 return true;

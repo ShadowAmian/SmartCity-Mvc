@@ -42,6 +42,7 @@ namespace SmartCity.WebUI.Controllers
         {
             if (CurrentUserInfo != null)
             {
+
                 var model = new Repair();
                 model.RepairName = RepairName;
                 model.RepairType = Convert.ToInt32(Enum.Parse(typeof(SmartCity.WebUI.Infrastructure.EnumData.RepairType), RepairType));
@@ -54,7 +55,7 @@ namespace SmartCity.WebUI.Controllers
                 {
                     return Json(new { IsSuccess = 0, Message = "谢谢你的反馈，我们确定后会与你电话联系！" });
                 }
-                return Json(new { IsSuccess = 1, Message = "反馈失败，请稍后重试！" });
+                return Json(new { IsSuccess = 1, Message = "报修失败，请稍后重试！" });
             }
             return Json(new { IsSuccess = 1, Message = "对不起，你还未登陆，不能进行在线报修！" });
 

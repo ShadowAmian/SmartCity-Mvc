@@ -63,6 +63,12 @@ namespace SmartCity.Domain.Abstract
         /// <returns></returns>
         bool DeleteUser(int UserID);
         /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="UserID"></param>
+        /// <returns></returns>
+        bool EditUserPassword(int OwnerID, string OldUserPassword, string NewUserPassword);
+        /// <summary>
         /// 用户搜索
         /// </summary>
         /// <param name="ManagerName"></param>

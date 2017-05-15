@@ -53,5 +53,7 @@ namespace SmartCity.WebUI.Controllers
             }
             return Json(json, JsonRequestBehavior.AllowGet);
         }
+
+      
     }
 }
