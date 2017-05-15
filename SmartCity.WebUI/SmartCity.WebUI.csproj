@@ -773,6 +773,7 @@
     <Content Include="Views\HomePosts\HomePostAllList.cshtml" />
     <Content Include="Views\HomeRepair\RepairInfoAdd.cshtml" />
     <Content Include="Views\HomePage\EditPassword.cshtml" />
+    <Content Include="Views\HomeNews\HomeNewsIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

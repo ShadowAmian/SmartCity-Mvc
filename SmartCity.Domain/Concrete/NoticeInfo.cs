@@ -45,6 +45,14 @@ namespace SmartCity.Domain.Concrete
             return false;
         }
         /// <summary>
+        ///获取公告信息集合
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Notice> GetNoticeInfoByID(int id)
+        {
+            return Conn.Query<Notice>("select * from News_Table where NewsID=@NewsID ", new { NewsID=id});
+        }
+        /// <summary>
         /// 修改公告状态
         /// </summary>
         /// <param name="ID"></param>

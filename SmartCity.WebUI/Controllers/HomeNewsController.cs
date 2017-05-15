@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace SmartCity.WebUI.Controllers
 {
-    public class HomeNewsController : Controller
+    public class HomeNewsController : BaseController
     {
         #region 字段 构造函数
         /// <summary>
@@ -51,6 +51,35 @@ namespace SmartCity.WebUI.Controllers
             Model.TitleUrL1 = "#";
             Model.TitleUrl2 = "#";
             Model.PageCount = PageCount;
+            if (model != null)
+            {
+                var models = model as User;
+                Model.Title1 = "Hi, 欢迎你";
+                Model.Tiltle2 = models.UserName;
+            }
+            return View(Model);
+        }
+
+        public ActionResult HomeNewsIndex(int id)
+        {
+            var model = CurrentUserInfo;
+            var Model = new HomeNewsModel();
+            //获取通知公告
+            var HomeNewIndex = NewsInfoService.GetNoticeInfoByID(id);
+            //获取热门帖子
+            var HotPostsModel = PostInfoService.GetHotPostsInfo().ToList();
+            //获取标签
+            var PostsType = PostInfoService.SerachPostsType().ToList();
+            //获取最新评论
+            var LatestReviews = ReviewInfoService.GetLatestReviews().ToList();
+            Model.NewsItems = HomeNewIndex.ToList();
+            Model.HotPostsItems = HotPostsModel;
+            Model.PostsTypeItems = PostsType;
+            Model.LatestReviewsItems = LatestReviews;
+            Model.Title1 = "Hi, 请登录";
+            Model.Tiltle2 = "我要注册";
+            Model.TitleUrL1 = "#";
+            Model.TitleUrl2 = "#";
             if (model != null)
             {
                 var models = model as User;

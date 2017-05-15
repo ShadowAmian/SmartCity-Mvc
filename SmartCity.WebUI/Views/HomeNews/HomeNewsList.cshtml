@@ -117,9 +117,9 @@
                         @foreach (var item in Model.NewsItems)
                         {
                             <article class="excerpt">
-                                <div class="focus"><a target="_blank" href="#"><img class="thumb" src="@item.NewsImages" alt="@item.NewsTitle"></a></div>
+                                <div class="focus"><a target="_blank" href="@Url.Action("HomeNewsIndex","HomeNews",new RouteValueDictionary { { "ID" , item.NewsID } })"><img class="thumb" src="@item.NewsImages" alt="@item.NewsTitle"></a></div>
                                 <header>
-                                    <a class="label label-important" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.NewsID } })">@item.NewsSimpleTitle<i class="label-arrow"></i></a><h2><a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.NewsID } })" title="@item.NewsTitle">@item.NewsTitle </a></h2>
+                                    <a class="label label-important" href="@Url.Action("HomeNewsIndex","HomeNews",new RouteValueDictionary { { "ID" , item.NewsID } })">@item.NewsSimpleTitle<i class="label-arrow"></i></a><h2><a target="_blank" href="@Url.Action("HomeNewsIndex","HomeNews",new RouteValueDictionary { { "ID" , item.NewsID } })" title="@item.NewsTitle">@item.NewsTitle </a></h2>
                                 </header>
                                 <p class="auth-span">
                                     <span class="muted"><i class="fa fa-clock-o"></i>@item.CreateTime.ToString()</span>

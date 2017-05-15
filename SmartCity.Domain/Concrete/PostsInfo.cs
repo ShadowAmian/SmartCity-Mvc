@@ -47,7 +47,6 @@ namespace SmartCity.Domain.Concrete
             var sql = "select top (@PageSize) * from Posts_Table as P join User_Table as u on P.UserID=u.OwnerID where PostsLable=@PostsLable and  PostsID not in( select top (@PageCount) PostsID from Posts_Table order by PostsID)order by PostsID";
             return Conn.Query<Posts, User, Posts>(sql, (posts, user) => { posts.UserModel = user; return posts; }, new { PageSize = PageSize, PageCount = PageCount,PostsLable= PostsLaber }, splitOn: "OwnerID");
         }
-
         /// <summary>
         ///获取帖子信息集合
         /// </summary>
