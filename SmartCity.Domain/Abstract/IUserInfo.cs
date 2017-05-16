@@ -44,7 +44,7 @@ namespace SmartCity.Domain.Abstract
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-         bool AddUser(User model);
+        bool AddUser(User model);
         /// <summary>
         /// 用户是否存在
         /// </summary>
@@ -55,7 +55,13 @@ namespace SmartCity.Domain.Abstract
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-         bool EditUser(User model);
+        bool EditUser(User model);
+        /// <summary>
+        ///  用户密码修改
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        bool EditUserInfoPassWord(User model);
         /// <summary>
         /// 用户删除
         /// </summary>
@@ -85,6 +91,6 @@ namespace SmartCity.Domain.Abstract
         /// </summary>
         /// <param name="UserName"></param>
         /// <returns></returns>
-         IEnumerable<int> SearchUserInfoINUserID(string UserName);
+        IEnumerable<int> SearchUserInfoINUserID(string UserName);
     }
 }

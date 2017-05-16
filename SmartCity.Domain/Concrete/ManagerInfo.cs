@@ -112,6 +112,20 @@ namespace SmartCity.Domain.Concrete
             return false;
         }
         /// <summary>
+        /// 管理员密码修改
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool EditManagerInfoPassword(Manager model)
+        {
+            var resule = Conn.Execute("update Manager_Table set ManagerPassword=@ManagerPassword,ManagerName=@ManagerName,ManagerPhone=@ManagerPhone,ManagerEmail=@ManagerEmail where ManagerID=@ManagerID", model);
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
         /// 管理员删除
         /// </summary>
         /// <param name="ManagerID"></param>

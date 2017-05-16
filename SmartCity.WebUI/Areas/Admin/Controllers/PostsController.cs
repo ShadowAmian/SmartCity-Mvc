@@ -43,17 +43,19 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult DeletePosts(int PostsID)
         {
-            if (CurrentUser.ManagerType != "超级管理员" || CurrentUser.ManagerType != "管理员")
+            if (CurrentUser.ManagerType == "超级管理员" || CurrentUser.ManagerType == "管理员")
             {
-                return Json(new { IsSuccess = 1, Message = "你无权限删除该数据！" });
+                var result = PostInfoService.DeletePosts(PostsID);
+                if (result)
+                {
+                    log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Posts", "在线交流帖子删除，删除的ID为：" + PostsID);
+                    return Json(new { IsSuccess = 0, Message = "删除成功！" });
+                }
+                return Json(new { IsSuccess = 1, Message = "删除失败，请稍后重试!" });
+          
             }
-            var result = PostInfoService.DeletePosts(PostsID);
-            if (result)
-            {
-                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Posts", "在线交流帖子删除，删除的ID为：" + PostsID);
-                return Json(new { IsSuccess = 0, Message = "删除成功！" });
-            }
-            return Json(new { IsSuccess = 1, Message = "删除失败，请稍后重试!" });
+            return Json(new { IsSuccess = 1, Message = "你无权限删除该数据！" });
+
         }
         /// <summary>
         /// 批量删除

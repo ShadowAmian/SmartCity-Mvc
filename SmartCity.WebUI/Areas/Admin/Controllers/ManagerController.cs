@@ -31,8 +31,8 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var model = new ManagerListModel();
-            model.MangerIteams = repository.GetManagerInfoList().Where(list=>list.ManagerType!="超级管理员").ToList();
-      
+            model.MangerIteams = repository.GetManagerInfoList().Where(list => list.ManagerType != "超级管理员").ToList();
+
             return View(model);
         }
         /// <summary>
@@ -115,14 +115,29 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
                 //普通管理员无操作权限
                 return Json(new { IsSuccess = 1, Message = "你无权限修改该数据！" });
             }
-            //修改用户
-            var result = repository.EditManager(model);
-            if (result)
+            if (string.IsNullOrEmpty(model.ManagerPassword))
             {
-                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Manager", "管理员修改，修改后的名称为：" + model.ManagerName);
-                return Json(new { IsSuccess = 0, Message = "修改成功！" });
+                //修改用户
+                var result = repository.EditManager(model);
+                if (result)
+                {
+                    log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Manager", "管理员修改，修改后的名称为：" + model.ManagerName);
+                    return Json(new { IsSuccess = 0, Message = "修改成功！" });
+                }
+                return Json(new { IsSuccess = 1, Message = "修改失败，请稍后重试!" });
             }
-            return Json(new { IsSuccess = 1, Message = "修改失败，请稍后重试!" });
+            else
+            {
+                model.ManagerPassword = MD5Crypt.EncryptAli(model.ManagerPassword);
+                //修改用户
+                var result = repository.EditManagerInfoPassword(model);
+                if (result)
+                {
+                    log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Manager", "管理员修改，修改后的名称为：" + model.ManagerName);
+                    return Json(new { IsSuccess = 0, Message = "修改成功！" });
+                }
+                return Json(new { IsSuccess = 1, Message = "修改失败，请稍后重试!" });
+            }
         }
         /// <summary>
         /// 删除管理员信息
@@ -158,7 +173,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
                 return Json(new { IsSuccess = 1, Message = "你无权限查询该数据！" });
             }
             var result = repository.SearchManager(ManagerName);
-            if (result!=null)
+            if (result != null)
             {
                 log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Manager", "管理员查询，查询的条件为：" + ManagerName);
                 return Json(new { IsSuccess = 0, Message = result.ToList() });
@@ -186,7 +201,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             string OldPassWord = SmartCity.Common.MD5Crypt.EncryptAli(password2.Trim());
             string NewPassWord = SmartCity.Common.MD5Crypt.EncryptAli(password.Trim());
 
-            var result = repository.EditManagerPassword(userid,OldPassWord,NewPassWord);
+            var result = repository.EditManagerPassword(userid, OldPassWord, NewPassWord);
             if (result)
             {
                 return Json(new { IsSuccess = 0, Message = "密码修改成功！" });
@@ -201,32 +216,32 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult BatchRemoveManager(string id)
         {
-                if (string.IsNullOrEmpty(id))
-                {
-                    return Json(new { IsSuccess = 1, Message = "你未选择删除用户！" });
-                }
+            if (string.IsNullOrEmpty(id))
+            {
+                return Json(new { IsSuccess = 1, Message = "你未选择删除用户！" });
+            }
 
-                List<int> List = new List<int>();
-                List<string> NameList = new List<string>();
-                string[] Ids = id.Split(',');
-                for (int i = 0; i < Ids.Length; i++)
+            List<int> List = new List<int>();
+            List<string> NameList = new List<string>();
+            string[] Ids = id.Split(',');
+            for (int i = 0; i < Ids.Length; i++)
+            {
+                if (Ids[i] != "0" && Ids[i] != "")
                 {
-                    if (Ids[i] != "0" && Ids[i] != "")
-                    {
-                        string[] DataName = Ids[i].Split('-');
-                        List.Add(Convert.ToInt32(DataName[0]));
-                        NameList.Add(DataName[1]);
-                    }
+                    string[] DataName = Ids[i].Split('-');
+                    List.Add(Convert.ToInt32(DataName[0]));
+                    NameList.Add(DataName[1]);
                 }
-                if (repository.BatchRemoveManager(List))
+            }
+            if (repository.BatchRemoveManager(List))
+            {
+                for (int i = 0; i < NameList.Count; i++)
                 {
-                    for (int i = 0; i < NameList.Count; i++)
-                    {
                     log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Manager", "管理员删除，删除的管理员为：" + NameList[i]);
-                    }
-                    return Json(new { IsSuccess = 0, Message = "删除成功！" });
                 }
-                return Json(new { IsSuccess = 1, Message = "删除失败，请稍后重试！" });
+                return Json(new { IsSuccess = 0, Message = "删除成功！" });
+            }
+            return Json(new { IsSuccess = 1, Message = "删除失败，请稍后重试！" });
         }
         #endregion
     }

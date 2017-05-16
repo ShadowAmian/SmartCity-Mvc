@@ -58,11 +58,17 @@ namespace SmartCity.Domain.Abstract
         /// <returns></returns>
         IEnumerable<Manager> GetManagerInfoByID(int ManagerID);
         /// <summary>
+        /// 管理员密码修改
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+         bool EditManagerInfoPassword(Manager model);
+        /// <summary>
         /// 管理员删除
         /// </summary>
         /// <param name="ManagerID"></param>
         /// <returns></returns>
-         bool DeleteManager(int ManagerID);
+        bool DeleteManager(int ManagerID);
         /// <summary>
         /// 根据名字搜索管理员
         /// </summary>

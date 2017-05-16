@@ -100,6 +100,20 @@ namespace SmartCity.Domain.Concrete
             return false;
         }
         /// <summary>
+        ///  用户密码修改
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool EditUserInfoPassWord(User model)
+        {
+            var resule = Conn.Execute("update User_Table set UserPassword=@UserPassword,UserName=@UserName,UserPhone=@UserPhone,UserEmail=@UserEmail,UserAddress=@UserAddress where OwnerID=@OwnerID", model);
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
         /// 管理员删除
         /// </summary>
         /// <param name="UserID"></param>
