@@ -52,20 +52,15 @@
                         <nav id="site-nav" class="main-nav">
                             <div>
                                 <ul class="down-menu nav-menu">
-                                    <li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="#" style="padding: 10px;">首页</a></li>
+                                    <li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-23"><a href="#" style="padding: 10px;">首页</a></li>
                                     <li id="menu-item-193" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-193">
-                                        <a href="#" style="padding: 10px;">通知公告</a>
-                                        <ul class="sub-menu" style="padding-top: 5px;">
-                                            <li id="menu-item-194" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a href="#" style="padding: 10px;">日常通告</a></li>
-                                            <li id="menu-item-192" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-192"><a href="#" style="padding: 10px;">行业资讯</a></li>
-                                            <li id="menu-item-191" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-191"><a href="#" style="padding: 10px;">缴费通知</a></li>
-                                        </ul>
+                                        <a href="@Url.Action("HomeNewsList","HomeNews")" style="padding: 10px;">通知公告</a>
                                     </li>
-                                    <li id="menu-item-204" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="#" style="padding: 10px;">在线交流</a></li>
-                                    <li id="menu-item-201" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201"><a href="#" style="padding: 10px;">在线报修</a></li>
+                                    <li id="menu-item-204" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="@Url.Action("HomePostAllList", "HomePosts")" style="padding: 10px;">在线交流</a></li>
+                                    <li id="menu-item-201" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201"><a href="@Url.Action("RepairInfoAdd", "HomeRepair")" style="padding: 10px;">在线报修</a></li>
                                     <!--<li id="menu-item-202" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-202"><a href="#" style="padding: 10px;">网站运营</a></li>-->
                                     <li id="menu-item-205" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-205"><a href="#" style="padding: 10px;">关于我们</a></li>
-                                    <li id="menu-item-212" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="#" style="padding: 10px;">意见反馈</a></li>
+                                    <li id="menu-item-212" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="@Url.Action("FeedBackIndex","HomeFeedback")" style="padding: 10px;">意见反馈</a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -75,20 +70,15 @@
         </div>
         <nav>
             <ul class="nav_sj" id="nav-search_1">
-                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="#">首页</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-23"><a href="#">首页</a></li>
                 <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-193">
-                    <a href="#">通知公告</a>
-                    <ul class="sub-menu">
-                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a href="#">日常通告</a></li>
-                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-192"><a href="#">行业资讯</a></li>
-                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-191"><a href="#">缴费通知</a></li>
-                    </ul>
+                    <a href="@Url.Action("HomeNewsList","HomeNews")">通知公告</a>
                 </li>
-                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="#">在线交流</a></li>
-                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201"><a href="#">在线报修</a></li>
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-204"><a href="@Url.Action("HomePostAllList", "HomePosts")">在线交流</a></li>
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201"><a href="@Url.Action("RepairInfoAdd", "HomeRepair")">在线报修</a></li>
                 <!--<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-202"><a href="#">网站运营</a></li>-->
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-205"><a href="#">关于我们</a></li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="#">意见反馈</a></li>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a href="@Url.Action("FeedBackIndex","HomeFeedback")">意见反馈</a></li>
             </ul>
         </nav>
     </header>
