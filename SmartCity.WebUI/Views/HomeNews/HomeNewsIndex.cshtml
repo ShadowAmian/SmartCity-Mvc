@@ -178,7 +178,7 @@
                     {
                         <li>
                             <a href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID", item.PostsModel.PostsID } })" title="@item.PostsModel.PostsTitle">
-                                <img alt="" data-original="http://demo7.ledkongzhiqi.com/avatar/36*b1ba69f855c62a7033283fbb625b9950.jpg" srcset="http://demo7.ledkongzhiqi.com/avatar/72*b1ba69f855c62a7033283fbb625b9950.jpg" class="avatar avatar-36 photo" height="36" width="36" src="../Content/HomeStyle/default.png"> <div class="muted"><i>@item.UserModel.UserName</i>&nbsp;&nbsp;@(TimeHelper.GetTimeSpan(item.CreateTime) + "(" + item.CreateTime.ToString("yyyy-MM-dd") + ")说：")<br>@item.ReviewContent</div>
+                                <img alt="" data-original="../Content/HomeStyle/default.png" srcset="../Content/HomeStyle/default.png" class="avatar avatar-36 photo" height="36" width="36" src="../Content/HomeStyle/default.png"> <div class="muted"><i>@item.UserModel.UserName</i>&nbsp;&nbsp;@(TimeHelper.GetTimeSpan(item.CreateTime) + "(" + item.CreateTime.ToString("yyyy-MM-dd") + ")说：")<br>@item.ReviewContent</div>
                             </a>
                         </li>
                     }
