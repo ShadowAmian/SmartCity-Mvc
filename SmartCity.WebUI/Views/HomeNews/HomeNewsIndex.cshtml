@@ -261,6 +261,10 @@
     <script type="text/javascript" src="~/Content/HomeStyle/wp-embed.min.js"></script>
     <script src="~/Content/script/lib/layer/2.4/layer.js"></script>
     <script>
+        layui.use(['laypage', 'layer', "jquery"], function () {
+            var laypage = layui.laypage, layer = layui.layer, $ = layui.jquery;
+
+        });
         var _hmt = _hmt || [];
         (function () {
             var hm = document.createElement("script");
@@ -338,7 +342,6 @@
                     },
                 });
             }
-
         });
         $('.comment-reply-link').click(function () {
             boolRply=false;
