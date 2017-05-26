@@ -153,8 +153,14 @@
             <p>小区物业管理 by <a title="翠竹林" href="#">翠竹林</a> </p>
         </div>
     </footer>
-
+    <script type="text/javascript" src="~/Content/HomeStyle/um.js"></script>
+    <script type="text/javascript" src="~/Content/HomeStyle/wp-embed.min.js"></script>
+    <script src="~/Content/layui.js"></script>
     <script type="text/javascript">
+        layui.use(['laypage', 'layer', "jquery"], function () {
+            var laypage = layui.laypage, layer = layui.layer, $ = layui.jquery;
+  
+        });
         $('#tougao-submit').click(function () {
             var param = {};
             param.RepairName = $("#tougao-title").val();
@@ -162,7 +168,7 @@
             param.RepairContent = $("#tougao-content").val();
             $.ajax({
                 type: 'POST',
-                url: '/HomeFeedback/FeedbackAdd',
+                url: '/HomeRepair/RepairInfoAddForUser',
                 data: param,
                 success: function (result) {
                     if (result.IsSuccess == 0) {

@@ -110,7 +110,7 @@ namespace SmartCity.Domain.Concrete
         /// <returns></returns>
         public bool RepairInfoAdd(Repair model)
         {
-            var resule = Conn.Execute("Insert into Repair_Table values(@RepairType,@RepairName,@RepairContent,@OwnerID,@MaintenanceStatus,@CreateTime)", model);
+            var resule = Conn.Execute("Insert into Repair_Table (RepairType,RepairName,RepairContent,OwnerID,MaintenanceStatus,CreateTime) values(@RepairType,@RepairName,@RepairContent,@OwnerID,@MaintenanceStatus,@CreateTime)", model);
             if (resule == 1)
             {
                 return true;

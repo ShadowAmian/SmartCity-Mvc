@@ -16,13 +16,14 @@ namespace SmartCity.Domain.Entities
         /// </summary>
         public int RepairID { get; set; }
         /// <summary>
-        /// 报修主题
-        /// </summary>
-        public string RepairName { get; set; }
-        /// <summary>
         /// 报修类型
         /// </summary>
         public int RepairType { get; set; }
+        /// <summary>
+        /// 报修主题
+        /// </summary>
+        public string RepairName { get; set; }
+
         /// <summary>
         /// 报修内容
         /// </summary>
@@ -31,11 +32,12 @@ namespace SmartCity.Domain.Entities
         /// 报修人信息
         /// </summary>
         public User UserInfo { get; set; }
-        public long OwnerID { get; set; }
+        public int OwnerID { get; set; }
         /// <summary>
         /// 维修人信息
         /// </summary>
         public Manager ManagerInfo { get; set; }
+        public int ManagerID { get; set; }
         /// <summary>
         /// 报修状态
         /// </summary>

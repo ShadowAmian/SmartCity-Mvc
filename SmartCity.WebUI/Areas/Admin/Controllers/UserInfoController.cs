@@ -44,9 +44,8 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult AddUserByPost(User model)
         {
-            if (CurrentUser.ManagerType == "管理员" && CurrentUser.ManagerType == "超级管理员")
+            if (CurrentUser.ManagerType == "管理员" || CurrentUser.ManagerType == "超级管理员")
             {
-
                 //判断管理员是否存在
                 var IsExist = repository.UserIsExist(model.UserAccount);
                 if (IsExist)

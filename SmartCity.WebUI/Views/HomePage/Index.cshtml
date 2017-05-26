@@ -137,12 +137,12 @@
                         {
                             <li>
                                 <figure class="dd-img">
-                                    <a title="@Model.NewsItems[i].NewsTitle" target="_blank" href="#">
+                                    <a title="@Model.NewsItems[i].NewsTitle" target="_blank" href="@Url.Action("HomeNewsIndex","HomeNews",new RouteValueDictionary { { "ID" , @Model.NewsItems[i].NewsID } })">
                                         <img src="@Model.NewsItems[i].NewsImages" style="display: inline;width:168px;height:112px;" alt="@Model.NewsItems[i].NewsTitle">
                                     </a>
                                 </figure>
                                 <div class="dd-content">
-                                    <h2 class="dd-title"> <a rel="bookmark" title="@Model.NewsItems[i].NewsTitle" href="#">@Model.NewsItems[i].NewsTitle</a> </h2>
+                                    <h2 class="dd-title"> <a rel="bookmark" title="@Model.NewsItems[i].NewsTitle" href="@Url.Action("HomeNewsIndex","HomeNews",new RouteValueDictionary { { "ID" , @Model.NewsItems[i].NewsID } })">@Model.NewsItems[i].NewsTitle</a> </h2>
                                     <div class="dd-site xs-hidden">
                                         @Model.NewsItems[i].NewsDigest
                                     </div>
@@ -398,11 +398,11 @@
                         window.location.reload();
                     }
                     else {
-                        layer.msg("登录失败，请稍后重试！", { icon: 1, time: 1000 });
+                        layer.msg("登录失败，请稍后重试！", { icon: 2, time: 1000 });
                     }
                 },
                 error: function (data) {
-                    layer.msg(data.msg, { icon: 1, time: 1000 });
+                    layer.msg(data.msg, { icon: 2, time: 1000 });
                 },
             });
         });
