@@ -32,7 +32,6 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         {
             var model = new ManagerListModel();
             model.MangerIteams = repository.GetManagerInfoList().Where(list => list.ManagerType != "超级管理员").ToList();
-
             return View(model);
         }
         /// <summary>
@@ -175,12 +174,10 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
                 return Json(new { IsSuccess = 1, Message = "你无权限查询该数据！" });
             }
             var result = repository.SearchManager(ManagerName);
-            if (result != null)
-            {
-                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Manager", "管理员查询，查询的条件为：" + ManagerName);
-                return Json(new { IsSuccess = 0, Message = result.ToList() });
-            }
-            return Json(new { IsSuccess = 1, Message = "查询失败，请稍后重试!" });
+            var model = new ManagerListModel();
+            log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Manager", "管理员查询，查询的条件为：" + ManagerName);
+            model.MangerIteams = result.ToList();
+            return View("Index", model);
         }
 
         /// <summary>

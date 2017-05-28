@@ -35,6 +35,10 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult SerachSysLog( DateTime? startTime, DateTime? endTime)
         {
+            if (endTime!=null)
+            {
+              endTime= endTime.Value.AddDays(1);
+            }
             var Model = new SysLogModel();
             var result = repository.SerachSysLog(startTime, endTime).ToList();
             Model.SysLogIteams = result;
