@@ -18,7 +18,7 @@
         <a style="float:left;margin-top:4px;padding-right:6px"><img src="~/Content/HomeStyle/logo2.png" style="height:56px" /></a>
         <a class="logo navbar-logo f-l mr-10 hidden-xs" href="@Url.Action("AdminLogin","Login",new { area="Admin"})"><font style='text-align:center;font-size:34px;color:white'>翠竹林小区物业管理系统</font></a><a class="logo navbar-logo-m f-l mr-10 visible-xs" href="Index.aspx">翠竹林小区物业管理系统</a> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
     </div>
-    @using (Ajax.BeginForm("AdminLogin", null, new AjaxOptions() { HttpMethod = "Post", OnSuccess = "dig.Success", OnFailure = "dig.Complete" }, new { @class = "form-signin" }))
+    @using (Ajax.BeginForm("AdminLogin", null, new AjaxOptions() { HttpMethod = "Post", OnSuccess = "dig.Success", OnFailure = "dig.Complete" }, new { @class = "form-signin",@id="LoginForm" }))
     {
         <div class="loginWraper">
             <div id="loginform" class="loginBox">
@@ -54,10 +54,13 @@
     <script src="~/Content/script/lib/jquery/1.9.1/jquery.min.js"></script>
     <script src="~/Content/script/jquery.unobtrusive-ajax.min.js"></script>
     <link href="~/Content/script/h-ui/css/H-ui.min.css" rel="stylesheet" />
+    <script src="~/Content/script/lib/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+    <script src="~/Content/script/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+    <script src="~/Content/script/lib/jquery.validation/1.14.0/messages_zh.min.js"></script>
     <script src="~/Content/script/lib/layer/2.4/layer.js"></script>
     <script src="~/Content/script/Login_admin.js"></script>
     <script type="text/javascript">
-       
+  
     </script>
 </body>
 </html>

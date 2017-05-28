@@ -15,13 +15,32 @@ namespace SmartCity.Domain.Concrete
     public class SysLogInfo : RepositoryContext, ISysLogInfo
     {
         /// <summary>
-        ///获取通告资讯集合
+        ///获取系统日志集合
         /// </summary>
         /// <returns></returns>
         public IEnumerable<SysLog> GetSysList()
         {
             return Conn.Query<SysLog>("select * from SysLog_Table");
         }
+        /// <summary>
+        /// 查询日志内容By时间
+        /// </summary>
+        /// <param name="NewsID"></param>
+        /// <returns></returns>
+        public IEnumerable<SysLog> SerachSysLog( DateTime? startTime, DateTime? endTime)
+        {
+            string sql;
+            if (startTime != null)
+            {
+                sql = "select * from SysLog_Table where Datas>=@Time1 and Datas<=@Time2 ";
+            }
+            else
+            {
+                sql = "select * from SysLog_Table";
+            }
+            return Conn.Query<SysLog>(sql,new { Time1=startTime,Time2=endTime });
+        }
+
 
     }
 }

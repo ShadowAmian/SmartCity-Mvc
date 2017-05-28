@@ -90,8 +90,8 @@ namespace SmartCity.Domain.Concrete
         /// <returns></returns>
         public bool ManagerIsExist(string Account)
         {
-            var resule = Conn.Execute("Select Count(*) from Manager_Table where ManagerAccount=@ManagerAccount", new { ManagerAccount= Account });
-            if (resule>0)
+            var resule = Conn.Query<int>("Select Count(*) from Manager_Table where ManagerAccount=@ManagerAccount", new { ManagerAccount= Account });
+            if (resule.First()>0)
             {
                 return true;
             }

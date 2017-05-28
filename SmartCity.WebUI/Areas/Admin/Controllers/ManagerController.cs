@@ -87,8 +87,10 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             {
                 return Json(new { IsSuccess = 1, Message = "添加失败，该用户已存在!" });
             }
+            model.ManagerPassword = SmartCity.Common.MD5Crypt.EncryptAli(model.ManagerPassword);
             model.IsEnable = 1;
             model.CreateTime = DateTime.Now;
+
             var result = repository.AddManager(model);
             if (result)
             {

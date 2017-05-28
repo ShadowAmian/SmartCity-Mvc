@@ -18,12 +18,27 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         }
         #endregion
         // GET: Admin/SysLog
-        public ActionResult Index()
+        public ActionResult SysLogIndex()
         {
             var model = repository.GetSysList();
             var models = new SysLogModel();
             models.SysLogIteams = model.ToList();
             return View(models);
+        }
+        /// <summary>
+        /// 日志搜索
+        /// </summary>
+        /// <param name="NewsName"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult SerachSysLog( DateTime? startTime, DateTime? endTime)
+        {
+            var Model = new SysLogModel();
+            var result = repository.SerachSysLog(startTime, endTime).ToList();
+            Model.SysLogIteams = result;
+            return View("SysLogIndex", Model);
         }
     }
 }

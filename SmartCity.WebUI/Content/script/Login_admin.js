@@ -12,7 +12,7 @@ var dig = {
         }
         else {
             ClickRemoveChangeCode();
-            layer.msg('登录失败，请稍后重试！', { icon: 2, time: 2000 });
+            layer.msg(result.Msg, { icon: 2, time: 2000 });
         }
     },
     Failure: function () {

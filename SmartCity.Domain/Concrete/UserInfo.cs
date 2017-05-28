@@ -78,8 +78,8 @@ namespace SmartCity.Domain.Concrete
         /// <returns></returns>
         public bool UserIsExist(string Account)
         {
-            var resule = Conn.Execute("Select Count(*) from User_Table where UserAccount=@UserAccount", new { UserAccount = Account });
-            if (resule > 0)
+            var resule = Conn.Query<int>("Select Count(*) from User_Table where UserAccount=@UserAccount", new { UserAccount = Account });
+            if (resule.First() > 0)
             {
                 return true;
             }

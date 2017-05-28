@@ -751,7 +751,7 @@
     <Content Include="Content\script\lib\webuploader\0.1.5\server\preview.php" />
     <Content Include="Areas\Admin\Views\News\SearchNews.cshtml" />
     <Content Include="Areas\Admin\Views\News\NewsInfoEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\SysLog\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SysLog\SysLogIndex.cshtml" />
     <Content Include="Areas\Admin\Views\Manager\PassWordEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Repair\RepairList.cshtml" />
     <Content Include="Areas\Admin\Views\Repair\MaintenanceDistribution.cshtml" />

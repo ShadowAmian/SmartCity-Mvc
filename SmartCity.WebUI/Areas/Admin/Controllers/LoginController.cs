@@ -42,11 +42,15 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
                     if (result)
                     {
                         var ManagerModel = repository.GetManagerInfo(AdminAccount);
-                        SessionHelper.SetSession("CurrentManager", ManagerModel.First());
-                        json.Status = "y";
-                        json.ReUrl = "/Admin/Home/Index";
+                        if (ManagerModel.First().IsEnable==1)
+                        {
+                            SessionHelper.SetSession("CurrentManager", ManagerModel.First());
+                            json.Status = "y";
+                            json.ReUrl = "/Admin/Home/Index";
+                            log.Info(Utils.GetIP(), AdminAccount, Request.Url.ToString(), "Login", "系统登录，登录结果：" + json.Msg);
+                        }
+                        json.Msg = "你的账号已被系统管理员停用，请联系管理员！";
                         log.Info(Utils.GetIP(), AdminAccount, Request.Url.ToString(), "Login", "系统登录，登录结果：" + json.Msg);
-                        //return RedirectToAction("Index", "Home", new { area = "Admin" });
                     }
                     else
                     {
