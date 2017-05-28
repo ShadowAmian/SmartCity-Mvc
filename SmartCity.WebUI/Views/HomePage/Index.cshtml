@@ -28,7 +28,7 @@
                 <div id="user-profile">
                     <span class="nav-set">
                         <span class="nav-login">
-                            <a id="Tile1" href="@Model.TitleUrL1" class="signin-loader">@Model.Title1</a>&nbsp; &nbsp; <a id="Title2" href="@Model.TitleUrl2" class="signup-loader">@Model.Tiltle2</a>
+                            <a id="Tile1" href="@Model.TitleUrL1"  class="user-login">@Model.Title1</a>&nbsp; &nbsp;<a id="Title2" href="@Model.TitleUrl2" class="signup-loader">@Model.Tiltle2</a>
                         </span>
                     </span>
                 </div>
@@ -252,7 +252,7 @@
     <div id="sign" class="um_sign">
         <div class="part loginPart">
             <form id="login" method="post" novalidate="novalidate">
-                <div id="register-active" class="switch"><i class="fa fa-toggle-on"></i>切换注册</div> <h3>登录<p class="status"></p></h3>
+                 <h3>登录<p class="status"></p></h3>
                 <p>
                     <label class="icon" for="username"><i class="fa fa-user"></i></label>
                     <input class="input-control" id="username" name="Account" type="text" placeholder="请输入用户名" aria-required="true">
@@ -268,39 +268,7 @@
                 <p>
                     <input class="submit" type="button" id="Login" value="登录" name="submit">
                 </p>
-            </form>
-            <a class="close"><i class="fa fa-times"></i></a>
-            <div class="other-sign">
-                <p>您也可以使用第三方帐号快捷登录</p>
-                <div><a class="qqlogin" href="#"><i class="fa fa-qq"></i><span>Q Q 登 录</span></a></div>
-                <div><a class="weibologin" href="#"><i class="fa fa-weibo"></i><span>微 博 登 录</span></a></div>
-            </div>
-        </div>
-        <div class="part registerPart">
-            <form id="register" action="#" method="post" novalidate="novalidate">
-                <div id="login-active" class="switch"><i class="fa fa-toggle-off"></i>切换登录</div>
-                <h3>注册<p class="status"></p></h3>
-                <p>
-                    <label class="icon" for="user_name"><i class="fa fa-user"></i></label>
-                    <input class="input-control" id="user_name" type="text" name="user_name" placeholder="输入英文用户名" required="" aria-required="true">
-                </p>
-                <p>
-                    <label class="icon" for="user_email"><i class="fa fa-envelope"></i></label>
-                    <input class="input-control" id="user_email" type="email" name="user_email" placeholder="输入常用邮箱" required="" aria-required="true">
-                </p>
-                <p>
-                    <label class="icon" for="user_pass"><i class="fa fa-lock"></i></label>
-                    <input class="input-control" id="user_pass" type="password" name="user_pass" placeholder="密码最小长度为6" required="" aria-required="true">
-                </p>
-                <p>
-                    <label class="icon" for="user_pass2"><i class="fa fa-retweet"></i></label>
-                    <input class="input-control" type="password" id="user_pass2" name="user_pass2" placeholder="再次输入密码" required="" aria-required="true">
-                </p>
-                <p id="captcha_inline">
-                    <input class="submit inline" type="submit" value="注册" name="submit">
-                </p>
                 <a class="close"><i class="fa fa-times"></i></a>
-                <input type="hidden" id="user_security" name="user_security" value="7482b43d85"><input type="hidden" name="_wp_http_referer" value="/">
             </form>
         </div>
     </div>
@@ -398,11 +366,11 @@
                         window.location.reload();
                     }
                     else {
-                        layer.msg("登录失败，请稍后重试！", { icon: 2, time: 1000 });
+                        layer.msg(data.Msg, { icon: 2, time: 2000 });
                     }
                 },
                 error: function (data) {
-                    layer.msg(data.msg, { icon: 2, time: 1000 });
+                    layer.msg("登录失败,请稍后重试！", { icon: 2, time: 2000 });
                 },
             });
         });

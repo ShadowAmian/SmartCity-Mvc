@@ -50,7 +50,7 @@ namespace SmartCity.WebUI.Controllers
             Model.PostsTypeItems = PostsType;
             Model.LatestReviewsItems = LatestReviews;
             Model.Title1 = "Hi, 请登录";
-            Model.Tiltle2 = "我要注册";
+            Model.Tiltle2 = " ";
             Model.TitleUrL1 = "#";
             Model.TitleUrl2 = "#";
             Model.PageCount = PageCount;
@@ -83,7 +83,7 @@ namespace SmartCity.WebUI.Controllers
             Model.PostsTypeItems = PostsType;
             Model.LatestReviewsItems = LatestReviews;
             Model.Title1 = "Hi, 请登录";
-            Model.Tiltle2 = "我要注册";
+            Model.Tiltle2 = " ";
             Model.TitleUrL1 = "#";
             Model.TitleUrl2 = "#";
             Model.PageCount = PageCount;
