@@ -133,18 +133,18 @@
                         <h4>通知公告</h4>
                     </div>
                     <ul class="dd-list">
-                        @for (int i = 0; i < 4; i++)
+                        @foreach (var item in Model.NewsItems)
                         {
                             <li>
                                 <figure class="dd-img">
-                                    <a title="@Model.NewsItems[i].NewsTitle" target="_blank" href="@Url.Action("HomeNewsIndex","HomeNews",new RouteValueDictionary { { "ID" , @Model.NewsItems[i].NewsID } })">
-                                        <img src="@Model.NewsItems[i].NewsImages" style="display: inline;width:168px;height:112px;" alt="@Model.NewsItems[i].NewsTitle">
+                                    <a title="@item.NewsTitle" target="_blank" href="@Url.Action("HomeNewsIndex","HomeNews",new RouteValueDictionary { { "ID" , @item.NewsID } })">
+                                        <img src="@item.NewsImages" style="display: inline;width:168px;height:112px;" alt="@item.NewsTitle">
                                     </a>
                                 </figure>
                                 <div class="dd-content">
-                                    <h2 class="dd-title"> <a rel="bookmark" title="@Model.NewsItems[i].NewsTitle" href="@Url.Action("HomeNewsIndex","HomeNews",new RouteValueDictionary { { "ID" , @Model.NewsItems[i].NewsID } })">@Model.NewsItems[i].NewsTitle</a> </h2>
+                                    <h2 class="dd-title"> <a rel="bookmark" title="@item.NewsTitle" href="@Url.Action("HomeNewsIndex","HomeNews",new RouteValueDictionary { { "ID" , item.NewsID } })">@item.NewsTitle</a> </h2>
                                     <div class="dd-site xs-hidden">
-                                        @Model.NewsItems[i].NewsDigest
+                                        @item.NewsDigest
                                     </div>
                                 </div>
                             </li>

@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -72,7 +73,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         }
         [ValidateInput(false)]
         [HttpPost, ActionName("NewsInfoAdd")]
-        public ActionResult AddNewsInfo(NewsList model)
+        public string AddNewsInfo(NewsList model)
         {
             //if (CurrentUser.ManagerType != "超级管理员")
             //{
@@ -84,8 +85,9 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
 
             if (model.NewsImages != null)
             {
-                string filePath = Path.Combine(HttpContext.Server.MapPath("../Images"), Path.GetFileName(model.NewsImages.FileName) + DateTime.Now.ToString());
+                string filePath = Path.Combine(HttpContext.Server.MapPath("~/Images"), Path.GetFileName(model.NewsImages.FileName));
                 model.NewsImages.SaveAs(filePath);
+                NoticeModel.NewsImages = "../Images/" + Path.GetFileName(model.NewsImages.FileName);
             }
             else
             {
@@ -113,10 +115,10 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             var result = repository.AddNews(NoticeModel);
             if (result)
             {
-                //log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "News", "通知公告添加，公告为：" + model.NewsTitle);
-                return Json(new { IsSuccess = 0, Message = "添加成功!" });
+                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "News", "通知公告添加，公告为：" + model.NewsTitle);
+                return "<script>window.parent.location.reload();</script>";
             }
-            return Json(new { IsSuccess = 1, Message = "添加失败，请稍后重试!" });
+            return "<script>alert('添加失败,请稍后重试!');</script>";
         }
         /// <summary>
         /// 修改公告状态
@@ -133,7 +135,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             var result = repository.EditPublishStatu(NewsID, Status);
             if (result)
             {
-                //log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "News", "通知公告状态修改添加);
+                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(),"News","通知公告状态修改添加");
                 return Json(new { IsSuccess = 0, Message = "修改成功！" });
 
             }
@@ -147,7 +149,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         public ActionResult SearchNews(int NewsID)
         {
             var result = repository.SearchContent(NewsID).First();
-            ViewBag.Content = result.NewsContent;
+            ViewBag.Content = Regex.Replace(result.NewsContent, @"<[^>]+>", string.Empty) ;
             return View();
         }
         /// <summary>
@@ -159,7 +161,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         {
             var result = repository.SearchContent(NewsID).First();
             var model = new NewsList();
-            model.NewsImages = result.NewsImages;
+            //model.NewsImages = result.NewsImages;
             model.NewsID = result.NewsID;
             model.IsComment = result.IsComment;
             model.NewsAuthor = result.NewsAuthor;
@@ -193,7 +195,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             var result = repository.EditNewsInfo(models);
             if (result)
             {
-                //log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "News", "公告修改);
+                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "News", "公告修改");
                 return Json(new { IsSuccess = 0, Message = "修改成功！" });
             }
             return Json(new { IsSuccess = 1, Message = "修改失败，请稍后重试!" });

@@ -50,7 +50,7 @@ namespace SmartCity.WebUI.Areas.Admin.Models
         /// <summary>
         /// 公告图片
         /// </summary>
-        public string NewsImages { get; set; }
+        public HttpPostedFileBase NewsImages { get; set; }
         /// <summary>
         /// 公告内容
         /// </summary>

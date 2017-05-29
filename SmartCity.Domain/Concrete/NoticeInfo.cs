@@ -28,7 +28,7 @@ namespace SmartCity.Domain.Concrete
         /// <returns></returns>
         public IEnumerable<Notice> GetNewsListByPublished()
         {
-            return Conn.Query<Notice>("select * from News_Table where PublishStatus=0");
+            return Conn.Query<Notice>("select top 4 * from News_Table where PublishStatus=0 order by NewsID desc ");
         }
         /// <summary>
         /// 通告资讯添加
