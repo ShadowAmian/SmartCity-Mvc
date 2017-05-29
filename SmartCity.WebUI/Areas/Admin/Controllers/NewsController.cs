@@ -159,6 +159,8 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         {
             var result = repository.SearchContent(NewsID).First();
             var model = new NewsList();
+            model.NewsImages = result.NewsImages;
+            model.NewsID = result.NewsID;
             model.IsComment = result.IsComment;
             model.NewsAuthor = result.NewsAuthor;
             model.NewsChassify = result.NewsChassify;
@@ -167,7 +169,6 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             model.NewsKaywords = result.NewsKaywords;
             model.NewsSimpleTitle = result.NewsSimpleTitle;
             model.NewsTitle = result.NewsTitle;
-
             return View(model);
         }
         [HttpPost, ActionName("NewsInfoEdit")]

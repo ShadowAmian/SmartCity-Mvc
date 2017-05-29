@@ -15,10 +15,11 @@
     <link href="~/Content/script/h-ui.admin/skin/default/skin.css" rel="stylesheet" id="skin" />
 </head>
 <body>
-    @using (Ajax.BeginForm("MaintenanceDistributionByManager", "Repair", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "dig.Success", OnFailure = "dig.Complete" }, new { @class = "form-signin", @enctype = "multipart/form-data" }))
-    {
-        <article class="page-container">
-            <form class="form form-horizontal" id="form-admin-add">
+    <article class="page-container">
+        <div class="form form-horizontal">
+            @using (Ajax.BeginForm("MaintenanceDistributionByManager", "Repair", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "dig.Success", OnFailure = "dig.Complete" }, new { @class = "form-signin", @enctype = "multipart/form-data" }))
+            {
+
                 <input type="hidden" name="RepairID" value="@Model.RepairID" />
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3">维修人：</label>
@@ -44,11 +45,12 @@
                         <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
                     </div>
                 </div>
-            </form>
-        </article>
-    }
+            }
+          </div>
+    </article>
     <!--_footer 作为公共模版分离出去-->
     <script src="~/Content/script/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script src="~/Content/script/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Content/script/lib/layer/2.4/layer.js"></script>
     <script src="~/Content/script/h-ui/js/H-ui.min.js"></script>
     <script src="~/Content/script/h-ui.admin/js/H-ui.admin.js"></script>
@@ -78,4 +80,5 @@
         }
     </script>
 </body>
+
 </html>

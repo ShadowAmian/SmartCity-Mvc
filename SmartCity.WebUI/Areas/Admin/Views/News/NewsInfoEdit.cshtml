@@ -16,10 +16,11 @@
     <link href="~/Content/script/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" />
 </head>
 <body>
-    @using (Ajax.BeginForm("NewsInfoEdit", "News", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "dig.Success", OnFailure = "dig.Complete" }, new { @class = "form-signin", @enctype = "multipart/form-data" }))
-    {
-        <article class="page-container">
-            <form class="form form-horizontal" id="form-article-add">
+    <article class="page-container">
+        <div class="form form-horizontal" id="form-article-add">
+            @using (Ajax.BeginForm("NewsInfoEdit", "News", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "dig.Success", OnFailure = "dig.Complete" }, new { @class = "form-signin", @enctype = "multipart/form-data" }))
+            {
+
                 <input type="hidden" value="@Model.NewsID" name="NewsID" />
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公告标题：</label>
@@ -56,7 +57,7 @@
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-2">公告摘要：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <textarea name="NewsDigest" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">@Model.NewsDigest</textarea>
+                        <textarea name="NewsDigest" class="textarea" placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">@Model.NewsDigest</textarea>
                         <p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
                     </div>
                 </div>
@@ -66,7 +67,7 @@
                         <input type="text" class="input-text" value="@Model.NewsAuthor" placeholder="" id="NewsAuthor" name="NewsAuthor">
                     </div>
                 </div>
-                <div class="row cl">
+                @*<div class="row cl">
                     <label class="form-label col-xs-4 col-sm-2">允许评论：</label>
                     <div class="formControls col-xs-8 col-sm-9 skin-minimal">
                         <div class="check-box">
@@ -74,36 +75,36 @@
                             <label for="checkbox-pinglun">&nbsp;</label>
                         </div>
                     </div>
-                </div>
+                </div>*@
                 @*<div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-2">缩略图：</label>
-                    <div class="formControls col-xs-8 col-sm-9">
-                        <div id="uploader" class="wu-example">
-                            用来存放文件信息
-                            <div id="thelist" class="uploader-list"></div>
-                            <div class="btns">
-                                <div><input type="file" name="NewsImages" /></div>
+                        <label class="form-label col-xs-4 col-sm-2">缩略图：</label>
+                        <div class="formControls col-xs-8 col-sm-9">
+                            <div id="uploader" class="wu-example">
+                                用来存放文件信息
+                                <div id="thelist" class="uploader-list"></div>
+                                <div class="btns">
+                                    <div><input type="file" name="NewsImages" /></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>*@
+                    </div>*@
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-2">文章内容：</label>
                     <div class="formControls col-xs-8 col-sm-9">
                         <script id="editor" name="NewsContent" type="text/plain" style="width:100%;height:400px;">
-               
+
                         </script>
                     </div>
                 </div>
                 <div class="row cl">
                     <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                        <button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 提交修改</button>
+                        <button  class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 提交修改</button>
                         <button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
                     </div>
                 </div>
-            </form>
-        </article>
-    }
+            }
+        </div>
+    </article>
     <!--_footer 作为公共模版分离出去-->
     <script src="~/Content/script/lib/jquery/1.9.1/jquery.min.js"></script>
     <script src="~/Content/script/jquery.unobtrusive-ajax.min.js"></script>
@@ -122,10 +123,10 @@
         if ($('#IsComment').val() == 0) {
             $("[id='IsComment']").attr("checked", 'true');//全选
         }
-        var ue = UE.getEditor('editor');
+        @*var ue = UE.getEditor('editor');
         ue.ready(function () {
             ue.setContent('@Model.NewsContent');
-        });
+        });*@
         //执行成功后调用JS
         var dig = {
             Success: function (result) {
@@ -137,13 +138,14 @@
                 }
             },
             Failure: function () {
-                layer.msg('添加失败，请稍后重试！', { icon: 2, time: 2000 });
+                layer.msg('修改失败，请稍后重试！', { icon: 2, time: 2000 });
             },
             ErrorMsg: function (msg) {
                 ClickRemoveChangeCode();
-                layer.msg('添加失败，请稍后重试！', { icon: 2, time: 2000 });
+                layer.msg('修改失败，请稍后重试！', { icon: 2, time: 2000 });
             }
         }
     </script>
 </body>
+
 </html>
