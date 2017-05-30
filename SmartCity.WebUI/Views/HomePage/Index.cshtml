@@ -284,7 +284,7 @@
                     cont: 'demo3',
                     pages: total,
                     curr: 1,
-                    groups: 5,
+                    groups: 10,
                     skin: '#009688',
                     jump: function (obj, first) {
                         if (!first) {
@@ -294,39 +294,40 @@
                     }
                 });
             });
-            function LoadPosts(curr) {
-                var param = {};
-                param.Curr = curr;
-                $.ajax({
-                    type: 'POST',
-                    url: '/HomePage/GetPostInfoByPage',
-                    data: param,
-                    success: function (result) {
-                        var Content = "";
-                        if (result.IsSuccess == 0) {
-                            $(result.Items).each(function (n, Row) {
-                                Content += "<article class='excerpt'><div class='focus'><a target='_blank' href=''></a></div><header>";
-                                Content += "<a class='label label-important' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.PostsLable+"<i class='label-arrow'></i></a><h2><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"' title="+Row.PostsTitle+">"+Row.PostsTitle+" </a></h2>";
-                                Content += "</header><p class='auth-span'>";
-                                Content += "<span class='muted'><i class='fa fa-clock-o'></i>"+eval('new ' + Row.CreateTime.replace(/\//g, '')).Format('yyyy-MM-dd hh:mm:ss')+"";
-                                Content+="</span><span class='muted'><i class='fa fa-eye'></i>"+Row.TimesWatched+"</span><span class='muted'><i class='fa fa-comments-o'></i><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.CommentsNumber+"评论</a></span>";
-                                Content += "</p><span class='note'>"+Row.BriefContent+"</span></article>";
-                            })
-                            $("#divContent").empty();
-                            $("#divContent").html(Content);
-                            Content = null;
-                        } else {
-                            layer.msg(result.Message, { icon: 2 });
-                        }
-                    },
-                    datatype: "json",
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        layer.msg('获取信息失败，请稍后重试！', { icon: 2 });
-                    }
-                });
-                param = null;
-            }
+          
         });
+        function LoadPosts(curr) {
+            var param = {};
+            param.Curr = curr;
+            $.ajax({
+                type: 'POST',
+                url: '/HomePage/GetPostInfoByPage',
+                data: param,
+                success: function (result) {
+                    var Content = "";
+                    if (result.IsSuccess == 0) {
+                        $(result.Items).each(function (n, Row) {
+                            Content += "<article class='excerpt'><div class='focus'><a target='_blank' href=''></a></div><header>";
+                            Content += "<a class='label label-important' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.PostsLable+"<i class='label-arrow'></i></a><h2><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"' title="+Row.PostsTitle+">"+Row.PostsTitle+" </a></h2>";
+                            Content += "</header><p class='auth-span'>";
+                            Content += "<span class='muted'><i class='fa fa-clock-o'></i>"+eval('new ' + Row.CreateTime.replace(/\//g, '')).Format('yyyy-MM-dd hh:mm:ss')+"";
+                            Content+="</span><span class='muted'><i class='fa fa-eye'></i>"+Row.TimesWatched+"</span><span class='muted'><i class='fa fa-comments-o'></i><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.CommentsNumber+"评论</a></span>";
+                            Content += "</p><span class='note'>"+Row.BriefContent+"</span></article>";
+                        })
+                        $("#divContent").empty();
+                        $("#divContent").html(Content);
+                        Content = null;
+                    } else {
+                        layer.msg(result.Message, { icon: 2 });
+                    }
+                },
+                datatype: "json",
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    layer.msg('获取信息失败，请稍后重试！', { icon: 2 });
+                }
+            });
+            param = null;
+        }
         Date.prototype.Format = function (fmt) {
             var o = {
                 "M+": this.getMonth() + 1,                 //月份

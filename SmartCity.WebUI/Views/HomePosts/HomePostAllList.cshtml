@@ -326,10 +326,10 @@
         function LoadPosts(curr) {
             var param = {};
             param.Curr = curr;
-            param.PotsLaber=$("#PostsLable").val();
+            //param.PotsLaber=$("#PostsLable").val();
             $.ajax({
                 type: 'POST',
-                url: '/HomePosts/GetPostInfoByPage',
+                url: '/HomePage/GetPostInfoByPage',
                 data: param,
                 success: function (result) {
                     var Content = "";
