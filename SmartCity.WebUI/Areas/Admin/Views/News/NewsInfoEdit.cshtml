@@ -18,7 +18,7 @@
 <body>
     <article class="page-container">
         <div class="form form-horizontal" id="form-article-add">
-            @using (Ajax.BeginForm("NewsInfoEdit", "News", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "dig.Success", OnFailure = "dig.Complete" }, new { @class = "form-signin", @enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("NewsInfoEdit", "News", FormMethod.Post, new { @class = "form-signin", @enctype = "multipart/form-data" }))
             {
 
                 <input type="hidden" value="@Model.NewsID" name="NewsID" />
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>*@
-                @*<div class="row cl">
+                <div class="row cl">
                         <label class="form-label col-xs-4 col-sm-2">缩略图：</label>
                         <div class="formControls col-xs-8 col-sm-9">
                             <div id="uploader" class="wu-example">
@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>*@
+                    </div>
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-2">文章内容：</label>
                     <div class="formControls col-xs-8 col-sm-9">
@@ -123,10 +123,10 @@
         if ($('#IsComment').val() == 0) {
             $("[id='IsComment']").attr("checked", 'true');//全选
         }
-        @*var ue = UE.getEditor('editor');
+        var ue = UE.getEditor('editor');
         ue.ready(function () {
             ue.setContent('@Model.NewsContent');
-        });*@
+        });
         //执行成功后调用JS
         var dig = {
             Success: function (result) {

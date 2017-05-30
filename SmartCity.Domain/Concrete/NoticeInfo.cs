@@ -76,7 +76,7 @@ namespace SmartCity.Domain.Concrete
         /// <returns></returns>
         public bool EditNewsInfo(Notice model)
         {
-            var resule = Conn.Execute("update News_Table set NewsTitle=@NewsTitle,NewsSimpleTitle=@NewsSimpleTitle,NewsChassify=@NewsChassify,NewsKaywords=@NewsKaywords,NewsDigest=@NewsDigest,NewsAuthor=@NewsAuthor,IsComment=@IsComment,NewsContent=@NewsContent where NewsID=@NewsID", model);
+            var resule = Conn.Execute("update News_Table set NewsTitle=@NewsTitle,NewsSimpleTitle=@NewsSimpleTitle,NewsChassify=@NewsChassify,NewsKaywords=@NewsKaywords,NewsDigest=@NewsDigest,NewsAuthor=@NewsAuthor,NewsImages=@NewsImages,NewsContent=@NewsContent where NewsID=@NewsID", model);
             if (resule == 1)
             {
                 return true;

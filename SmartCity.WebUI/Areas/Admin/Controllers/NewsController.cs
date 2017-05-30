@@ -173,8 +173,9 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             model.NewsTitle = result.NewsTitle;
             return View(model);
         }
+        [ValidateInput(false)]
         [HttpPost, ActionName("NewsInfoEdit")]
-        public ActionResult EditNews(NewsList model)
+        public string EditNews(NewsList model)
         {
             //if (CurrentUser.ManagerType != "超级管理员")
             //{
@@ -182,6 +183,17 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             //    return Json(new { IsSuccess = 1, Message = "你无权限修改该数据！" });
             //}
             var models = new Notice();
+            if (model.NewsImages != null)
+            {
+                string filePath = Path.Combine(HttpContext.Server.MapPath("~/Images"), Path.GetFileName(model.NewsImages.FileName));
+                model.NewsImages.SaveAs(filePath);
+                models.NewsImages = "../Images/" + Path.GetFileName(model.NewsImages.FileName);
+            }
+            else
+            {
+                models.NewsImages = "../Images";
+            }
+
             models.NewsTitle = model.NewsTitle;
             models.NewsSimpleTitle = model.NewsSimpleTitle;
             models.NewsDigest = model.NewsDigest;
@@ -196,9 +208,9 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             if (result)
             {
                 log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "News", "公告修改");
-                return Json(new { IsSuccess = 0, Message = "修改成功！" });
+                return "<script>window.parent.location.reload();</script>";
             }
-            return Json(new { IsSuccess = 1, Message = "修改失败，请稍后重试!" });
+            return "<script>alert('添加失败,请稍后重试!');</script>";
 
         }
         [HttpPost]
@@ -212,7 +224,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             var result = repository.DeleteNews(NewsID);
             if (result)
             {
-                //log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Manager", "管理员删除，删除的ID为：" + ManagerID);
+                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "News", "通知公告删除，删除的公告ID为：" + NewsID);
                 return Json(new { IsSuccess = 0, Message = "删除成功！" });
             }
             return Json(new { IsSuccess = 1, Message = "删除失败，请稍后重试!" });
