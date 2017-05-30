@@ -36,8 +36,8 @@ namespace SmartCity.Domain.Entities
         /// <summary>
         /// 维修人信息
         /// </summary>
-        public Manager ManagerInfo { get; set; }
-        public int ManagerID { get; set; }
+        public Manager  ManagerInfo { get; set; }
+        public int? ManagerID { get; set; }
         /// <summary>
         /// 报修状态
         /// </summary>
@@ -45,7 +45,7 @@ namespace SmartCity.Domain.Entities
         /// <summary>
         /// 报修时间
         /// </summary>
-        public DateTime RepairTime { get; set; }
+        public DateTime? RepairTime { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>

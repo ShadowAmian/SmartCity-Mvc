@@ -11,6 +11,9 @@ using System.Web.Mvc;
 
 namespace SmartCity.WebUI.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// 管理员管理控制器
+    /// </summary>
     public class ManagerController : AdminBaseController
     {
 

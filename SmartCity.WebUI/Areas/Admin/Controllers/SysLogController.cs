@@ -8,6 +8,9 @@ using System.Web.Mvc;
 
 namespace SmartCity.WebUI.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// 系统日志控制器
+    /// </summary>
     public class SysLogController : Controller
     {
         #region 字段 构造函数

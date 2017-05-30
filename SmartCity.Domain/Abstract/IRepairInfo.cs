@@ -15,12 +15,17 @@ namespace SmartCity.Domain.Abstract
         /// <returns></returns>
         IEnumerable<Repair> GetRepairInfoList();
         /// <summary>
+        ///获取报修信息集合
+        /// </summary>
+        /// <returns></returns>
+         IEnumerable<Repair> GetRepairInfoListByManager(int managerID);
+        /// <summary>
         /// 修改公告状态
         /// </summary>
         /// <param name="ID"></param>
         /// <param name="Status"></param>
         /// <returns></returns>
-         bool EditRepairStatu(int ID, int Status);
+        bool EditRepairStatu(int ID, int Status);
         /// <summary>
         /// 修改报修信息
         /// </summary>
@@ -28,7 +33,6 @@ namespace SmartCity.Domain.Abstract
         /// <param name="Status"></param>
         /// <returns></returns>
         bool EditRepairToManager(int ManagerID, int id, DateTime time);
-
         /// <summary>
         /// 查询报修内容
         /// </summary>

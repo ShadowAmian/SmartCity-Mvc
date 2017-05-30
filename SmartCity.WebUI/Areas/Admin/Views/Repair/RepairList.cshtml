@@ -62,8 +62,8 @@
                             <td>@item.UserInfo.UserAddress</td>
                             <td>@item.UserInfo.UserName</td>
                             <td>@item.UserInfo.UserPhone</td>
-                            <td>@item.ManagerInfo.ManagerName</td>
-                            <td>@item.RepairTime.ToString()</td>
+                            <td>@(item.ManagerInfo==null?"":item.ManagerInfo.ManagerName)</td>
+                            <td>@(item.RepairTime == null ? "" :item.RepairTime.ToString())</td>
                             @switch (Enum.GetName(typeof(RepairStatus), item.MaintenanceStatus))
                             {
                                 case "已完成":

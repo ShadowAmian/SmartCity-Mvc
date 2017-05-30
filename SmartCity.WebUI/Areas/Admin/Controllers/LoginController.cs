@@ -10,6 +10,9 @@ using System.Web.Mvc;
 
 namespace SmartCity.WebUI.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// 登录控制器
+    /// </summary>
     public class LoginController : Controller
     {
         private IManagerInfo repository;

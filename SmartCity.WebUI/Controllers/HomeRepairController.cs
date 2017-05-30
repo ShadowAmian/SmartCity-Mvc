@@ -48,7 +48,7 @@ namespace SmartCity.WebUI.Controllers
                 model.RepairType = Convert.ToInt32(Enum.Parse(typeof(SmartCity.WebUI.Infrastructure.EnumData.RepairType), RepairType));
                 model.RepairContent = RepairContent;
                 model.OwnerID = CurrentUserInfo.OwnerID;
-                model.MaintenanceStatus = 3;
+                //model.MaintenanceStatus = 3;
                 model.CreateTime = DateTime.Now;
                 var result = RepairInfoService.RepairInfoAdd(model);
                 if (result)

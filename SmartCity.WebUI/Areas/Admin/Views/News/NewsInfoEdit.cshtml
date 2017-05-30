@@ -18,7 +18,7 @@
 <body>
     <article class="page-container">
         <div class="form form-horizontal" id="form-article-add">
-            @using (Html.BeginForm("NewsInfoEdit", "News", FormMethod.Post, new { @class = "form-signin", @enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("NewsInfoEdit", "News", FormMethod.Post, new { @class = "form-signin", @enctype = "multipart/form-data",@id= "NewsForm" }))
             {
 
                 <input type="hidden" value="@Model.NewsID" name="NewsID" />
@@ -113,6 +113,9 @@
     <script src="~/Content/script/h-ui.admin/js/H-ui.admin.js"></script>
     <!--/_footer 作为公共模版分离出去-->
     <!--请在下方写此页面业务相关的脚本-->
+    <script src="~/Content/script/lib/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+    <script src="~/Content/script/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+    <script src="~/Content/script/lib/jquery.validation/1.14.0/messages_zh.min.js"></script>
     <script src="~/Content/script/lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script src="~/Content/script/lib/ueditor/1.4.3/ueditor.config.js"></script>
     <script src="~/Content/script/lib/ueditor/1.4.3/ueditor.all.min.js"></script>
@@ -127,6 +130,50 @@
         ue.ready(function () {
             ue.setContent('@Model.NewsContent');
         });
+        $().ready(function () {
+            $("#NewsForm").validate({
+                rules: {
+                    NewsTitle: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 30,
+                    },
+                    NewsSimpleTitle: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 15
+                    },
+                    NewsKaywords: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 10
+                    },
+                    NewsAuthor: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 10
+                    }
+                },
+                messages: {
+                    UserAccount: {
+                        required: "请输入账号"
+                    },
+                    UserPassword: {
+                        required: "请输入密码",
+                    }
+                }
+            });
+            jQuery.validator.addMethod("alnum", function (value, element) {
+                return this.optional(element) || /^[a-zA-Z0-9]+$/.test(value);
+            }, "只能包括英文字母和数字");
+            //手机验证规则  
+            jQuery.validator.addMethod("mobile", function (value, element) {
+                var mobile = /^1[3|4|5|7|8]\d{9}$/;
+                return this.optional(element) || (mobile.test(value));
+            }, "手机格式不对");
+        });
+
+
         //执行成功后调用JS
         var dig = {
             Success: function (result) {

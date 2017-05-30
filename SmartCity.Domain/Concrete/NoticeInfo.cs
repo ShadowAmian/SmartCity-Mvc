@@ -22,6 +22,7 @@ namespace SmartCity.Domain.Concrete
         {
             return Conn.Query<Notice>("select * from News_Table");
         }
+       
         /// <summary>
         /// 获取已发布的通知公告
         /// </summary>

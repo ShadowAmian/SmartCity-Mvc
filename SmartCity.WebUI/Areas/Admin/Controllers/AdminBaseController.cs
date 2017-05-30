@@ -9,6 +9,9 @@ using System.Web.Mvc;
 
 namespace SmartCity.WebUI.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// 基类控制器
+    /// </summary>
     public class AdminBaseController : Controller
     {
 

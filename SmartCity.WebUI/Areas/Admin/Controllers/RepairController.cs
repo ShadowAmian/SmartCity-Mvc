@@ -14,6 +14,9 @@ using System.Web.Mvc;
 
 namespace SmartCity.WebUI.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// 报修模块控制器
+    /// </summary>
     public class RepairController : AdminBaseController
     {
 
@@ -31,10 +34,34 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         // GET: Admin/Repair
         public ActionResult RepairList()
         {
-            var model = repository.GetRepairInfoList();
-            var models = new RepairListModel();
-            models.RepairIteams = model.ToList();
-            return View(models);
+            bool Types = true;
+            if (CurrentUser.ManagerType != "超级管理员")
+            {
+                Types = false;
+                if (CurrentUser.ManagerType != "管理员")
+                {
+                    Types = false;
+                }
+                else
+                {
+                    Types = true;
+                }
+            }
+            if (!Types)
+            {
+                var model = repository.GetRepairInfoListByManager(CurrentUser.ManagerID);
+                var models = new RepairListModel();
+                models.RepairIteams = model.ToList();
+                return View(models);
+            }
+            else
+            {
+                var model = repository.GetRepairInfoList();
+                var models = new RepairListModel();
+                models.RepairIteams = model.ToList();
+                return View(models);
+            }
+          
         }
         /// <summary>
         /// 修改维修状态
@@ -51,7 +78,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
             var result = repository.EditRepairStatu(RepairID, Status);
             if (result)
             {
-                //log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Repair", "通知公告状态修改添加);
+                log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Repair", "维修状态状态修改添加");
                 return Json(new { IsSuccess = 0, Message = "修改成功！" });
 
             }
@@ -64,6 +91,7 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult MaintenanceDistribution(int RepairID)
         {
+        
             var model = Manager.SearchMaintenance();
             var models = new RepairMaintenanceModel();
             models.Iteams = model.ToList();
@@ -73,19 +101,19 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult MaintenanceDistributionByManager(int RepairID, int ManagerID, DateTime time)
         {
-            //if (CurrentUser.ManagerType != "超级管理员")
-            //{
-            //    //普通管理员无操作权限
-            //    return Json(new { IsSuccess = 1, Message = "无权限添加该信息！" });
-            //}
-            var result = repository.EditRepairToManager(ManagerID, RepairID, time);
-            if (result)
+            if (CurrentUser.ManagerType == "管理员" || CurrentUser.ManagerType == "超级管理员")
             {
-                //log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Repair", "通知公告状态修改添加);
-                return Json(new { IsSuccess = 0, Message = "修改成功！" });
+                var result = repository.EditRepairToManager(ManagerID, RepairID, time);
+                if (result)
+                {
+                    log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Repair", "报修模块修改添加");
+                    return Json(new { IsSuccess = 0, Message = "修改成功！" });
 
+                }
+                return Json(new { IsSuccess = 1, Message = "修改失败，请稍后重试!" });
             }
-            return Json(new { IsSuccess = 1, Message = "修改失败，请稍后重试!" });
+            //普通管理员无操作权限
+            return Json(new { IsSuccess = 1, Message = "无权限添加该信息！" });
         }
         /// <summary>
         /// 查询报修信息

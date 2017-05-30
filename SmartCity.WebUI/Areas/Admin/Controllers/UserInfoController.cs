@@ -13,6 +13,9 @@ using System.Web.Mvc;
 
 namespace SmartCity.WebUI.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// 用户管理模块控制器
+    /// </summary>
     public class UserInfoController : AdminBaseController
     {
         #region 字段 构造函数
