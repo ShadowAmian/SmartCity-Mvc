@@ -20,6 +20,12 @@ namespace SmartCity.Domain.Abstract
         /// <returns></returns>
          IEnumerable<Repair> GetRepairInfoListByManager(int managerID);
         /// <summary>
+        /// 删除报修
+        /// </summary>
+        /// <param name="NewsID"></param>
+        /// <returns></returns>
+         bool DeleteRepair(int RepairID);
+        /// <summary>
         /// 修改公告状态
         /// </summary>
         /// <param name="ID"></param>

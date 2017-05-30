@@ -14,9 +14,11 @@
     <link href="~/Content/HomeStyle/font-awesome.css" id="fa-css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/layui.css" rel="stylesheet" />
     <link href="~/Content/HomeStyle/style.css" id="style-css" rel="stylesheet" type="text/css" media="all" />
-
     <script type="text/javascript" src="~/Content/HomeStyle/jquery.min.js"></script>
     <script type="text/javascript" src="~/Content/HomeStyle/jquery.js"></script>
+    <script src="~/Content/script/lib/ueditor/1.4.3/ueditor.config.js"></script>
+    <script src="~/Content/script/lib/ueditor/1.4.3/ueditor.all.min.js"></script>
+    <script src="~/Content/script/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
     <script src="~/Content/HomeStyle/hm.js"></script>
     <script>
         window._deel = { name: '翠竹林小区物业系统', url: '#', ajaxpager: '', commenton: 0, roll: [0] }
@@ -145,8 +147,10 @@
                         </li>
                         <li>
                             <strong>内容</strong>
-                            <textarea id="tougao-content" rows="12" class="input-block-level" placeholder="写点什么..." style="margin-top:10px;margin-bottom:10px"></textarea>
-                            <p class="text-error hide"></p>
+                            <script id="editor" name="tougao-content" type="text/plain" style="width:780px;height:400px;margin-top:10px;margin-bottom:10px">
+                            </script>
+                            @*<textarea id="tougao-content" rows="12" class="input-block-level" placeholder="写点什么..." style="margin-top:10px;margin-bottom:10px"></textarea>
+                            <p class="text-error hide"></p>*@
                         </li>
                     </ul>
                     <div class="text-error"></div>
@@ -252,6 +256,7 @@
     <script type="text/javascript" src="~/Content/HomeStyle/wp-embed.min.js"></script>
     <script src="~/Content/layui.js"></script>
     <script>
+        var ue = UE.getEditor('editor');
         var _hmt = _hmt || [];
         (function () {
             var hm = document.createElement("script");
@@ -331,10 +336,10 @@
                     if (result.IsSuccess == 0) {
                         $(result.Items).each(function (n, Row) {
                             Content += "<article class='excerpt'><div class='focus'><a target='_blank' href=''></a></div><header>";
-                            Content += "<a class='label label-important' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.PostsLable+"<i class='label-arrow'></i></a><h2><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"' title="+Row.PostsTitle+">"+Row.PostsTitle+" </a></h2>";
+                            Content += "<a class='label label-important' href='/Forum/FourumIndex?ID="+Row.PostsID+"'>"+Row.PostsLable+"<i class='label-arrow'></i></a><h2><a target='_blank' href='/Forum/FourumIndex?ID="+Row.PostsID+"' title="+Row.PostsTitle+">"+Row.PostsTitle+" </a></h2>";
                             Content += "</header><p class='auth-span'>";
                             Content += "<span class='muted'><i class='fa fa-clock-o'></i>"+eval('new ' + Row.CreateTime.replace(/\//g, '')).Format('yyyy-MM-dd hh:mm:ss')+"";
-                            Content+="</span><span class='muted'><i class='fa fa-eye'></i>"+Row.TimesWatched+"</span><span class='muted'><i class='fa fa-comments-o'></i><a target='_blank' href='/Forum/ForumIndex?PostsID="+Row.PostsID+"'>"+Row.CommentsNumber+"评论</a></span>";
+                            Content+="</span><span class='muted'><i class='fa fa-eye'></i>"+Row.TimesWatched+"</span><span class='muted'><i class='fa fa-comments-o'></i><a target='_blank' href='/Forum/FourumIndex?ID="+Row.PostsID+"'>"+Row.CommentsNumber+"评论</a></span>";
                             Content += "</p><span class='note'>"+Row.BriefContent+"</span></article>";
                         })
                         $("#divContent").empty();
@@ -355,7 +360,11 @@
         $('#tougao-submit').click(function () {
             var param={};
             param.Title=$("#tougao-title").val();
-            param.Content=$("#tougao-content").val();
+            var html;
+            ue.ready(function() {
+                html = ue.getContent();
+            });
+            param.Content=html;
             param.PostsLable=$("#tougao-PostsLable").val();
             $.ajax({
                 type: 'POST',

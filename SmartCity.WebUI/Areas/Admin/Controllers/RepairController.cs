@@ -64,6 +64,28 @@ namespace SmartCity.WebUI.Areas.Admin.Controllers
           
         }
         /// <summary>
+        /// 报修删除
+        /// </summary>
+        /// <param name="RepairID"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult DeleteRepair(int RepairID)
+        {
+            if (CurrentUser.ManagerType == "超级管理员" || CurrentUser.ManagerType == "管理员")
+            {
+                var result = repository.DeleteRepair(RepairID);
+                if (result)
+                {
+                    log.Info(Utils.GetIP(), CurrentUser.ManagerAccount, Request.Url.ToString(), "Repair", "在线交流帖子删除，删除的ID为：" + RepairID);
+                    return Json(new { IsSuccess = 0, Message = "删除成功！" });
+                }
+                return Json(new { IsSuccess = 1, Message = "删除失败，请稍后重试!" });
+
+            }
+            return Json(new { IsSuccess = 1, Message = "你无权限删除该数据！" });
+
+        }
+        /// <summary>
         /// 修改维修状态
         /// </summary>
         /// <returns></returns>

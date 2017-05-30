@@ -99,11 +99,13 @@
                     data: { PostsID: id },
                     dataType: 'json',
                     success: function (data) {
-                        $(obj).parents("tr").remove();
-                        layer.msg('已删除!', { icon: 1, time: 1000 });
+                        if (data.IsSuccess == 0) {
+                            $(obj).parents("tr").remove();
+                            layer.msg(data.Message, { icon: 1, time: 1000 });
+                        }
                     },
                     error: function (data) {
-                        console.log(data.msg);
+                        layer.msg("删除失败,请稍后重试！", { icon: 2, time: 1000 });
                     },
                 });
             });

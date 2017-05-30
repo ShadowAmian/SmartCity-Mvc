@@ -20,7 +20,7 @@ namespace SmartCity.Domain.Concrete
         /// <returns></returns>
         public IEnumerable<Repair> GetRepairInfoList()
         {
-            return Conn.Query<Repair, User, Manager, Repair>("select r.RepairID,r.RepairName,r.RepairType,r.RepairContent,r.MaintenanceStatus,r.RepairTime,r.CreateTime,u.UserName,u.UserPhone,u.UserAddress,m.ManagerName from Repair_Table as r join User_Table as u on r.OwnerID=u.OwnerID left join Manager_Table as m on r.ManagerID=m.ManagerID", (repair, user, manager) => { repair.UserInfo = user; repair.ManagerInfo = manager; return repair; }, splitOn: "UserName,ManagerName");
+            return Conn.Query<Repair, User, Manager, Repair>("select r.RepairID,r.RepairName,r.RepairType,r.RepairContent,r.MaintenanceStatus,r.RepairTime,r.CreateTime,u.UserName,u.UserPhone,u.UserAddress,m.ManagerName from Repair_Table as r join User_Table as u on r.OwnerID=u.OwnerID  join Manager_Table as m on r.ManagerID=m.ManagerID", (repair, user, manager) => { repair.UserInfo = user; repair.ManagerInfo = manager; return repair; }, splitOn: "UserName,ManagerName");
         }
         /// <summary>
         ///获取报修信息集合
@@ -45,6 +45,20 @@ namespace SmartCity.Domain.Concrete
             }
             return false;
 
+        }
+        /// <summary>
+        /// 删除报修
+        /// </summary>
+        /// <param name="NewsID"></param>
+        /// <returns></returns>
+        public bool DeleteRepair(int RepairID)
+        {
+            var resule = Conn.Execute("delete from Repair_Table where RepairID=@RepairID ", new { RepairID = RepairID });
+            if (resule == 1)
+            {
+                return true;
+            }
+            return false;
         }
         /// <summary>
         /// 修改报修信息
