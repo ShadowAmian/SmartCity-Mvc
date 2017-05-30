@@ -113,7 +113,7 @@
                     </div>
                 </header>
                 <article class="article-content">
-                    @Model.PostsItems.First().Contents
+                    @(new HtmlString(Model.PostsItems.First().Contents))
                     <input type="hidden" id="PostID" value="@Model.PostsItems.First().PostsID">
                 </article>
                 <footer class="article-footer"></footer>
@@ -177,7 +177,6 @@
                                         </ul><!-- .children -->
                                     }
                                 }
-
                             </li>
                         }
                     </ol>

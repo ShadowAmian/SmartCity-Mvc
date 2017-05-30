@@ -6,6 +6,7 @@ using SmartCity.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -127,6 +128,7 @@ namespace SmartCity.WebUI.Controllers
             }
             return Json(new { IsSuccess = 1, Message = "对不起，你还未登陆，不能进行评论！" });
         }
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult PostsAdd(string Title,string Content,string PostsLable)
         {
@@ -136,7 +138,9 @@ namespace SmartCity.WebUI.Controllers
                 model.PostsTitle = Title;
                 model.PostsLable = PostsLable;
                 model.Contents = Content;
-                model.BriefContent = Content;
+                var StringModel=Regex.Replace(Content, @"<[^>]+>", string.Empty);
+                string str1 = StringModel.Substring(0, 10)+"...";
+                model.BriefContent = str1;
                 model.TimesWatched = 0;
                 model.CommentsNumber = 0;
                 model.CreateTime = DateTime.Now;

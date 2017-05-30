@@ -128,29 +128,25 @@
         }
         var ue = UE.getEditor('editor');
         ue.ready(function () {
-            ue.setContent('@Model.NewsContent');
+            ue.setContent('@(new HtmlString(Model.NewsContent))');
         });
         $().ready(function () {
             $("#NewsForm").validate({
                 rules: {
                     NewsTitle: {
                         required: true,
-                        minlength: 5,
                         maxlength: 30,
                     },
                     NewsSimpleTitle: {
                         required: true,
-                        minlength: 5,
                         maxlength: 15
                     },
                     NewsKaywords: {
                         required: true,
-                        minlength: 5,
                         maxlength: 10
                     },
                     NewsAuthor: {
                         required: true,
-                        minlength: 5,
                         maxlength: 10
                     }
                 },
@@ -166,7 +162,7 @@
             jQuery.validator.addMethod("alnum", function (value, element) {
                 return this.optional(element) || /^[a-zA-Z0-9]+$/.test(value);
             }, "只能包括英文字母和数字");
-            //手机验证规则  
+            //手机验证规则
             jQuery.validator.addMethod("mobile", function (value, element) {
                 var mobile = /^1[3|4|5|7|8]\d{9}$/;
                 return this.optional(element) || (mobile.test(value));
