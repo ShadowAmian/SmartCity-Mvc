@@ -28,7 +28,7 @@
                     <div id="user-profile">
                         <span class="nav-set">
                             <span class="nav-login">
-                                <a id="Tile1" href="@Model.TitleUrL1" class="signin-loader">@Model.Title1</a>&nbsp; &nbsp; <a id="Title2" href="@Model.TitleUrl2" class="signup-loader">@Model.Tiltle2</a>
+                                <a id="Tile1" href="@Model.TitleUrL1" class="user-login">@Model.Title1</a>&nbsp; &nbsp;<a id="Title2" href="@Model.TitleUrl2" class="signup-loader">@Model.Tiltle2</a>
                             </span>
                         </span>
                     </div>
@@ -107,7 +107,7 @@
                         @foreach (var item in Model.NewsItems)
                         {
                             <article class="excerpt">
-                                <div class="focus"><a target="_blank" href="@Url.Action("HomeNewsIndex","HomeNews",new RouteValueDictionary { { "ID" , item.NewsID } })"><img class="thumb" src="@item.NewsImages" alt="@item.NewsTitle"></a></div>
+                                <div class="focus"><a target="_blank" href="@Url.Action("HomeNewsIndex","HomeNews",new RouteValueDictionary { { "ID" , item.NewsID } })"><img class="thumb" style="width:168px;height:112px;" src="@item.NewsImages" alt="@item.NewsTitle"></a></div>
                                 <header>
                                     <a class="label label-important" href="@Url.Action("HomeNewsIndex","HomeNews",new RouteValueDictionary { { "ID" , item.NewsID } })">@item.NewsSimpleTitle<i class="label-arrow"></i></a><h2><a target="_blank" href="@Url.Action("HomeNewsIndex","HomeNews",new RouteValueDictionary { { "ID" , item.NewsID } })" title="@item.NewsTitle">@item.NewsTitle </a></h2>
                                 </header>

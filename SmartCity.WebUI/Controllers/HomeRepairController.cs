@@ -27,7 +27,7 @@ namespace SmartCity.WebUI.Controllers
             var model = SessionHelper.GetSession("HomeUserInfo");
             var Model = new RepairInfoModel();
             Model.Title1 = "Hi, 请登录";
-            Model.Tiltle2 = "我要注册";
+            Model.Tiltle2 = "";
             Model.TitleUrL1 = "#";
             Model.TitleUrl2 = "#";
             if (model != null)

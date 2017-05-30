@@ -29,7 +29,7 @@
                 <div id="user-profile">
                     <span class="nav-set">
                         <span class="nav-login">
-                            <a id="Tile1" href="@Model.TitleUrL1" class="signin-loader">@Model.Title1</a>&nbsp; &nbsp; <a id="Title2" href="@Model.TitleUrl2" class="signup-loader">@Model.Tiltle2</a>
+                            <a id="Tile1" href="@Model.TitleUrL1" class="user-login">@Model.Title1</a>&nbsp; &nbsp;<a id="Title2" href="@Model.TitleUrl2" class="signup-loader">@Model.Tiltle2</a>
                         </span>
                     </span>
                 </div>
@@ -153,6 +153,30 @@
             <p>小区物业管理 by <a title="翠竹林" href="#">翠竹林</a> </p>
         </div>
     </footer>
+    <div class="overlay-login"></div>
+    <div id="sign" class="um_sign">
+        <div class="part loginPart">
+            <form id="login" method="post" novalidate="novalidate">
+                <h3>登录<p class="status"></p></h3>
+                <p>
+                    <label class="icon" for="username"><i class="fa fa-user"></i></label>
+                    <input class="input-control" id="username" name="Account" type="text" placeholder="请输入用户名" aria-required="true">
+                </p>
+                <p>
+                    <label class="icon" for="password"><i class="fa fa-lock"></i></label>
+                    <input class="input-control" id="password" name="Password" type="password" placeholder="请输入密码" aria-required="true">
+                </p>
+                <p class="safe">
+                    <label class="remembermetext" for="rememberme"><input name="rememberme" type="checkbox" checked="checked" id="rememberme" class="rememberme" value="forever">记住我的登录</label>
+                    <a class="lost" href="#">忘记密码 ?</a>
+                </p>
+                <p>
+                    <input class="submit" type="button" id="Login" value="登录" name="submit">
+                </p>
+                <a class="close"><i class="fa fa-times"></i></a>
+            </form>
+        </div>
+    </div>
     <script type="text/javascript" src="~/Content/HomeStyle/um.js"></script>
     <script type="text/javascript" src="~/Content/HomeStyle/wp-embed.min.js"></script>
     <script src="~/Content/layui.js"></script>

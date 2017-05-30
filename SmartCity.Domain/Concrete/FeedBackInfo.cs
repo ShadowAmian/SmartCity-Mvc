@@ -81,7 +81,7 @@ namespace SmartCity.Domain.Concrete
         /// <returns></returns>
         public bool FeedBackAdd(FeedBack model)
         {
-            var resule = Conn.Execute("Insert into Complaint_Table values(@ComplaintID,@OwnerID,@ComplaintContent,@CreateTime)", model);
+            var resule = Conn.Execute("Insert into Complaint_Table (OwnerID,ComplaintContent,CreateTime) values(@OwnerID,@ComplaintContent,@CreateTime)", model);
             if (resule == 1)
             {
                 return true;
