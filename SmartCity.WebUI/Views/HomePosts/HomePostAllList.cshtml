@@ -118,9 +118,7 @@
                             <p class="auth-span">
                                 <span class="muted"><i class="fa fa-clock-o"></i>@item.CreateTime.ToString()</span> <span class="muted"><i class="fa fa-eye"></i> @item.TimesWatched</span> <span class="muted"><i class="fa fa-comments-o"></i> <a target="_blank" href="@Url.Action("FourumIndex","Forum",new RouteValueDictionary { { "ID" , item.PostsID } })">@(item.CommentsNumber + "评论")</a></span>
                             </p>
-                            <span class="note">
-                                @item.BriefContent
-                            </span>
+                            @item.BriefContent
                         </article>
                     }
                 </div>
